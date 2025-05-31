@@ -1,6 +1,8 @@
 class_name EvilSpirit extends CharacterBody2D
 
 
+signal died
+
 @export_group("Combat")
 @export var damage := 1
 @export var health := 1
@@ -15,13 +17,14 @@ var player: Player
 
 
 func _physics_process(delta: float) -> void:
-	var direction := position.direction_to(player.position)
+	var direction := global_position.direction_to(player.global_position)
 	var soft_velocity := soft_collider.get_vector()
 	velocity = velocity.lerp(direction * speed + soft_velocity, traction * delta)
 	move_and_slide()
 
 
 func die() -> void:
+	died.emit()
 	queue_free()
 
 
