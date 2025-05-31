@@ -13,6 +13,7 @@ radius = 11.0
 radius = 8.0
 
 [node name="BasicNpc(prolly change name later)" instance=ExtResource("1_fm3ty")]
+collision_layer = 32
 script = ExtResource("2_n5vt2")
 speed = 150
 acceleration = 50

@@ -7,5 +7,10 @@ script = ExtResource("1_mmmkw")
 max_length = 30
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(177, 74)
+position = Vector2(0, -25)
 target_position = Vector2(0, 30)
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

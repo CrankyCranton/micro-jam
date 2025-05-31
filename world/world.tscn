@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=4 format=3 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
-[ext_resource type="PackedScene" uid="uid://brb650wt5be6b" path="res://Npc/basic_npc(change name if need be)/basic_npc.tscn" id="2_tcf2h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xmxd"]
 size = Vector2(817, 32)
@@ -27,9 +26,6 @@ shape = SubResource("RectangleShape2D_6xmxd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(530, -5)
 shape = SubResource("RectangleShape2D_6xmxd")
-
-[node name="BasicNpc(prolly change name later)" parent="." instance=ExtResource("2_tcf2h")]
-position = Vector2(81, 2)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-147, -16)
