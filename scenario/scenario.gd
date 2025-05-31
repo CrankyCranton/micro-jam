@@ -9,7 +9,7 @@ const FINAL_NAME := &"final"
 
 var total_spawned := 0
 var current_spawned := 0
-var animations: Array[StringName]
+var animations: PackedStringArray
 var has_final := false
 var player: Player
 
@@ -34,6 +34,10 @@ func end() -> void:
 	queue_free()
 
 
+func play_random() -> void:
+	spawn_patterns.play(animations[randi() % animations.size()])
+
+
 func _on_body_entered(player: Player) -> void:
 	self.player = player
 	collision_shape.set_deferred(&"disabled", true)
@@ -42,7 +46,7 @@ func _on_body_entered(player: Player) -> void:
 	for spirit_spawn_point: SpiritSpawnPoint in spawn_points.get_children():
 		spirit_spawn_point.player = player
 
-	spawn_patterns.play(animations.pick_random())
+	play_random()
 
 
 func _on_spirit_spawn_point_spawned(spawn: EvilSpirit) -> void:
@@ -65,4 +69,4 @@ func _on_spawn_patterns_animation_finished(anim_name: StringName) -> void:
 			if has_final:
 				spawn_patterns.play(FINAL_NAME)
 		else:
-			spawn_patterns.play(animations.pick_random())
+			play_random()

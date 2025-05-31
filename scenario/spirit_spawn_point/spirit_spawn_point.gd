@@ -26,4 +26,4 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	label.text = str(get_index())
-	name = str(get_index())
+	#name = str(get_index())

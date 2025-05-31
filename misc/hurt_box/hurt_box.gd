@@ -11,6 +11,8 @@ func _on_area_entered(hit_box: HitBox) -> void:
 	for group in hit_box.get_groups():
 		if group in ignored_groups:
 			return
+	if hit_box.immune:
+		return
 
 	hit_box.take_damage(damage)
 	dealt_damage.emit(hit_box)

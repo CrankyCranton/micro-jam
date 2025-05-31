@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=11 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_rkbax"]
@@ -12,6 +12,10 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 4.0
 height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgyib"]
+radius = 3.0
+height = 14.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -31,6 +35,10 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="HitBox" parent="." groups=["player"] instance=ExtResource("2_rkbax")]
+
+[node name="CollisionShape" parent="HitBox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_rgyib")
 
 [node name="AbilityManager" parent="." instance=ExtResource("3_g1dw6")]
 script = ExtResource("4_qjkh3")

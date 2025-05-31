@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://djubfbbyskixh" path="res://scenario/spirit_spawn_point/spirit_spawn_point.gd" id="1_oe73w"]
 
-[node name="SpiritSpawnPoint" type="Marker2D"]
+[node name="0" type="Marker2D"]
 script = ExtResource("1_oe73w")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 1.0
 offset_bottom = 23.0
+text = "0"
