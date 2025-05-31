@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=7 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_rkbax"]
+[ext_resource type="PackedScene" uid="uid://ceib4if3ubhca" path="res://misc/general_purpose_classes/ability/ability_manager.tscn" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://f2ik8l16afl6" path="res://misc/general_purpose_classes/ability/ability_manager.gd" id="4_qjkh3"]
+[ext_resource type="PackedScene" uid="uid://d3aik1ux28bp5" path="res://abilities/dash_ability.tscn" id="4_yw30f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 4.0
 height = 16.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_oul6g")
@@ -25,6 +28,11 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="HitBox" parent="." groups=["player"] instance=ExtResource("2_rkbax")]
+
+[node name="AbilityManager" parent="." instance=ExtResource("3_g1dw6")]
+script = ExtResource("4_qjkh3")
+
+[node name="DashAbility" parent="AbilityManager" instance=ExtResource("4_yw30f")]
 
 [connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
 

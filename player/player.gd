@@ -1,7 +1,8 @@
 class_name Player extends CharacterBody2D
 
+@onready var AbilityManager:Node2D = $AbilityManager
 
-const SPEED := 160.0
+var SPEED:int = 160.0 # HEHE, dont mind me
 const JUMP_VELOCITY := 320.0
 const TRACTION := 11.0
 const AIR_TRACTION := 4.0
@@ -25,10 +26,19 @@ func _physics_process(delta: float) -> void:
 		direction = 0.0
 
 	var traction := TRACTION if is_on_floor() else AIR_TRACTION
-	velocity.x = lerpf(velocity.x, direction * SPEED, traction * delta)
+	velocity.x = lerpf(velocity.x , direction * SPEED, traction * delta)
 
 	move_and_slide()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Ability_1") and AbilityManager.abilities[0]:
+		AbilityManager.abilities[0].execute(self)
+
+	elif event.is_action_pressed("Ability_2") and AbilityManager.abilities[1]:
+		AbilityManager.abilities[1].execute(self)
+
+	elif event.is_action_pressed("Ability_1") and AbilityManager.abilities[2]:
+		AbilityManager.abilities[2].execute(self)
 
 func _on_hit_box_damage_taken(damage: int) -> void:
 	corruption += damage

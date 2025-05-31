@@ -1,0 +1,43 @@
+extends Node2D
+
+@onready var player:Player = get_tree().get_first_node_in_group("player")
+@onready var label:Label = $Label
+
+var active_interactables:Array = []
+var can_interact:bool = true
+
+var base_text:String = "E to "
+
+
+func _process(delta: float) -> void:
+	if active_interactables.size() > 0 and can_interact:
+		active_interactables.sort_custom(sort_by_distance) #sorts by closest interactable object -> most distant
+		label.text = base_text + active_interactables[0].action_name
+		label.global_position = active_interactables[0].get_parent().global_position
+		label.show()
+	else:
+		label.hide()
+
+
+func register_interactable(object:InteractionArea):
+	active_interactables.push_back(object)
+
+func unregister_interactable(object:InteractionArea):
+	var index = active_interactables.find(object)
+	if index != -1:
+		active_interactables.remove_at(index)
+
+func sort_by_distance(interact1,interact2):
+	var interact1_to_player = player.global_position.distance_to(interact1.global_position)
+	var interact2_to_player = player.global_position.distance_to(interact2.global_position)
+	return interact1_to_player > interact2_to_player
+
+func _input(event: InputEvent) -> void: #calls the interact function of the object
+	if event.is_action_pressed("interact") and can_interact:
+		if active_interactables.size() > 0:
+			can_interact = false
+			label.hide()
+			
+			await active_interactables[0].Interact.call()
+			
+			can_interact = true
