@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=10 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_rkbax"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d3aik1ux28bp5" path="res://abilities/dash_ability.tscn" id="4_yw30f"]
 [ext_resource type="PackedScene" uid="uid://c3h8dx83ssg0c" path="res://abilities/dimensional_dash.tscn" id="6_boad6"]
 [ext_resource type="PackedScene" uid="uid://bl7mgcfb0uxdx" path="res://player/wand/wand.tscn" id="6_g6k8r"]
+[ext_resource type="PackedScene" uid="uid://7b8ylmct0egs" path="res://abilities/ChainAbility.tscn" id="7_rgyib"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 4.0
@@ -37,6 +38,8 @@ script = ExtResource("4_qjkh3")
 [node name="DashAbility" parent="AbilityManager" instance=ExtResource("4_yw30f")]
 
 [node name="Dimensional_dash" parent="AbilityManager" instance=ExtResource("6_boad6")]
+
+[node name="ChainAbility" parent="AbilityManager" instance=ExtResource("7_rgyib")]
 
 [node name="Wand" parent="." instance=ExtResource("6_g6k8r")]
 

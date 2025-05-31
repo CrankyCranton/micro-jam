@@ -15,7 +15,7 @@ enum states {
 	minion_attack
 }
 
-var STATE:states = states.minion_move
+var STATE:states = states.idle
 
 
 func _physics_process(delta: float) -> void:

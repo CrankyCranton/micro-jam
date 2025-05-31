@@ -37,7 +37,8 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("Ability_2") and AbilityManager.abilities[1]:
 		AbilityManager.abilities[1].execute(self)
 
-	elif event.is_action_pressed("Ability_1") and AbilityManager.abilities[2]:
+	elif event.is_action_pressed("Ability_3") and AbilityManager.abilities[2]:
+		print("pressed")
 		AbilityManager.abilities[2].execute(self)
 
 func _on_hit_box_damage_taken(damage: int) -> void:
