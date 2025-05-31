@@ -8,4 +8,8 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("1_2vmrk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+
+[node name="ImmunityTime" type="Timer" parent="."]
+
+[connection signal="timeout" from="ImmunityTime" to="." method="_on_immunity_time_timeout"]
