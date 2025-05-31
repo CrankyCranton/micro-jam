@@ -36,6 +36,7 @@ editor_draw_drag_margin = true
 script = ExtResource("4_qjkh3")
 
 [node name="DashAbility" parent="AbilityManager" instance=ExtResource("4_yw30f")]
+dash_speed = 0.0
 
 [node name="Dimensional_dash" parent="AbilityManager" instance=ExtResource("6_boad6")]
 

@@ -5,10 +5,10 @@ extends Node2D
 
 var ghost:PackedScene = preload("res://abilities/ghost.tscn")
 
-@export var dash_speed:int
+@export var dash_speed:float
 
 func execute(object:Player):
-	var original_speed:int = object.SPEED
+	var original_speed:float = object.SPEED
 
 	ghost_timer.start()
 	object.SPEED = dash_speed

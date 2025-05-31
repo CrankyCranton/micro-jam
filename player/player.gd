@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 @onready var AbilityManager:Node2D = $AbilityManager
 
-var SPEED:int = 160.0 # HEHE, dont mind me
+var SPEED := 160.0
 const JUMP_VELOCITY := 320.0
 const TRACTION := 11.0
 const AIR_TRACTION := 4.0
