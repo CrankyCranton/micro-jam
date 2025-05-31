@@ -7,6 +7,12 @@ const TRACTION := 11.0
 const AIR_TRACTION := 4.0
 const DEADZONE := 0.2
 
+var corruption := 0:
+	set(value):
+		corruption = value
+
+@onready var camera: Camera2D = $Camera
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -22,3 +28,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = lerpf(velocity.x, direction * SPEED, traction * delta)
 
 	move_and_slide()
+
+
+func _on_hit_box_damage_taken(damage: int) -> void:
+	corruption += damage

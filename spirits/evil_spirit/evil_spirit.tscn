@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://o4kyh4s6tvex"]
+
+[ext_resource type="Script" uid="uid://uoxlnqrf7tu0" path="res://spirits/evil_spirit/evil_spirit.gd" id="1_8nhym"]
+[ext_resource type="PackedScene" uid="uid://crx7kk4gj06gp" path="res://misc/hurt_box/hurt_box.tscn" id="2_4vt4j"]
+[ext_resource type="PackedScene" uid="uid://cwqpu3qi771of" path="res://spirits/soft_collider/soft_collider.tscn" id="2_wxait"]
+[ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="3_spcom"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8nhym"]
+radius = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4vt4j"]
+radius = 3.0
+height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wxait"]
+resource_local_to_scene = true
+radius = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ttybi"]
+radius = 5.0
+height = 18.0
+
+[node name="EvilSpirit" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_8nhym")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8nhym")
+
+[node name="HurtBox" parent="." instance=ExtResource("2_4vt4j")]
+ignored_groups = Array[StringName]([&"evil_spirits"])
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("CapsuleShape2D_4vt4j")
+
+[node name="SoftCollider" parent="." instance=ExtResource("2_wxait")]
+
+[node name="CollisionShape" parent="SoftCollider" index="0"]
+shape = SubResource("CircleShape2D_wxait")
+
+[node name="HitBox" parent="." groups=["evil_spirits"] instance=ExtResource("3_spcom")]
+
+[node name="CollisionShape" parent="HitBox" index="0"]
+shape = SubResource("CapsuleShape2D_ttybi")
+
+[node name="ImmunityTime" parent="HitBox" index="1"]
+wait_time = 0.001
+
+[connection signal="dealt_damage" from="HurtBox" to="." method="_on_hurt_box_dealt_damage"]
+[connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
+
+[editable path="HurtBox"]
+[editable path="SoftCollider"]
+[editable path="HitBox"]
