@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 @export var speed:int
 @export var acceleration:int
+@export var max_distance_from_player:int
 
 enum states {
 	idle,
@@ -31,6 +32,7 @@ func _physics_process(delta: float) -> void:
 			minion_idle()
 	move_and_slide()
 
+#region state functions
 func idle():
 	pass
 
@@ -45,8 +47,7 @@ func minion_move():
 		velocity = Vector2.ZERO
 		velocity = velocity.move_toward(direction * speed,acceleration)
 
-		if nav_agent.distance_to_target() < 50:
-			print("hey")
+		if nav_agent.distance_to_target() < max_distance_from_player:
 			STATE = states.minion_idle
 
 func minion_attack():
@@ -55,5 +56,6 @@ func minion_attack():
 func minion_idle():
 	velocity = Vector2.ZERO
 	nav_agent.target_position = player.global_position
-	if nav_agent.distance_to_target() > 50:
+	if nav_agent.distance_to_target() > max_distance_from_player:
 		STATE = states.minion_move
+#endregion
