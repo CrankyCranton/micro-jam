@@ -1,16 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=5 format=3 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
+[ext_resource type="PackedScene" uid="uid://brb650wt5be6b" path="res://Npc/basic_npc(change name if need be)/basic_npc.tscn" id="2_tcf2h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xmxd"]
-size = Vector2(208, 32)
+size = Vector2(817, 32)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tcf2h"]
+vertices = PackedVector2Array(220.109, -1.95313, 263.219, -2.10156, 247.344, 16.1094, -217.422, 28.7266, -225.594, -165.578, 284.383, -194.797, 1068.71, -24.9609, 307.313, -22.25, 463.633, -201.672, 1063.28, -218.711)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 3), PackedInt32Array(6, 7, 8, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-236, -175, 462, -215, 252, 26, -227, 39), PackedVector2Array(1079, -15, 1073, -229, 299, -207, 234, -12)])
 
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_6xmxd")]
+position = Vector2(2, 9)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(56, 32)
+position = Vector2(34.5, 32)
 shape = SubResource("RectangleShape2D_6xmxd")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(530, -5)
+shape = SubResource("RectangleShape2D_6xmxd")
+
+[node name="BasicNpc(prolly change name later)" parent="." instance=ExtResource("2_tcf2h")]
+position = Vector2(81, 2)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(-147, -16)
+navigation_polygon = SubResource("NavigationPolygon_tcf2h")
