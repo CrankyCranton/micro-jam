@@ -11,5 +11,6 @@ script = ExtResource("1_2vmrk")
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 
 [node name="ImmunityTime" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="ImmunityTime" to="." method="_on_immunity_time_timeout"]
