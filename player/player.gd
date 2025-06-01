@@ -9,13 +9,21 @@ const TRACTION := 11.0
 const AIR_TRACTION := 4.0
 const DEADZONE := 0.2
 
-var corruption := 0:
-	set(value):
-		corruption = value
+var corruption := 0
 var interactable: Interactable = null
+var abilities: Array[Ability] = []
+var next_abilities: Array[Ability]
 
 @onready var camera: Camera2D = $Camera
 @onready var interactor: Area2D = $Interactor
+
+
+func _ready() -> void:
+	next_abilities.append_array(ability_manager.abilities.values().duplicate())
+	next_abilities.sort_custom(func(a: Ability, b: Ability) -> bool:
+		return a.corruption < b.corruption
+	)
+	#abilities.append_array(ability_manager.abilities.values().duplicate())
 
 
 func _physics_process(delta: float) -> void:
@@ -36,15 +44,17 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	#if interactable is NPC and ability_manager.:
+
 	if Input.is_action_just_pressed(&"interact") and interactable != null:
 		set_enabled(false)
 		velocity = Vector2.ZERO
-		await interactable._interact(self)
+		await interactable._interact()
 		set_enabled(true)
 
-	for i in ability_manager.abilities.size():
+	for i in abilities.size():
 		if event.is_action_pressed(&"Ability_%s" % (i + 1)):
-			ability_manager.abilities.values()[i].execute(self)
+			abilities[i].execute(self)
 
 
 func scan_interactables() -> void:
@@ -63,6 +73,15 @@ func get_interactables() -> Array[Area2D]:
 func set_enabled(enabled: bool) -> void:
 	set_physics_process(enabled)
 	set_process_input(enabled)
+
+
+func check_level_up() -> void:
+	if next_abilities.size() > 0 and corruption >= next_abilities.front().corruption:
+		var new_ability: Ability = next_abilities.pop_front()
+		abilities.append(new_ability)
+		if new_ability is ChainAbility:
+			for npc: NPC in get_tree().get_nodes_in_group(&"npcs"):
+				npc.label.text = "E to spiritually chain"
 
 
 func _on_hit_box_damage_taken(damage: int) -> void:

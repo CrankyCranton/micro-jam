@@ -29,7 +29,7 @@ func _ready() -> void:
 
 
 func end() -> void:
-	player.corruption # Test for level up here.
+	player.check_level_up()
 	finished.emit()
 	queue_free()
 

@@ -51,7 +51,7 @@ corruption = 10
 corruption = 20
 
 [node name="ChainAbility" parent="AbilityManager" instance=ExtResource("7_rgyib")]
-corruption = 40
+corruption = 1
 
 [node name="Wand" parent="." instance=ExtResource("6_g6k8r")]
 
