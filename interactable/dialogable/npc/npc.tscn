@@ -5,6 +5,5 @@
 
 [node name="NPC" instance=ExtResource("1_0epmk")]
 script = ExtResource("2_wtarq")
-
-[node name="Label" parent="." index="0"]
-visible = true
+enslave_title = null
+title = null

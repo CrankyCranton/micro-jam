@@ -36,7 +36,10 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(&"interact") and interactable != null:
-		interactable.interact.call(self)
+		set_enabled(false)
+		velocity = Vector2.ZERO
+		await interactable._interact(self)
+		set_enabled(true)
 
 	for i in AbilityManager.abilities.size():
 		if event.is_action_pressed(&"Ability_%s" % (i + 1)):
