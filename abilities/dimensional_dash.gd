@@ -10,7 +10,7 @@ var can_dash:bool = true
 func _process(delta: float) -> void:
 	if can_dash == true:
 		ray.target_position = ray.to_local(get_global_mouse_position()).limit_length(max_length)
-	
+
 
 func execute(player:Player):
 	if ray.is_colliding() == false and can_dash == true:

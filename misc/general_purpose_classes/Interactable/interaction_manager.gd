@@ -19,6 +19,11 @@ func _process(delta: float) -> void:
 		label.hide()
 
 
+func start_dialogue(dialogue: DialogueResource, title: String) -> void:
+	const BALLOON := preload("res://dialogue/balloon.tscn")
+	DialogueManager.show_dialogue_balloon_scene(BALLOON, dialogue, title)
+
+
 func register_interactable(object:InteractionArea):
 	active_interactables.push_back(object)
 
@@ -37,7 +42,7 @@ func _input(event: InputEvent) -> void: #calls the interact function of the obje
 		if active_interactables.size() > 0:
 			can_interact = false
 			label.hide()
-			
-			await active_interactables[0].Interact.call()
-			
+
+			await active_interactables[0].Interact.call(player)
+
 			can_interact = true

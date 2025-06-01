@@ -6,5 +6,5 @@ extends StaticBody2D
 func _ready() -> void:
 	interact.Interact = Callable(self, "print_lol")
 
-func print_lol():
+func print_lol(_player: Player):
 	print("LOL")

@@ -41,5 +41,11 @@ func _input(event: InputEvent) -> void:
 		print("pressed")
 		AbilityManager.abilities[2].execute(self)
 
+
+func set_enabled(enabled: bool) -> void:
+	set_physics_process(enabled)
+	set_process_input(enabled)
+
+
 func _on_hit_box_damage_taken(damage: int) -> void:
 	corruption += damage

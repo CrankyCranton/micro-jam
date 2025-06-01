@@ -3,7 +3,7 @@ class_name InteractionArea
 
 @export var action_name:String # check process function of InteractionManager to see its use
 
-var Interact:Callable = func():
+var Interact:Callable = func(_player: Player):
 	pass #Callable func that gets overriden by the actual function to be called by the actual Interactable object
 
 
