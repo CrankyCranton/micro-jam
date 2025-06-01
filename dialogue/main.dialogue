@@ -10,7 +10,7 @@ Mysterious Figure: [color=red]Sunsets burn brightest before they’re swallowed.
 => END
 
 ~ gravestone
-
+Natsuki: We will meet again.[wait=0.5]...[wait=0.5] just....[wait=0.1] wait for me.
 => END
 
 ~ shady_stranger
@@ -18,5 +18,14 @@ Shady stranger: Konnichiwa, Natsuki.
 Natsuki: Who are you? How do you know me?
 Shady stranger: I am the person who’ll help you get him back
 Natsuki: How?…[wait=0.2] how do know about him?
-Shady stranger: I know many things. Take this wand, you know what to do.
+Shady stranger: I know many things. Take this wand, it can destroy anything that gets in your way.
+[center][b]Magic Wand\:[/b] Left-click to shoot![/center]
 => END
+
+~ sign
+Developers: Hello! Developers here. As you can see, this is an unfinished game.
+Developers: We unfortunatly ran out of time, but hope to publish a finished version in about a week. Stay tunned and thanks for playing!
+=> END
+
+~ blockade
+Natsuki: Hmm... I'll need to destroy these crates somehow.

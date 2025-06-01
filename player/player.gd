@@ -13,6 +13,7 @@ var corruption := 0
 var interactable: Interactable = null
 var abilities: Array[Ability] = []
 var next_abilities: Array[Ability]
+var can_shoot := false
 
 @onready var camera: Camera2D = $Camera
 @onready var interactor: Area2D = $Interactor
@@ -56,6 +57,8 @@ func _input(event: InputEvent) -> void:
 		set_enabled(false)
 		velocity = Vector2.ZERO
 		await interactable._interact()
+		if interactable.name == &"ShadyStranger": # FIXME
+			can_shoot = true
 		set_enabled(true)
 
 	for i in abilities.size():

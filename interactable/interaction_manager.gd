@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 func start_dialogue(dialogue: DialogueResource, title: String) -> void:
 	const BALLOON := preload("res://dialogue/balloon.tscn")
 	DialogueManager.show_dialogue_balloon_scene(BALLOON, dialogue, title)
+	await DialogueManager.dialogue_ended
 
 
 func register_interactable(object:Interactable):

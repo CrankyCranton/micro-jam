@@ -3,6 +3,8 @@ extends Node2D
 var bullet_load:PackedScene = preload("res://player/wand/laser_ball.tscn")
 
 func _process(delta: float) -> void:
+	if not owner.can_shoot: # FIXME
+		return
 	look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("shoot"):
 		var bullet:CharacterBody2D = bullet_load.instantiate()

@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://bk0bq4lwt3lrm"]
+
+[ext_resource type="Texture2D" uid="uid://bc1qd6vp7jd1i" path="res://assets/crate.png" id="1_12c0x"]
+[ext_resource type="Script" uid="uid://jauefqgye8qo" path="res://world/blockade.gd" id="1_41x0p"]
+[ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="1_a4nuu"]
+[ext_resource type="PackedScene" uid="uid://da5m7i7icxmw6" path="res://interactable/dialogable/dialogable.tscn" id="2_il5we"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41x0p"]
+size = Vector2(38, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12c0x"]
+size = Vector2(32, 64)
+
+[node name="Blockade" type="StaticBody2D"]
+script = ExtResource("1_41x0p")
+
+[node name="Crate" type="Sprite2D" parent="."]
+position = Vector2(-7, -8)
+texture = ExtResource("1_12c0x")
+
+[node name="Crate2" type="Sprite2D" parent="."]
+position = Vector2(-3, -24)
+texture = ExtResource("1_12c0x")
+
+[node name="Crate3" type="Sprite2D" parent="."]
+position = Vector2(-8, -40)
+texture = ExtResource("1_12c0x")
+
+[node name="Crate4" type="Sprite2D" parent="."]
+position = Vector2(-3, -56)
+texture = ExtResource("1_12c0x")
+
+[node name="Crate5" type="Sprite2D" parent="."]
+position = Vector2(5, -8)
+texture = ExtResource("1_12c0x")
+
+[node name="Crate7" type="Sprite2D" parent="."]
+position = Vector2(10, -24)
+texture = ExtResource("1_12c0x")
+
+[node name="Crate8" type="Sprite2D" parent="."]
+position = Vector2(5, -40)
+texture = ExtResource("1_12c0x")
+
+[node name="HitBox" parent="." instance=ExtResource("1_a4nuu")]
+
+[node name="CollisionShape" parent="HitBox" index="0"]
+position = Vector2(0, -33.5)
+shape = SubResource("RectangleShape2D_41x0p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_12c0x")
+
+[node name="Dialogable" parent="." instance=ExtResource("2_il5we")]
+title = "blockade"
+
+[node name="Label" parent="Dialogable" index="0"]
+offset_top = -96.0
+offset_bottom = -64.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogable"]
+position = Vector2(0, -33.5)
+shape = SubResource("RectangleShape2D_41x0p")
+
+[connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
+
+[editable path="HitBox"]
+[editable path="Dialogable"]
