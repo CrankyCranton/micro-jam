@@ -9,7 +9,7 @@ signal died
 @export_group("Movement")
 @export var speed := 32.0
 @export var traction := 5.0
-@export var soft_collider_strength := 16.0
+@export var soft_collider_strength := 32.0
 
 var player: Player
 
@@ -18,7 +18,7 @@ var player: Player
 
 func _physics_process(delta: float) -> void:
 	var direction := global_position.direction_to(player.global_position)
-	var soft_velocity := soft_collider.get_vector()
+	var soft_velocity := soft_collider.get_vector() * soft_collider_strength
 	velocity = velocity.lerp(direction * speed + soft_velocity, traction * delta)
 	move_and_slide()
 

@@ -177,6 +177,7 @@ _data = {
 size = Vector2(288, 80)
 
 [node name="TestScenario" instance=ExtResource("1_8gf83")]
+max_spawns = 100
 
 [node name="0" parent="SpawnPoints" index="0" instance=ExtResource("2_oa0om")]
 position = Vector2(192, 0)
