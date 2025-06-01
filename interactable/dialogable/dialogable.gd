@@ -1,4 +1,4 @@
-class_name Dialogable extends InteractionArea
+class_name Dialogable extends Interactable
 
 
 @export var dialogue: DialogueResource
@@ -6,7 +6,7 @@ class_name Dialogable extends InteractionArea
 
 
 func _init() -> void:
-	Interact = func(player: Player) -> void:
+	interact = func(player: Player) -> void:
 		InteractionManager.start_dialogue(dialogue, title)
 		player.set_enabled(false)
 		player.velocity = Vector2.ZERO

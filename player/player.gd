@@ -11,8 +11,10 @@ const DEADZONE := 0.2
 var corruption := 0:
 	set(value):
 		corruption = value
+var interactable: Interactable = null
 
 @onready var camera: Camera2D = $Camera
+@onready var interactor: Area2D = $Interactor
 
 
 func _physics_process(delta: float) -> void:
@@ -29,11 +31,29 @@ func _physics_process(delta: float) -> void:
 	velocity.x = lerpf(velocity.x , direction * SPEED, traction * delta)
 
 	move_and_slide()
+	scan_interactables()
+
 
 func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(&"interact") and interactable != null:
+		interactable.interact.call(self)
+
 	for i in AbilityManager.abilities.size():
 		if event.is_action_pressed(&"Ability_%s" % (i + 1)):
 			AbilityManager.abilities[i].execute(self)
+
+
+func scan_interactables() -> void:
+	var interactables := get_interactables()
+	interactable = interactables.front() if interactables.size() > 0 else null
+	for i in interactables.size():
+		interactables[i].set_popup_visible(i == 0)
+
+
+func get_interactables() -> Array[Area2D]:
+	var interactables: Array[Area2D] = interactor.get_overlapping_areas()
+	interactables.sort_custom(InteractionManager.sort_by_distance)
+	return interactables
 
 
 func set_enabled(enabled: bool) -> void:
@@ -43,3 +63,9 @@ func set_enabled(enabled: bool) -> void:
 
 func _on_hit_box_damage_taken(damage: int) -> void:
 	corruption += damage
+
+
+func _on_interactor_area_exited(interactable: Interactable) -> void:
+	interactable.set_popup_visible(false)
+	if interactable == self.interactable:
+		self.interactable = null

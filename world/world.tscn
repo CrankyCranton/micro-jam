@@ -1,8 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=7 format=3 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
-[ext_resource type="PackedScene" uid="uid://b202hnb6gypor" path="res://Npc(Outdated)/npc.tscn" id="2_tcf2h"]
-[ext_resource type="PackedScene" uid="uid://brb650wt5be6b" path="res://Npc(Outdated)/slave/slave.tscn" id="3_4717r"]
 [ext_resource type="PackedScene" uid="uid://da5m7i7icxmw6" path="res://interactable/dialogable/dialogable.tscn" id="4_mmdvd"]
 [ext_resource type="Resource" uid="uid://cqv431wwrichh" path="res://dialogue/main.dialogue" id="5_fn3g3"]
 
@@ -37,11 +35,6 @@ shape = SubResource("RectangleShape2D_6xmxd")
 position = Vector2(-147, -16)
 navigation_polygon = SubResource("NavigationPolygon_tcf2h")
 
-[node name="Npc" parent="." instance=ExtResource("2_tcf2h")]
-
-[node name="BasicNpc(prolly change name later)" parent="." instance=ExtResource("3_4717r")]
-position = Vector2(-84, 2)
-
 [node name="Dialogable" parent="." instance=ExtResource("4_mmdvd")]
 position = Vector2(48, 0)
 dialogue = ExtResource("5_fn3g3")
@@ -49,3 +42,6 @@ title = "start"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogable"]
 shape = SubResource("RectangleShape2D_sc4t8")
+
+[connection signal="body_entered" from="Dialogable" to="Dialogable" method="_on_body_entered"]
+[connection signal="body_exited" from="Dialogable" to="Dialogable" method="_on_body_exited"]

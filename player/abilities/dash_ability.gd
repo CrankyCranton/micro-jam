@@ -3,7 +3,7 @@ extends Node2D
 @onready var cooldown:Timer = $DashCooldown
 @onready var ghost_timer:Timer = $GhostTimer
 
-var ghost:PackedScene = preload("res://abilities/ghost.tscn")
+var ghost:PackedScene = preload("res://player/abilities/ghost.tscn")
 
 @export var dash_speed:float
 

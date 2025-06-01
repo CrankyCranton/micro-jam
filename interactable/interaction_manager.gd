@@ -24,10 +24,10 @@ func start_dialogue(dialogue: DialogueResource, title: String) -> void:
 	DialogueManager.show_dialogue_balloon_scene(BALLOON, dialogue, title)
 
 
-func register_interactable(object:InteractionArea):
+func register_interactable(object:Interactable):
 	active_interactables.push_back(object)
 
-func unregister_interactable(object:InteractionArea):
+func unregister_interactable(object:Interactable):
 	var index = active_interactables.find(object)
 	if index != -1:
 		active_interactables.remove_at(index)
