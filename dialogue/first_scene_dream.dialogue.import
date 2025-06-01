@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bbx3e8kvhudk6"
+path="res://.godot/imported/first_scene_dream.dialogue-21eceddf359c3c92e673749cbdae35a6.tres"
+
+[deps]
+
+source_file="res://dialogue/first_scene_dream.dialogue"
+dest_files=["res://.godot/imported/first_scene_dream.dialogue-21eceddf359c3c92e673749cbdae35a6.tres"]
+
+[params]
+
+defaults=true

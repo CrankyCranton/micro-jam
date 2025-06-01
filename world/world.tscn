@@ -11,10 +11,28 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xmxd"]
 size = Vector2(817, 32)
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_mmdvd"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tcf2h"]
+vertices = PackedVector2Array(220.109, -1.95313, 263.219, -2.10156, 247.344, 16.1094, -217.422, 28.7266, -225.594, -165.578, 284.383, -194.797, 1068.71, -24.9609, 307.313, -22.25, 463.633, -201.672, 1063.28, -218.711)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 3), PackedInt32Array(6, 7, 8, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-236, -175, 462, -215, 252, 26, -227, 39), PackedVector2Array(1079, -15, 1073, -229, 299, -207, 234, -12)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc4t8"]
 size = Vector2(160, 176)
+
+[sub_resource type="Animation" id="Animation_4papg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpawnPoints/0:spawn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ai45w"]
 resource_name = "new_animation"
@@ -30,21 +48,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_4papg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpawnPoints/0:spawn")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fyhu2"]
@@ -81,7 +84,7 @@ shape = SubResource("RectangleShape2D_6xmxd")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-147, -16)
-navigation_polygon = SubResource("NavigationPolygon_mmdvd")
+navigation_polygon = SubResource("NavigationPolygon_tcf2h")
 
 [node name="Scenario" parent="." instance=ExtResource("4_mmdvd")]
 position = Vector2(256, -128)

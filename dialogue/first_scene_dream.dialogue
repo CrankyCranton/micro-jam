@@ -1,0 +1,12 @@
+~ start
+Asahi: The weather is really nice today.
+Natsuki: Hmm. The sun's stubborn today.
+Asahi: It suits you.
+Asahi: You're lucky the breeze is keeping me in a good mood.
+Natsuki: It's just trying to stop you from saying something worse.
+Asahi: Shut up.
+Natsuki: But seriously, it's a pretty good day.
+Mysterious Figure: [color=red]Sunsets burn brightest before they’re swallowed.[/color]
+Natsuki: (wakes up)
+do FirstScene.change_scene_to_world()
+=> END
