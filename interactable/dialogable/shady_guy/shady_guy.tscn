@@ -7,7 +7,6 @@
 radius = 43.1856
 
 [node name="Shady_guy" instance=ExtResource("1_ngmcg")]
-z_index = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_ojgqv")

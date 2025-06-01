@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkapuo0hyc6ym"]
+
+[ext_resource type="PackedScene" uid="uid://diw2ahd7t46gw" path="res://interactable/dialogable/npc/npc.tscn" id="1_jl0mq"]
+[ext_resource type="Texture2D" uid="uid://c46t50hbvmorx" path="res://assets/shady_guy.png" id="2_3nuvh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jl0mq"]
+size = Vector2(16, 32)
+
+[node name="ShadyStranger" instance=ExtResource("1_jl0mq")]
+title = "shady_stranger"
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -9)
+texture = ExtResource("2_3nuvh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_jl0mq")

@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://tg6aup8df5or" path="res://assets/decorations.png" id="4_fyhu2"]
 [ext_resource type="PackedScene" uid="uid://ce17h080iour3" path="res://scenario/scenario.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://da5m7i7icxmw6" path="res://interactable/dialogable/dialogable.tscn" id="5_4papg"]
-[ext_resource type="Texture2D" uid="uid://0348apkk6xsw" path="res://assets/gate.png" id="5_ai45w"]
 [ext_resource type="PackedScene" uid="uid://bibr0dnr2e6t8" path="res://scenario/spirit_spawn_point/spirit_spawn_point.tscn" id="5_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://0jp2e1erd1xa" path="res://world/tiles.tscn" id="6_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://crx7kk4gj06gp" path="res://misc/hurt_box/hurt_box.tscn" id="7_ai45w"]
-[ext_resource type="PackedScene" uid="uid://c187ntbrpbfiy" path="res://interactable/dialogable/shady_guy/shady_guy.tscn" id="7_sc4t8"]
+[ext_resource type="PackedScene" uid="uid://dkapuo0hyc6ym" path="res://interactable/dialogable/npc/shady_stranger/shady_stranger.tscn" id="7_fyhu2"]
 [ext_resource type="Texture2D" uid="uid://dgwqdkfuaugap" path="res://assets/gravestone.png" id="8_ai45w"]
+[ext_resource type="PackedScene" uid="uid://b0w04lk0mmumo" path="res://world/gate/gate.tscn" id="10_fyhu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc4t8"]
 size = Vector2(925, 176)
@@ -60,7 +60,7 @@ size = Vector2(937, 250)
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_6xmxd")]
-position = Vector2(106, 172)
+position = Vector2(80, 172)
 
 [node name="Scenario" parent="." instance=ExtResource("4_mmdvd")]
 position = Vector2(1283, 70)
@@ -104,24 +104,23 @@ region_rect = Rect2(0, 0, 16, 32)
 
 [node name="Interactables" type="Node2D" parent="."]
 
-[node name="Shady_guy" parent="Interactables" instance=ExtResource("7_sc4t8")]
-position = Vector2(289, 187)
-title = "shady_stranger"
-
 [node name="Gravestone" parent="Interactables" instance=ExtResource("5_4papg")]
+position = Vector2(48, 180)
 title = "gravestone"
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/Gravestone"]
-position = Vector2(61, 172)
+position = Vector2(0, -8)
 texture = ExtResource("8_ai45w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Gravestone"]
-position = Vector2(61, 172)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_fyhu2")
 
-[node name="Gate" type="Sprite2D" parent="."]
-position = Vector2(200, 166.5)
-texture = ExtResource("5_ai45w")
+[node name="ShadyStranger" parent="Interactables" instance=ExtResource("7_fyhu2")]
+position = Vector2(289, 196)
+
+[node name="Gate" parent="." instance=ExtResource("10_fyhu2")]
+position = Vector2(192, 180)
 
 [node name="Tiles" parent="." instance=ExtResource("6_fn3g3")]
 position = Vector2(14, 1)

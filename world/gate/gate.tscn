@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0w04lk0mmumo"]
+
+[ext_resource type="Texture2D" uid="uid://cboepnaaluicb" path="res://assets/gate_back.png" id="1_dec5w"]
+[ext_resource type="Texture2D" uid="uid://c3ua8plphji0j" path="res://assets/gate_front.png" id="2_y60vf"]
+
+[node name="Gate" type="StaticBody2D"]
+
+[node name="GateBack" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -16)
+texture = ExtResource("1_dec5w")
+
+[node name="GateFront" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_y60vf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-23, -22, -16, -23, -12, -27, 12, -27, 16, -23, 23, -22, 23, -19, -23, -19)
