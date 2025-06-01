@@ -12,5 +12,6 @@ func enslave(player: Player) -> void:
 	var slave: Slave = SLAVE.instantiate()
 	slave.player = player
 	slave.global_position = global_position
+	add_sibling(slave)
 
 	queue_free()
