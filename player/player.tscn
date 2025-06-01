@@ -34,7 +34,7 @@ drag_vertical_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="HitBox" parent="." groups=["player"] instance=ExtResource("2_rkbax")]
+[node name="HitBox" parent="." groups=["players"] instance=ExtResource("2_rkbax")]
 
 [node name="CollisionShape" parent="HitBox" index="0"]
 position = Vector2(0, -8)

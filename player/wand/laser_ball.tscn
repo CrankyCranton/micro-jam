@@ -25,7 +25,7 @@ collision_layer = 0
 shape = SubResource("CircleShape2D_m1oea")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_e514l")]
-ignored_groups = Array[StringName]([&"player"])
+ignored_groups = Array[StringName]([&"players"])
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 shape = SubResource("CircleShape2D_e514l")
