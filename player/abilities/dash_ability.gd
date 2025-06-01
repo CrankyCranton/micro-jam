@@ -1,4 +1,4 @@
-extends Ability
+class_name DashAbility extends Ability
 
 @onready var cooldown:Timer = $DashCooldown
 @onready var ghost_timer:Timer = $GhostTimer

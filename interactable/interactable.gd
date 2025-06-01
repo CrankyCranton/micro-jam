@@ -1,11 +1,11 @@
-extends Node
+extends Area2D
 class_name Interactable
 
 
 @onready var label: Label = $Label
 
 
-func _interact(player: Player) -> void:
+func _interact() -> void:
 	pass
 
 

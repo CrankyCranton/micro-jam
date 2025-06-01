@@ -46,6 +46,9 @@ shape = SubResource("CapsuleShape2D_ttybi")
 [node name="ImmunityTime" parent="HitBox" index="1"]
 wait_time = 0.001
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+
 [connection signal="dealt_damage" from="HurtBox" to="." method="_on_hurt_box_dealt_damage"]
 [connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
 

@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=13 format=3 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
-[ext_resource type="PackedScene" uid="uid://da5m7i7icxmw6" path="res://interactable/dialogable/dialogable.tscn" id="4_mmdvd"]
-[ext_resource type="Resource" uid="uid://cqv431wwrichh" path="res://dialogue/main.dialogue" id="5_fn3g3"]
+[ext_resource type="PackedScene" uid="uid://diw2ahd7t46gw" path="res://interactable/dialogable/npc/npc.tscn" id="2_tcf2h"]
+[ext_resource type="Resource" uid="uid://cqv431wwrichh" path="res://dialogue/main.dialogue" id="3_4717r"]
+[ext_resource type="PackedScene" uid="uid://ce17h080iour3" path="res://scenario/scenario.tscn" id="4_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://bibr0dnr2e6t8" path="res://scenario/spirit_spawn_point/spirit_spawn_point.tscn" id="5_fn3g3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4717r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xmxd"]
 size = Vector2(817, 32)
@@ -13,8 +17,55 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-236, -175, 462, -215, 252, 26, -227, 39), PackedVector2Array(1079, -15, 1073, -229, 299, -207, 234, -12)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc4t8"]
+size = Vector2(160, 176)
+
+[sub_resource type="Animation" id="Animation_ai45w"]
+resource_name = "new_animation"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpawnPoints/0:spawn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4papg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpawnPoints/0:spawn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fyhu2"]
+_data = {
+&"RESET": SubResource("Animation_4papg"),
+&"new_animation": SubResource("Animation_ai45w")
+}
 
 [node name="World" type="Node2D"]
+
+[node name="NPC" parent="." instance=ExtResource("2_tcf2h")]
+position = Vector2(80, 16)
+enslave_title = "start"
+dialogue = ExtResource("3_4717r")
+title = "start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
+shape = SubResource("CircleShape2D_4717r")
 
 [node name="Player" parent="." instance=ExtResource("1_6xmxd")]
 position = Vector2(2, 9)
@@ -35,13 +86,20 @@ shape = SubResource("RectangleShape2D_6xmxd")
 position = Vector2(-147, -16)
 navigation_polygon = SubResource("NavigationPolygon_tcf2h")
 
-[node name="Dialogable" parent="." instance=ExtResource("4_mmdvd")]
-position = Vector2(48, 0)
-dialogue = ExtResource("5_fn3g3")
-title = "start"
+[node name="Scenario" parent="." instance=ExtResource("4_mmdvd")]
+position = Vector2(256, -128)
+max_spawns = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogable"]
+[node name="0" parent="Scenario/SpawnPoints" index="0" instance=ExtResource("5_fn3g3")]
+position = Vector2(-48, -16)
+
+[node name="CollisionShape" parent="Scenario" index="1"]
+position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_sc4t8")
 
-[connection signal="body_entered" from="Dialogable" to="Dialogable" method="_on_body_entered"]
-[connection signal="body_exited" from="Dialogable" to="Dialogable" method="_on_body_exited"]
+[node name="SpawnPatterns" parent="Scenario" index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_fyhu2")
+}
+
+[editable path="Scenario"]

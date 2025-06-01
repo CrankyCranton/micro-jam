@@ -4,8 +4,3 @@
 
 [node name="ChainAbility" type="Node2D"]
 script = ExtResource("1_ljfl4")
-max_length = 50
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 30)
-collision_mask = 32
