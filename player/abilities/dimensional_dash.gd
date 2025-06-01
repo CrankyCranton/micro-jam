@@ -1,4 +1,4 @@
-extends Node2D
+extends Ability
 
 @onready var ray:RayCast2D = $RayCast2D
 @onready var cooldown:Timer = $Cooldown

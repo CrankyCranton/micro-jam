@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bllv4alwpuetp" path="res://player/abilities/dimensional_dash.gd" id="1_mmmkw"]
 
-[node name="Dimensional_dash" type="Node2D"]
+[node name="DimensionalDash" type="Node2D"]
 script = ExtResource("1_mmmkw")
 max_length = 30
 

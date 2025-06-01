@@ -1,4 +1,4 @@
-extends Node2D
+extends Ability
 
 @onready var cooldown:Timer = $DashCooldown
 @onready var ghost_timer:Timer = $GhostTimer

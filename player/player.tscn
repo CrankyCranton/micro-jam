@@ -46,7 +46,7 @@ shape = SubResource("CapsuleShape2D_rgyib")
 
 [node name="DashAbility" parent="AbilityManager" instance=ExtResource("4_yw30f")]
 
-[node name="Dimensional_dash" parent="AbilityManager" instance=ExtResource("6_boad6")]
+[node name="DimensionalDash" parent="AbilityManager" instance=ExtResource("6_boad6")]
 
 [node name="ChainAbility" parent="AbilityManager" instance=ExtResource("7_rgyib")]
 
