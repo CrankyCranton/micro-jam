@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://7b8ylmct0egs"]
 
-[ext_resource type="Script" uid="uid://b637lvpjijfge" path="res://abilities/chain_ability.gd" id="1_ljfl4"]
+[ext_resource type="Script" uid="uid://b637lvpjijfge" path="res://player/abilities/chain_ability.gd" id="1_ljfl4"]
 
 [node name="ChainAbility" type="Node2D"]
 script = ExtResource("1_ljfl4")

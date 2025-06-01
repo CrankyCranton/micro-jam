@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-InteractionManager="*res://misc/general_purpose_classes/Interactable/interaction_manager.tscn"
+InteractionManager="*res://interactable/interaction_manager.tscn"
 
 [debug]
 
@@ -47,10 +47,10 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://abilities/": "gray",
 "res://dialogue/": "yellow",
 "res://misc/": "gray",
 "res://player/": "purple",
+"res://player/abilities/": "gray",
 "res://spirits/": "red",
 "res://world/": "green"
 }

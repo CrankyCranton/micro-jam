@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="PackedScene" uid="uid://b202hnb6gypor" path="res://Npc(Outdated)/npc.tscn" id="2_tcf2h"]
 [ext_resource type="PackedScene" uid="uid://brb650wt5be6b" path="res://Npc(Outdated)/slave/slave.tscn" id="3_4717r"]
-[ext_resource type="PackedScene" uid="uid://da5m7i7icxmw6" path="res://misc/general_purpose_classes/Interactable/dialogable/dialogable.tscn" id="4_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://da5m7i7icxmw6" path="res://interactable/dialogable/dialogable.tscn" id="4_mmdvd"]
 [ext_resource type="Resource" uid="uid://cqv431wwrichh" path="res://dialogue/main.dialogue" id="5_fn3g3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xmxd"]
