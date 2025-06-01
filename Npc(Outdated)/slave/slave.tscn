@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://brb650wt5be6b"]
 
-[ext_resource type="PackedScene" uid="uid://b202hnb6gypor" path="res://Npc/npc.tscn" id="1_fm3ty"]
-[ext_resource type="Script" uid="uid://cf356jtlu1mvl" path="res://Npc/slave/slave.gd" id="2_n5vt2"]
+[ext_resource type="PackedScene" uid="uid://b202hnb6gypor" path="res://Npc(Outdated)/npc.tscn" id="1_fm3ty"]
+[ext_resource type="Script" uid="uid://cf356jtlu1mvl" path="res://Npc(Outdated)/slave/slave.gd" id="2_n5vt2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fm3ty"]
 size = Vector2(2, 4)
@@ -10,6 +10,7 @@ size = Vector2(2, 4)
 radius = 8.0
 
 [node name="Slave" instance=ExtResource("1_fm3ty")]
+collision_mask = 33
 script = ExtResource("2_n5vt2")
 speed = 150
 acceleration = 50
