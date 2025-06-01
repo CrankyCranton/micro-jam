@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://da5m7i7icxmw6"]
+[gd_scene load_steps=4 format=3 uid="uid://da5m7i7icxmw6"]
 
 [ext_resource type="PackedScene" uid="uid://d4a0gfld8li42" path="res://interactable/interactable.tscn" id="1_rionh"]
 [ext_resource type="Script" uid="uid://wfconp6p3y20" path="res://interactable/dialogable/dialogable.gd" id="2_kyoe6"]
+[ext_resource type="Resource" uid="uid://cqv431wwrichh" path="res://dialogue/main.dialogue" id="3_tteiq"]
 
 [node name="Dialogable" instance=ExtResource("1_rionh")]
 script = ExtResource("2_kyoe6")
-dialogue = null
+dialogue = ExtResource("3_tteiq")
 title = ""

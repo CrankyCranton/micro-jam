@@ -43,7 +43,7 @@ func _input(event: InputEvent) -> void: #calls the interact function of the obje
 			print('1')
 			can_interact = false
 			label.hide()
-			
+
 			await active_interactables[0].Interact.call(player)
 
 			can_interact = true
