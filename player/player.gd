@@ -31,15 +31,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Ability_1") and AbilityManager.abilities[0]:
-		AbilityManager.abilities[0].execute(self)
-
-	elif event.is_action_pressed("Ability_2") and AbilityManager.abilities[1]:
-		AbilityManager.abilities[1].execute(self)
-
-	elif event.is_action_pressed("Ability_3") and AbilityManager.abilities[2]:
-		print("pressed")
-		AbilityManager.abilities[2].execute(self)
+	for i in AbilityManager.abilities.size():
+		if event.is_action_pressed(&"Ability_%s" % (i + 1)):
+			AbilityManager.abilities[i].execute(self)
 
 
 func set_enabled(enabled: bool) -> void:
