@@ -36,6 +36,12 @@ func _physics_process(delta: float) -> void:
 	if absf(direction) <= DEADZONE:
 		direction = 0.0
 
+	if direction != 0:
+		if direction == 1:
+			%Sprite2D.flip_h = false
+		elif direction == -1:
+			%Sprite2D.flip_h = true
+
 	var traction := TRACTION if is_on_floor() else AIR_TRACTION
 	velocity.x = lerpf(velocity.x , direction * SPEED, traction * delta)
 
@@ -82,6 +88,7 @@ func check_level_up() -> void:
 		if new_ability is ChainAbility:
 			for npc: NPC in get_tree().get_nodes_in_group(&"npcs"):
 				npc.label.text = "E to spiritually chain"
+	print(abilities)
 
 
 func _on_hit_box_damage_taken(damage: int) -> void:

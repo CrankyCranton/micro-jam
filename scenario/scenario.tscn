@@ -8,9 +8,9 @@ collision_mask = 2
 monitorable = false
 script = ExtResource("1_45eor")
 
-[node name="SpawnPoints" type="Node2D" parent="."]
-
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="SpawnPatterns" type="AnimationPlayer" parent="."]
 

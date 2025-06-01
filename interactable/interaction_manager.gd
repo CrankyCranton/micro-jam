@@ -40,9 +40,10 @@ func sort_by_distance(interact1,interact2):
 func _input(event: InputEvent) -> void: #calls the interact function of the object
 	if event.is_action_pressed("interact") and can_interact:
 		if active_interactables.size() > 0:
+			print('1')
 			can_interact = false
 			label.hide()
-
+			
 			await active_interactables[0].Interact.call(player)
 
 			can_interact = true

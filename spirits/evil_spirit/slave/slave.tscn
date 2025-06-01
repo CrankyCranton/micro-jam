@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfm85vqticy53"]
+[gd_scene load_steps=5 format=3 uid="uid://cfm85vqticy53"]
 
 [ext_resource type="PackedScene" uid="uid://o4kyh4s6tvex" path="res://spirits/evil_spirit/evil_spirit.tscn" id="1_hehiv"]
 [ext_resource type="Script" uid="uid://boci6kwwm57b6" path="res://spirits/evil_spirit/slave/slave.gd" id="2_ilxhy"]
+[ext_resource type="Texture2D" uid="uid://dm84ueihib1p1" path="res://assets/evil_spirit.png" id="3_krair"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ilxhy"]
 resource_local_to_scene = true
@@ -11,13 +12,17 @@ radius = 8.0
 collision_layer = 64
 script = ExtResource("2_ilxhy")
 
-[node name="HurtBox" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_krair")
+
+[node name="HurtBox" parent="." index="2"]
 ignored_groups = Array[StringName]([&"players"])
 
 [node name="CollisionShape" parent="SoftCollider" index="0"]
 shape = SubResource("CircleShape2D_ilxhy")
 
-[node name="HitBox" parent="." index="3" groups=["players"]]
+[node name="HitBox" parent="." index="4" groups=["players"]]
+visible = false
 
 [node name="ImmunityTime" parent="HitBox" index="1"]
 wait_time = 1.0

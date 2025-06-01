@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bfm6ksdv3gfbu"
+path="res://.godot/imported/shady_guy.dialogue-d6c8a98dbf2553d3e98ef552d4e401f7.tres"
+
+[deps]
+
+source_file="res://dialogue/shady_guy.dialogue"
+dest_files=["res://.godot/imported/shady_guy.dialogue-d6c8a98dbf2553d3e98ef552d4e401f7.tres"]
+
+[params]
+
+defaults=true
