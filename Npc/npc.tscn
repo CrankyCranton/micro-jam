@@ -1,11 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b202hnb6gypor"]
-
-[ext_resource type="PackedScene" uid="uid://d4a0gfld8li42" path="res://misc/general_purpose_classes/Interactable/InteractableArea.tscn" id="1_6bn5k"]
+[gd_scene format=3 uid="uid://b202hnb6gypor"]
 
 [node name="Npc" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="InteractableArea" parent="." instance=ExtResource("1_6bn5k")]
