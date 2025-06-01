@@ -5,5 +5,5 @@
 
 [node name="NPC" instance=ExtResource("1_0epmk")]
 script = ExtResource("2_wtarq")
-enslave_title = null
 title = null
+enslave_title = null

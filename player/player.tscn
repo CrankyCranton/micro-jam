@@ -45,10 +45,13 @@ shape = SubResource("CapsuleShape2D_rgyib")
 [node name="AbilityManager" parent="." instance=ExtResource("3_g1dw6")]
 
 [node name="DashAbility" parent="AbilityManager" instance=ExtResource("4_yw30f")]
+corruption = 10
 
 [node name="DimensionalDash" parent="AbilityManager" instance=ExtResource("6_boad6")]
+corruption = 20
 
 [node name="ChainAbility" parent="AbilityManager" instance=ExtResource("7_rgyib")]
+corruption = 40
 
 [node name="Wand" parent="." instance=ExtResource("6_g6k8r")]
 

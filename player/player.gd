@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
-@onready var AbilityManager:Node2D = $AbilityManager
+
+@onready var ability_manager:AbilityManager = $AbilityManager
 
 var SPEED := 160.0
 const JUMP_VELOCITY := 320.0
@@ -41,9 +42,9 @@ func _input(event: InputEvent) -> void:
 		await interactable._interact(self)
 		set_enabled(true)
 
-	for i in AbilityManager.abilities.size():
+	for i in ability_manager.abilities.size():
 		if event.is_action_pressed(&"Ability_%s" % (i + 1)):
-			AbilityManager.abilities[i].execute(self)
+			ability_manager.abilities.values()[i].execute(self)
 
 
 func scan_interactables() -> void:
