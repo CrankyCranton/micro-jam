@@ -42,9 +42,9 @@ func _input(event: InputEvent) -> void:
 		await interactable._interact(self)
 		set_enabled(true)
 
-	for i in ability_manager.abilities.size():
-		if event.is_action_pressed(&"Ability_%s" % (i + 1)):
-			ability_manager.abilities.values()[i].execute(self)
+	#for i in ability_manager.abilities.size():
+		#if event.is_action_pressed(&"Ability_%s" % (i + 1)):
+			#ability_manager.abilities.values()[i].execute(self)
 
 
 func scan_interactables() -> void:
