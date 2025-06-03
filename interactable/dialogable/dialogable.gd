@@ -5,6 +5,6 @@ class_name Dialogable extends Interactable
 @export var title := ""
 
 
-func _interact() -> void:
+func _interact(_player: Player) -> void:
 	InteractionManager.start_dialogue(dialogue, title)
 	await DialogueManager.dialogue_ended

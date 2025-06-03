@@ -46,5 +46,5 @@ func _on_hit_box_damage_taken(damage: int) -> void:
 		die()
 
 
-func _on_hurt_box_dealt_damage(target: HitBox) -> void:
+func _on_hurt_box_dealt_damage(_target: HitBox) -> void:
 	die()

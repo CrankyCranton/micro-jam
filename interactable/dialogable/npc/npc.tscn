@@ -9,4 +9,5 @@ script = ExtResource("2_wtarq")
 enslave_title = ""
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+position = Vector2(0, -8)
 texture = ExtResource("3_7lsvl")

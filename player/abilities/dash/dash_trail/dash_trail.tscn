@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb2pdkphom3be"]
+
+[ext_resource type="Texture2D" uid="uid://ctenpu3rxwqme" path="res://icon.svg" id="1_8ad58"]
+[ext_resource type="Script" uid="uid://drwh0bexsc38x" path="res://player/abilities/dash/dash_trail/dash_trail.gd" id="2_owtc8"]
+
+[node name="ghost" type="Sprite2D"]
+texture = ExtResource("1_8ad58")
+script = ExtResource("2_owtc8")

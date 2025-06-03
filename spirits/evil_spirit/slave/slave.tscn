@@ -27,6 +27,9 @@ visible = false
 [node name="ImmunityTime" parent="HitBox" index="1"]
 wait_time = 1.0
 
+[node name="RisePoint" type="Marker2D" parent="." index="6"]
+position = Vector2(0, -16)
+
 [editable path="HurtBox"]
 [editable path="SoftCollider"]
 [editable path="HitBox"]

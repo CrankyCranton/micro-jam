@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7b8ylmct0egs"]
+
+[ext_resource type="Script" uid="uid://b637lvpjijfge" path="res://player/abilities/spiritual_chains/spiritual_chains.gd" id="1_7337y"]
+
+[node name="SpiritualChains" type="Node2D"]
+script = ExtResource("1_7337y")

@@ -1,9 +1,13 @@
-extends Node2D
-class_name Ability
+class_name Ability extends Node2D
 
 
-@export var corruption := 0
+@export var action := &""
 
 
-func execute(object):
+func _input(event: InputEvent) -> void:
+	if action != &"" and event.is_action_pressed(action):
+		_execute()
+
+
+func _execute() -> void:
 	pass

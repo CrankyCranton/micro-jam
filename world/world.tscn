@@ -2,16 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://tg6aup8df5or" path="res://assets/decorations.png" id="4_fyhu2"]
-[ext_resource type="PackedScene" uid="uid://ce17h080iour3" path="res://scenario/scenario.tscn" id="4_mmdvd"]
+[ext_resource type="PackedScene" uid="uid://ce17h080iour3" path="res://world/scenario/scenario.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://da5m7i7icxmw6" path="res://interactable/dialogable/dialogable.tscn" id="5_4papg"]
-[ext_resource type="PackedScene" uid="uid://bibr0dnr2e6t8" path="res://scenario/spirit_spawn_point/spirit_spawn_point.tscn" id="5_fn3g3"]
+[ext_resource type="PackedScene" uid="uid://bibr0dnr2e6t8" path="res://world/scenario/spirit_spawn_point/spirit_spawn_point.tscn" id="5_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://bk0bq4lwt3lrm" path="res://world/blockade.tscn" id="5_mad0u"]
 [ext_resource type="PackedScene" uid="uid://0jp2e1erd1xa" path="res://world/tiles.tscn" id="6_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://crx7kk4gj06gp" path="res://misc/hurt_box/hurt_box.tscn" id="7_ai45w"]
 [ext_resource type="PackedScene" uid="uid://dkapuo0hyc6ym" path="res://interactable/dialogable/npc/shady_stranger/shady_stranger.tscn" id="7_fyhu2"]
-[ext_resource type="Texture2D" uid="uid://dgwqdkfuaugap" path="res://assets/gravestone.png" id="8_ai45w"]
 [ext_resource type="PackedScene" uid="uid://b0w04lk0mmumo" path="res://world/gate/gate.tscn" id="10_fyhu2"]
 [ext_resource type="Texture2D" uid="uid://dwhw6comrj8jp" path="res://assets/sign.png" id="11_ov2xu"]
+[ext_resource type="PackedScene" uid="uid://dfbleu5p60l3u" path="res://interactable/dialogable/gravestone/gravestone.tscn" id="12_mad0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc4t8"]
 size = Vector2(925, 176)
@@ -53,9 +53,6 @@ _data = {
 &"new_animation": SubResource("Animation_ai45w")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyhu2"]
-size = Vector2(16, 16)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mad0u"]
 size = Vector2(16, 16)
 
@@ -64,6 +61,11 @@ size = Vector2(937, 250)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocfjn"]
 size = Vector2(26, 208)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mad0u"]
+vertices = PackedVector2Array(710, 10, 710, 118, 550, 118, 26, 10, 26, 166, 250, 166, 550, 182, 250, 182)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5), PackedInt32Array(5, 2, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(16, 0, 16, 176, 240, 176, 240, 192, 560, 192, 560, 128, 720, 128, 720, 0)])
 
 [node name="World" type="Node2D"]
 
@@ -112,17 +114,8 @@ region_rect = Rect2(0, 0, 16, 32)
 [node name="Blockade" parent="Interactables" instance=ExtResource("5_mad0u")]
 position = Vector2(395, 196)
 
-[node name="Gravestone" parent="Interactables" instance=ExtResource("5_4papg")]
+[node name="Gravestone" parent="Interactables" instance=ExtResource("12_mad0u")]
 position = Vector2(48, 180)
-title = "gravestone"
-
-[node name="Sprite2D" type="Sprite2D" parent="Interactables/Gravestone"]
-position = Vector2(0, -8)
-texture = ExtResource("8_ai45w")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Gravestone"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_fyhu2")
 
 [node name="ShadyStranger" parent="Interactables" instance=ExtResource("7_fyhu2")]
 position = Vector2(289, 196)
@@ -140,7 +133,7 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_mad0u")
 
 [node name="Player" parent="." instance=ExtResource("1_6xmxd")]
-position = Vector2(80, 172)
+position = Vector2(80, 184)
 
 [node name="Gate" parent="." instance=ExtResource("10_fyhu2")]
 position = Vector2(192, 180)
@@ -166,5 +159,8 @@ collision_mask = 71
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limits"]
 position = Vector2(3, 104)
 shape = SubResource("RectangleShape2D_ocfjn")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_mad0u")
 
 [editable path="Scenario"]

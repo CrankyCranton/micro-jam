@@ -1,13 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=8 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://cir8w4ceg5fcq" path="res://assets/player.png" id="2_rgyib"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_rkbax"]
-[ext_resource type="PackedScene" uid="uid://ceib4if3ubhca" path="res://player/abilities/ability_manager/ability_manager.tscn" id="3_g1dw6"]
-[ext_resource type="PackedScene" uid="uid://d3aik1ux28bp5" path="res://player/abilities/dash_ability.tscn" id="4_yw30f"]
-[ext_resource type="PackedScene" uid="uid://c3h8dx83ssg0c" path="res://player/abilities/dimensional_dash.tscn" id="6_boad6"]
-[ext_resource type="PackedScene" uid="uid://bl7mgcfb0uxdx" path="res://player/wand/wand.tscn" id="6_g6k8r"]
-[ext_resource type="PackedScene" uid="uid://7b8ylmct0egs" path="res://player/abilities/chain_ability.tscn" id="7_rgyib"]
+[ext_resource type="Script" uid="uid://f2ik8l16afl6" path="res://player/abilities/ability_manager.gd" id="4_yw30f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 4.0
@@ -25,14 +21,16 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_oul6g")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
 texture = ExtResource("2_rgyib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_oul6g")
 
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2(0, -8)
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 drag_horizontal_enabled = true
@@ -44,24 +42,10 @@ editor_draw_drag_margin = true
 monitoring = true
 
 [node name="CollisionShape" parent="HitBox" index="0"]
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_rgyib")
 
-[node name="AbilityManager" parent="." instance=ExtResource("3_g1dw6")]
-visible = false
-
-[node name="DashAbility" parent="AbilityManager" instance=ExtResource("4_yw30f")]
-corruption = 10
-
-[node name="DimensionalDash" parent="AbilityManager" instance=ExtResource("6_boad6")]
-corruption = 20
-
-[node name="ChainAbility" parent="AbilityManager" instance=ExtResource("7_rgyib")]
-corruption = 1
-
-[node name="Wand" parent="." instance=ExtResource("6_g6k8r")]
-
 [node name="Interactor" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 128
 monitorable = false
@@ -69,6 +53,10 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactor"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_boad6")
+
+[node name="AbilityManager" type="Node2D" parent="."]
+script = ExtResource("4_yw30f")
+metadata/_custom_type_script = "uid://f2ik8l16afl6"
 
 [connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
 [connection signal="area_exited" from="Interactor" to="." method="_on_interactor_area_exited"]

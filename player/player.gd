@@ -1,30 +1,32 @@
 class_name Player extends CharacterBody2D
 
 
-@onready var ability_manager:AbilityManager = $AbilityManager
-
-var SPEED := 160.0
+const SPEED := 160.0
 const JUMP_VELOCITY := 320.0
 const TRACTION := 11.0
 const AIR_TRACTION := 4.0
 const DEADZONE := 0.2
 
-var corruption := 0
+var direction := 0.0:
+	set(value):
+		direction = value
+		if absf(direction) > 0.0:
+			last_direction = direction
+var last_direction := 1.0
 var interactable: Interactable = null
-var abilities: Array[Ability] = []
-var next_abilities: Array[Ability]
-var can_shoot := false
+var spiritual_chains: SpiritualChains
+var resurrection#: Resurrection
+var corruption := 0
+var health := 5:
+	set(value):
+		health = value
+		if health <= 0:
+			die()
 
+@onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
 @onready var interactor: Area2D = $Interactor
-
-
-func _ready() -> void:
-	next_abilities.append_array(ability_manager.abilities.values().duplicate())
-	next_abilities.sort_custom(func(a: Ability, b: Ability) -> bool:
-		return a.corruption < b.corruption
-	)
-	#abilities.append_array(ability_manager.abilities.values().duplicate())
+@onready var ability_manager: AbilityManager = $AbilityManager
 
 
 func _physics_process(delta: float) -> void:
@@ -33,15 +35,11 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_pressed(&"jump"):
 		velocity.y = -JUMP_VELOCITY
 
-	var direction := Input.get_axis(&"left", &"right")
+	direction = Input.get_axis(&"left", &"right")
 	if absf(direction) <= DEADZONE:
 		direction = 0.0
 
-	if direction != 0:
-		if direction == 1:
-			%Sprite2D.flip_h = false
-		elif direction == -1:
-			%Sprite2D.flip_h = true
+	sprite.flip_h = last_direction < 0.0
 
 	var traction := TRACTION if is_on_floor() else AIR_TRACTION
 	velocity.x = lerpf(velocity.x , direction * SPEED, traction * delta)
@@ -51,19 +49,23 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	#if interactable is NPC and ability_manager.:
-
-	if Input.is_action_just_pressed(&"interact") and interactable != null:
+	if event.is_action_pressed(&"interact") and interactable != null:
 		set_enabled(false)
 		velocity = Vector2.ZERO
-		await interactable._interact()
-		if interactable.name == &"ShadyStranger": # FIXME
-			can_shoot = true
+
+		if spiritual_chains != null and interactable is NPC:
+			await spiritual_chains._execute()
+		elif resurrection != null and interactable is Gravestone:
+			await resurrection._execute()
+		else:
+			@warning_ignore("redundant_await")
+			await interactable._interact(self)
+
 		set_enabled(true)
 
-	for i in abilities.size():
-		if event.is_action_pressed(&"Ability_%s" % (i + 1)):
-			abilities[i].execute(self)
+
+func die() -> void:
+	get_tree().paused = true # FIXME
 
 
 func scan_interactables() -> void:
@@ -84,18 +86,24 @@ func set_enabled(enabled: bool) -> void:
 	set_process_input(enabled)
 
 
-func check_level_up() -> void:
-	if next_abilities.size() > 0 and corruption >= next_abilities.front().corruption:
-		var new_ability: Ability = next_abilities.pop_front()
-		abilities.append(new_ability)
-		if new_ability is ChainAbility:
-			for npc: NPC in get_tree().get_nodes_in_group(&"npcs"):
-				npc.label.text = "E to spiritually chain"
-	print(abilities)
+func add_ability(ABILITY: PackedScene) -> void:
+	var ability: Ability = ABILITY.instantiate()
+	ability_manager.add_child(ability)
+	ability.owner = self
+
+	# There's probably a way to merge these.
+	if ability is SpiritualChains:
+		spiritual_chains = ability
+		for npc: NPC in get_tree().get_nodes_in_group(&"npcs"):
+			npc.label.text = "E to spiritually chain"
+	#elif ability is Resurrection:
+		#resurrection = ability
+		#for gravestone: Gravestone in get_tree().get_nodes_in_group(&"gravestones"):
+			#gravestone.label.text = "E to resurrect"
 
 
 func _on_hit_box_damage_taken(damage: int) -> void:
-	corruption += damage
+	health -= damage
 
 
 func _on_interactor_area_exited(interactable: Interactable) -> void:

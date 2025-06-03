@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://b202hnb6gypor"]
-
-[node name="Npc" type="CharacterBody2D"]
-collision_layer = 32
-collision_mask = 35
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]

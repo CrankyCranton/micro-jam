@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjrt7elq6k1xy"]
-
-[ext_resource type="Script" uid="uid://cwyqa7ie3opa1" path="res://cutscenes/first_scene.gd" id="1_bj2n8"]
-
-[node name="First_Scene" type="Node2D"]
-script = ExtResource("1_bj2n8")

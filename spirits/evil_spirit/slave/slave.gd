@@ -2,10 +2,15 @@ class_name Slave extends EvilSpirit
 
 
 @onready var hit_box: HitBox = $HitBox
+@onready var rise_point: Marker2D = $RisePoint
 
 
 func _ready() -> void:
 	hit_box.remove_from_group(&"evil_spirits")
+	set_physics_process(false)
+	const RISE_TIME := 0.5
+	create_tween().tween_property(self, ^"global_position", rise_point.global_position, RISE_TIME)
+	set_physics_process(true)
 
 
 func _physics_process(delta: float) -> void:

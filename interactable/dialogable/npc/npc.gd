@@ -6,7 +6,7 @@ class_name NPC extends Dialogable
 
 func enslave(player: Player) -> void:
 	title = enslave_title
-	await _interact()
+	await _interact(player)
 
 	const SLAVE := preload("res://spirits/evil_spirit/slave/slave.tscn")
 	var slave: Slave = SLAVE.instantiate()
