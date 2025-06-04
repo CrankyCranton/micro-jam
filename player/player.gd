@@ -56,6 +56,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact") and interactable != null:
 		set_enabled(false)
+		interactable.set_popup_visible(false)
 		velocity = Vector2.ZERO
 
 		if spiritual_chains != null and interactable is NPC:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=27 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://tg6aup8df5or" path="res://assets/decorations.png" id="4_fyhu2"]
@@ -82,11 +82,6 @@ shader = ExtResource("12_mad0u")
 shader_parameter/noise = SubResource("NoiseTexture2D_dqqhb")
 shader_parameter/scroll = Vector2(0.05, 0.05)
 shader_parameter/distortion_strength = 0.2
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_b2suy"]
-vertices = PackedVector2Array(537.844, 115.18, 538.828, 177.859, 248, 174.117, 248, 161.867, 11.1172, 164.867, 12.8828, 15.8594, 702.32, 6.13281, 705.68, 112.18)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6, 0), PackedInt32Array(6, 7, 0)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(3, 6, 1, 175, 238, 172, 238, 184, 549, 188, 548, 125, 716, 122, 712, -4)])
 
 [node name="World" type="Node2D"]
 
@@ -215,13 +210,5 @@ offset_bottom = 4.0
 
 [node name="EvilSpirit" parent="." instance=ExtResource("15_b2suy")]
 position = Vector2(106, 123)
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
-navigation_polygon = SubResource("NavigationPolygon_b2suy")
-enabled = false
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-vertices = PackedVector2Array(168, 151, 169, 178, 212, 176, 213, 149)
 
 [editable path="Scenarios/Scenario_river"]
