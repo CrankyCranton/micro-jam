@@ -58,6 +58,8 @@ shape = SubResource("RectangleShape2D_boad6")
 [node name="AbilityManager" type="Node2D" parent="."]
 script = ExtResource("4_yw30f")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
 [connection signal="area_exited" from="Interactor" to="." method="_on_interactor_area_exited"]
 

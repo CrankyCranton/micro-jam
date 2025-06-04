@@ -20,6 +20,7 @@ var resurrection#: Resurrection
 var corruption := 0
 var health := max_health:
 	set(value):
+		print(value)
 		health = value
 		if health <= 0:
 			die()
@@ -28,6 +29,9 @@ var health := max_health:
 @onready var camera: Camera2D = $Camera
 @onready var interactor: Area2D = $Interactor
 @onready var ability_manager: AbilityManager = $AbilityManager
+
+func _ready() -> void:
+	health = 100
 
 
 func _physics_process(delta: float) -> void:

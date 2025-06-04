@@ -17,6 +17,8 @@ var player: Player
 @onready var soft_collider: SoftCollider = $SoftCollider
 @onready var nav_agent:NavigationAgent2D = $NavigationAgent2D
 
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
 	assert(player)
