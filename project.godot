@@ -56,6 +56,11 @@ folder_colors={
 "res://world/": "green"
 }
 
+[gui]
+
+theme/default_font_antialiasing=2
+theme/default_font_hinting=2
+
 [input]
 
 left={
