@@ -60,6 +60,8 @@ script = ExtResource("4_yw30f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+
 [connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
 [connection signal="area_exited" from="Interactor" to="." method="_on_interactor_area_exited"]
 
