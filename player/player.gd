@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody2D
 
+@export var max_health:int
 
 const SPEED := 160.0
 const JUMP_VELOCITY := 320.0
@@ -17,7 +18,7 @@ var interactable: Interactable = null
 var spiritual_chains: SpiritualChains
 var resurrection#: Resurrection
 var corruption := 0
-var health := 5:
+var health := max_health:
 	set(value):
 		health = value
 		if health <= 0:
@@ -104,6 +105,8 @@ func add_ability(ABILITY: PackedScene) -> void:
 
 func _on_hit_box_damage_taken(damage: int) -> void:
 	health -= damage
+	if health <= 0:
+		get_tree().reload_current_scene()
 
 
 func _on_interactor_area_exited(interactable: Interactable) -> void:

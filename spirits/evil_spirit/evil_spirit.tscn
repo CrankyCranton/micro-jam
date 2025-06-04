@@ -28,6 +28,7 @@ script = ExtResource("1_8nhym")
 shape = SubResource("CircleShape2D_8nhym")
 
 [node name="HurtBox" parent="." instance=ExtResource("2_4vt4j")]
+damage = 25
 ignored_groups = Array[StringName]([&"evil_spirits"])
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
