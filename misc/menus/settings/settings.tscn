@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn2qyqtxjr2wv"]
+
+[ext_resource type="Script" uid="uid://s85ls0n6egbj" path="res://misc/menus/settings/settings.gd" id="1_dfd1p"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dfd1p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -80.0
+offset_right = 72.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="vol_con" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Volume slider"
+
+[node name="volume_slider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Mute" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+text = "Mute volume"
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="value_changed" from="VBoxContainer/volume_slider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]

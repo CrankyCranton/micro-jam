@@ -60,7 +60,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_51qcc"]
@@ -70,7 +70,7 @@ _data = {
 }
 
 [node name="Pause_menu" type="Control"]
-modulate = Color(0, 0, 0, 1)
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,16 +85,15 @@ offset_right = 319.0
 offset_bottom = 178.0
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -77.0
+offset_left = -98.0
 offset_top = -71.0
-offset_right = 71.0
+offset_right = 48.0
 offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -108,10 +107,6 @@ alignment = 1
 layout_mode = 2
 text = "Resume"
 
-[node name="Settings" type="Button" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Settings"
-
 [node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
@@ -120,3 +115,6 @@ text = "Quit"
 libraries = {
 &"": SubResource("AnimationLibrary_51qcc")
 }
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
