@@ -132,7 +132,10 @@ collision_mask = 71
 position = Vector2(3, 104)
 shape = SubResource("RectangleShape2D_ocfjn")
 
-[node name="Gate" parent="Other_areas" instance=ExtResource("10_fyhu2")]
+[node name="Player" parent="." instance=ExtResource("1_6xmxd")]
+position = Vector2(130, 175)
+
+[node name="Gate" parent="." instance=ExtResource("10_fyhu2")]
 position = Vector2(192, 180)
 
 [node name="Scenarios" type="Node2D" parent="."]
@@ -160,8 +163,14 @@ position = Vector2(393, -17)
 [node name="Barrier_1" parent="Scenarios/Scenario_river/Barriers" index="0"]
 position = Vector2(121, 49)
 
+[node name="Sprite2D" parent="Scenarios/Scenario_river/Barriers/Barrier_1" index="0"]
+visible = false
+
 [node name="Barrier_2" parent="Scenarios/Scenario_river/Barriers" index="1"]
 position = Vector2(310, 70)
+
+[node name="Sprite2D" parent="Scenarios/Scenario_river/Barriers/Barrier_2" index="0"]
+visible = false
 
 [node name="SpawnPatterns" parent="Scenarios/Scenario_river" index="3"]
 libraries = {
@@ -179,9 +188,6 @@ tile_map_data = PackedByteArray("AAA6AAsAAQABAAAAAAA6AAwAAQABAAAAAAA6AA0AAQABAAA
 
 [node name="Water" parent="." instance=ExtResource("6_fn3g3")]
 material = SubResource("ShaderMaterial_dqqhb")
-
-[node name="Player" parent="." instance=ExtResource("1_6xmxd")]
-position = Vector2(130, 175)
 
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false
