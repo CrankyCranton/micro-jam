@@ -8,17 +8,18 @@ Asahi: You're lucky the breeze is keeping me in a good mood.
 Natsuki: It's just trying to stop you from saying something worse.
 Asahi: Shut up.
 Natsuki: But seriously, it's a pretty good day.
-Mysterious Figure: [color=red]Sunsets burn brightest before they’re swallowed.[/color]
+[speed=-1][b][color=red][center]Sunsets always burn brightest before they’re swallowed.[/center][/color][/b]
 => END
 
 ~ gravestone
+[center]Asahi\n####-####\nA great samurai,\nDied protecting a loved one.[/center]
 Natsuki: We will meet again.[wait=0.5]...[wait=0.5] just....[wait=0.1] wait for me.
 => END
 
 ~ shady_stranger
-Shady stranger: Konnichiwa, Natsuki.
-Natsuki: Who are you? How do you know me?
-Shady stranger: I am the person who’ll help you get him back
+Shady stranger: Salutations, Natsuki-san.
+Natsuki: Who are you? How do you know my name?
+Shady stranger: I am the person who’ll help you get him back.
 Natsuki: How?…[wait=0.2] how do know about him?
 Shady stranger: I know many things. Take this wand, it can destroy anything that gets in your way.
 [center][b]Magic Wand\:[/b] Left-click to shoot![/center]

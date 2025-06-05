@@ -17,6 +17,7 @@ var player: Player
 @onready var spawn_points: Node2D = $SpawnPoints
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var spawn_patterns: AnimationPlayer = $SpawnPatterns
+@onready var barriers:StaticBody2D = $Barriers
 
 
 func _ready() -> void:
@@ -32,6 +33,7 @@ func _ready() -> void:
 func end() -> void:
 	player.add_ability(ability)
 	finished.emit()
+	set_barriers_enabled(false)
 	queue_free()
 
 
@@ -40,14 +42,16 @@ func play_random() -> void:
 
 
 func _on_body_entered(player: Player) -> void:
-	self.player = player
-	collision_shape.set_deferred(&"disabled", true)
-	#max_spawns += player.corruption
+	if Global.met_shady_guy:
+		self.player = player
+		collision_shape.set_deferred(&"disabled", true)
+		#max_spawns += player.corruption
 
-	for spirit_spawn_point: SpiritSpawnPoint in spawn_points.get_children():
-		spirit_spawn_point.player = player
+		for spirit_spawn_point: SpiritSpawnPoint in spawn_points.get_children():
+			spirit_spawn_point.player = player
+		set_barriers_enabled(true)
 
-	play_random()
+		play_random()
 
 
 func _on_spirit_spawn_point_spawned(spawn: EvilSpirit) -> void:
@@ -71,3 +75,8 @@ func _on_spawn_patterns_animation_finished(anim_name: StringName) -> void:
 				spawn_patterns.play(FINAL_NAME)
 		else:
 			play_random()
+
+
+func set_barriers_enabled(enabled: bool) -> void:
+	for barrier: CollisionShape2D in barriers.get_children():
+		barrier.set_enabled(enabled)

@@ -9,7 +9,7 @@ var can_interact:bool = true
 var base_text:String = "E to "
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if active_interactables.size() > 0 and can_interact:
 		active_interactables.sort_custom(sort_by_distance) #sorts by closest interactable object -> most distant
 		label.text = base_text + active_interactables[0].action_name

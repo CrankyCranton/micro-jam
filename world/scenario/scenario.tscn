@@ -12,6 +12,9 @@ script = ExtResource("1_45eor")
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
+[node name="Barriers" type="StaticBody2D" parent="."]
+collision_mask = 71
+
 [node name="SpawnPatterns" type="AnimationPlayer" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

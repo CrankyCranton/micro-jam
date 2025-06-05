@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://wcoepf7xa88v"]
+
+[ext_resource type="Script" uid="uid://c2x4ewqo37alk" path="res://player/abilities/resurrection/resurrection.gd" id="1_a1wvb"]
+
+[node name="Resurrection" type="Node2D"]
+script = ExtResource("1_a1wvb")
+action = &"Resurrect"

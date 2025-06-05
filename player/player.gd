@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody2D
 
+@export var max_health:int
 
 const SPEED := 160.0
 const JUMP_VELOCITY := 320.0
@@ -15,18 +16,18 @@ var direction := 0.0:
 var last_direction := 1.0
 var interactable: Interactable = null
 var spiritual_chains: SpiritualChains
-var resurrection#: Resurrection
+var resurrection: Resurrection
 var corruption := 0
-var health := 5:
-	set(value):
-		health = value
-		if health <= 0:
-			die()
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
 @onready var interactor: Area2D = $Interactor
 @onready var ability_manager: AbilityManager = $AbilityManager
+@onready var health := max_health:
+	set(value):
+		health = value
+		if health <= 0:
+			die()
 
 
 func _physics_process(delta: float) -> void:
@@ -51,6 +52,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact") and interactable != null:
 		set_enabled(false)
+		interactable.set_popup_visible(false)
 		velocity = Vector2.ZERO
 
 		if spiritual_chains != null and interactable is NPC:
@@ -104,6 +106,8 @@ func add_ability(ABILITY: PackedScene) -> void:
 
 func _on_hit_box_damage_taken(damage: int) -> void:
 	health -= damage
+	if health <= 0:
+		get_tree().reload_current_scene()
 
 
 func _on_interactor_area_exited(interactable: Interactable) -> void:

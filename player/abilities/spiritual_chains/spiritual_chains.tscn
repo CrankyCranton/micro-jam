@@ -4,3 +4,8 @@
 
 [node name="SpiritualChains" type="Node2D"]
 script = ExtResource("1_7337y")
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
