@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dooxjjsu2346o"]
+
+[ext_resource type="Script" uid="uid://ho5obtghjug4" path="res://misc/health_bar/health_bar.gd" id="1_irkow"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irkow"]
+bg_color = Color(0.877186, 0.262959, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d156p"]
+bg_color = Color(0.821292, 0.341212, 1, 1)
+
+[node name="Health_bar" type="ProgressBar"]
+offset_right = 95.0
+offset_bottom = 6.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_irkow")
+value = 60.0
+show_percentage = false
+script = ExtResource("1_irkow")
+
+[node name="SecondBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_d156p")
+value = 80.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
