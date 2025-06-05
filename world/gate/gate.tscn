@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c3ua8plphji0j" path="res://assets/gate_front.png" id="2_y60vf"]
 
 [node name="Gate" type="StaticBody2D"]
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 collision_mask = 71
 
 [node name="GateBack" type="Sprite2D" parent="."]

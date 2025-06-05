@@ -29,9 +29,6 @@ var corruption := 0
 		if health <= 0:
 			die()
 
-func _ready() -> void:
-	health = 100
-
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

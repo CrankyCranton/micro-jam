@@ -10,5 +10,5 @@ func _physics_process(delta: float) -> void:
 	position.x += direction * spd * delta
 
 
-func delete(collider: Node = null) -> void:
+func delete(_collider: Node = null) -> void:
 	queue_free()

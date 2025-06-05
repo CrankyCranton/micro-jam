@@ -1,48 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce17h080iour3"]
+[gd_scene load_steps=2 format=3 uid="uid://ce17h080iour3"]
 
 [ext_resource type="Script" uid="uid://dm22ijvnpq2kk" path="res://world/scenario/scenario.gd" id="1_45eor"]
-[ext_resource type="Texture2D" uid="uid://ctenpu3rxwqme" path="res://icon.svg" id="2_qafhh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qafhh"]
-size = Vector2(20, 91)
 
 [node name="Scenario" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_45eor")
-max_spawns = null
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
-[node name="Barriers" type="Node2D" parent="."]
-process_mode = 4
-
-[node name="Barrier_1" type="StaticBody2D" parent="Barriers"]
-collision_mask = 0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Barriers/Barrier_1"]
-scale = Vector2(0.2, 0.8)
-texture = ExtResource("2_qafhh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/Barrier_1"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_qafhh")
-
-[node name="Barrier_2" type="StaticBody2D" parent="Barriers"]
-collision_mask = 0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Barriers/Barrier_2"]
-scale = Vector2(0.2, 0.8)
-texture = ExtResource("2_qafhh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barriers/Barrier_2"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_qafhh")
+[node name="Barriers" type="StaticBody2D" parent="."]
+collision_mask = 71
 
 [node name="SpawnPatterns" type="AnimationPlayer" parent="."]
 

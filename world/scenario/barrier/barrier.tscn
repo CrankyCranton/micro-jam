@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://daus27g6kp0go"]
+
+[ext_resource type="Script" uid="uid://c4wlca85qi4fe" path="res://world/scenario/barrier/barrier.gd" id="1_y4lag"]
+
+[node name="Barrier" type="CollisionShape2D"]
+disabled = true
+script = ExtResource("1_y4lag")

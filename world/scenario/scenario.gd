@@ -17,7 +17,7 @@ var player: Player
 @onready var spawn_points: Node2D = $SpawnPoints
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var spawn_patterns: AnimationPlayer = $SpawnPatterns
-@onready var barriers:Node2D = $Barriers
+@onready var barriers:StaticBody2D = $Barriers
 
 
 func _ready() -> void:
@@ -28,28 +28,28 @@ func _ready() -> void:
 
 	for spirit_spawn_point: SpiritSpawnPoint in spawn_points.get_children():
 		spirit_spawn_point.spawned.connect(_on_spirit_spawn_point_spawned)
-	disable_barriers()
 
 
 func end() -> void:
 	player.add_ability(ability)
 	finished.emit()
-	disable_barriers()
+	set_barriers_enabled(false)
 	queue_free()
+
 
 func play_random() -> void:
 	spawn_patterns.play(animations[randi() % animations.size()])
 
 
 func _on_body_entered(player: Player) -> void:
-	if Global.met_shady_guy == true:
+	if Global.met_shady_guy:
 		self.player = player
 		collision_shape.set_deferred(&"disabled", true)
 		#max_spawns += player.corruption
 
 		for spirit_spawn_point: SpiritSpawnPoint in spawn_points.get_children():
 			spirit_spawn_point.player = player
-		enable_barriers()
+		set_barriers_enabled(true)
 
 		play_random()
 
@@ -76,10 +76,7 @@ func _on_spawn_patterns_animation_finished(anim_name: StringName) -> void:
 		else:
 			play_random()
 
-func enable_barriers():
-	barriers.set_process(true)
-	barriers.process_mode = Node.PROCESS_MODE_INHERIT
 
-func disable_barriers():
-	barriers.set_process(false)
-	barriers.process_mode = Node.PROCESS_MODE_DISABLED
+func set_barriers_enabled(enabled: bool) -> void:
+	for barrier: CollisionShape2D in barriers.get_children():
+		barrier.set_enabled(enabled)
