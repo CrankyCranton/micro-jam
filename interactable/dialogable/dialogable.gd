@@ -8,5 +8,3 @@ class_name Dialogable extends Interactable
 func _interact(_player: Player) -> void:
 	InteractionManager.start_dialogue(dialogue, title)
 	await DialogueManager.dialogue_ended
-	Global.met_shady_guy = true
-	

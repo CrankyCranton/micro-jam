@@ -16,19 +16,18 @@ var direction := 0.0:
 var last_direction := 1.0
 var interactable: Interactable = null
 var spiritual_chains: SpiritualChains
-var resurrection#: Resurrection
+var resurrection: Resurrection
 var corruption := 0
-var health := max_health:
-	set(value):
-		print(value)
-		health = value
-		if health <= 0:
-			die()
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
 @onready var interactor: Area2D = $Interactor
 @onready var ability_manager: AbilityManager = $AbilityManager
+@onready var health := max_health:
+	set(value):
+		health = value
+		if health <= 0:
+			die()
 
 func _ready() -> void:
 	health = 100

@@ -1,29 +1,30 @@
-extends Control
+class_name PauseMenu extends CanvasLayer
 
-@onready var animation:AnimationPlayer = $AnimationPlayer
+
+@onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var quit: Button = %Quit
+
 
 func _ready() -> void:
-	hide()
+	if OS.get_name() == "Web":
+		quit.hide()
 
-func pause():
-	show()
-	$AnimationPlayer.play("blur")
-	get_tree().paused = true
-
-func unpause():
-	get_tree().paused = false
-	hide()
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("pause"):
-		if get_tree().paused == false:
-			pause()
-		elif get_tree().paused == true:
-			unpause()
+	if event.is_action_pressed(&"ui_cancel"):
+		set_paused(not get_tree().paused)
+
+
+func set_paused(paused: bool) -> void:
+	get_tree().paused = paused
+	animation.play(&"blur" if paused else &"unblur")
+
 
 func _on_resume_pressed() -> void:
-	unpause()
+	set_paused(false)
+
 
 func _on_quit_pressed() -> void:
-	unpause()
-	get_tree().change_scene_to_file("res://misc/menus/main/main_menu.tscn")
+	get_tree().quit()
+	#set_paused(false)
+	#get_tree().change_scene_to_file("res://misc/menus/main/main_menu.tscn")
