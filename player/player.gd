@@ -18,11 +18,14 @@ var interactable: Interactable = null
 var spiritual_chains: SpiritualChains
 var resurrection: Resurrection
 var corruption := 0
+var enabled := true
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
 @onready var interactor: Area2D = $Interactor
 @onready var ability_manager: AbilityManager = $AbilityManager
+@onready var corruption_meter: TextureRect = %CorruptionMeter
+@onready var health_bar: TextureProgressBar = %HealthBar
 @onready var health := max_health:
 	set(value):
 		health = value
@@ -30,44 +33,47 @@ var corruption := 0
 			die()
 
 
+func _ready() -> void:
+	DialogueManager.dialogue_started.connect(_on_dialogue_manager_dialogue_started)
+	DialogueManager.dialogue_ended.connect(_on_dialogue_manager_dialogue_ended)
+
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	elif Input.is_action_just_pressed(&"jump"):
-		velocity.y = -JUMP_VELOCITY
 
-	direction = Input.get_axis(&"left", &"right")
-	if absf(direction) <= DEADZONE:
-		direction = 0.0
+	if enabled:
+		if Input.is_action_just_pressed(&"jump") and is_on_floor():
+			velocity.y = -JUMP_VELOCITY
 
-	sprite.flip_h = last_direction < 0.0
+		direction = Input.get_axis(&"left", &"right")
+		if absf(direction) <= DEADZONE:
+			direction = 0.0
 
-	var traction := TRACTION if is_on_floor() else AIR_TRACTION
-	velocity.x = lerpf(velocity.x , direction * SPEED, traction * delta)
+		sprite.flip_h = last_direction < 0.0
+
+		var traction := TRACTION if is_on_floor() else AIR_TRACTION
+		velocity.x = lerpf(velocity.x , direction * SPEED, traction * delta)
+		scan_interactables()
 
 	move_and_slide()
-	scan_interactables()
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact") and interactable != null:
-		set_enabled(false)
 		interactable.set_popup_visible(false)
-		velocity = Vector2.ZERO
 
 		if spiritual_chains != null and interactable is NPC:
-			await spiritual_chains._execute()
+			spiritual_chains._execute()
 		elif resurrection != null and interactable is Gravestone:
-			await resurrection._execute()
+			resurrection._execute()
 		else:
-			@warning_ignore("redundant_await")
-			await interactable._interact(self)
-
-		set_enabled(true)
+			interactable._interact(self)
 
 
 func die() -> void:
 	get_tree().paused = true # FIXME
+	#get_tree().reload_current_scene()
 
 
 func scan_interactables() -> void:
@@ -84,8 +90,10 @@ func get_interactables() -> Array[Area2D]:
 
 
 func set_enabled(enabled: bool) -> void:
-	set_physics_process(enabled)
+	self.enabled = enabled
 	set_process_input(enabled)
+	if not enabled:
+		velocity.x = 0.0
 
 
 func add_ability(ABILITY: PackedScene) -> void:
@@ -98,16 +106,24 @@ func add_ability(ABILITY: PackedScene) -> void:
 		spiritual_chains = ability
 		for npc: NPC in get_tree().get_nodes_in_group(&"npcs"):
 			npc.label.text = "E to spiritually chain"
-	#elif ability is Resurrection:
-		#resurrection = ability
-		#for gravestone: Gravestone in get_tree().get_nodes_in_group(&"gravestones"):
-			#gravestone.label.text = "E to resurrect"
+	elif ability is Resurrection:
+		resurrection = ability
+		for gravestone: Gravestone in get_tree().get_nodes_in_group(&"gravestones"):
+			gravestone.label.text = "E to resurrect"
+
+
+func _on_dialogue_manager_dialogue_started(_resource: DialogueResource) -> void:
+	set_enabled(false)
+
+
+func _on_dialogue_manager_dialogue_ended(_resource: DialogueResource) -> void:
+	set_enabled(true)
 
 
 func _on_hit_box_damage_taken(damage: int) -> void:
 	health -= damage
 	if health <= 0:
-		get_tree().reload_current_scene()
+		die()
 
 
 func _on_interactor_area_exited(interactable: Interactable) -> void:

@@ -7,6 +7,9 @@ const FINAL_NAME := &"final"
 
 @export var max_spawns := 1
 @export var ability: PackedScene
+@export_group("Dialogue")
+@export var dialogue: DialogueResource
+@export var title := ""
 
 var total_spawned := 0
 var current_spawned := 0
@@ -31,10 +34,13 @@ func _ready() -> void:
 
 
 func end() -> void:
-	player.add_ability(ability)
-	finished.emit()
+	if ability != null:
+		player.add_ability(ability)
 	set_barriers_enabled(false)
-	queue_free()
+	if title != "":
+		await InteractionManager.start_dialogue(dialogue, title)
+	finished.emit()
+	#queue_free()
 
 
 func play_random() -> void:

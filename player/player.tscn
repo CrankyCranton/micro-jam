@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=11 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://cir8w4ceg5fcq" path="res://assets/player.png" id="2_rgyib"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://f2ik8l16afl6" path="res://player/abilities/ability_manager.gd" id="4_yw30f"]
+[ext_resource type="PackedScene" uid="uid://dhtbqtyyhj8m3" path="res://player/hud/corruption_meter.tscn" id="5_boad6"]
+[ext_resource type="Texture2D" uid="uid://cscmn3dsbgnpm" path="res://assets/health_bar_bg.png" id="5_g6k8r"]
+[ext_resource type="Texture2D" uid="uid://cvwnl07bekuq" path="res://assets/health_bar_fill.png" id="6_boad6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 4.0
@@ -58,9 +61,28 @@ shape = SubResource("RectangleShape2D_boad6")
 [node name="AbilityManager" type="Node2D" parent="."]
 script = ExtResource("4_yw30f")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+[node name="CorruptionMeter" parent="HUD" instance=ExtResource("5_boad6")]
+unique_name_in_owner = true
+
+[node name="HealthBar" type="TextureProgressBar" parent="HUD"]
+unique_name_in_owner = true
+editor_description = "13-46"
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+max_value = 64.0
+value = 46.0
+fill_mode = 3
+texture_under = ExtResource("5_g6k8r")
+texture_progress = ExtResource("6_boad6")
 
 [connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
 [connection signal="area_exited" from="Interactor" to="." method="_on_interactor_area_exited"]

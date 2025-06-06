@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce17h080iour3"]
+[gd_scene load_steps=3 format=3 uid="uid://ce17h080iour3"]
 
 [ext_resource type="Script" uid="uid://dm22ijvnpq2kk" path="res://world/scenario/scenario.gd" id="1_45eor"]
+[ext_resource type="Resource" uid="uid://cqv431wwrichh" path="res://dialogue/main.dialogue" id="2_qafhh"]
 
 [node name="Scenario" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_45eor")
+dialogue = ExtResource("2_qafhh")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 
