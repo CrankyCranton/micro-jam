@@ -27,6 +27,7 @@ var direction := 0.0:
 @onready var ability_manager: AbilityManager = $AbilityManager
 @onready var corruption_meter: CorruptionMeter = %CorruptionMeter
 @onready var health_bar: TextureProgressBar = %HealthBar
+@onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var corruption := 0:
 	set(value):
 		corruption = value
@@ -110,6 +111,7 @@ func set_enabled(enabled: bool) -> void:
 
 func add_ability(ABILITY: PackedScene) -> void:
 	var ability: Ability = ABILITY.instantiate()
+	ability.player = self
 	ability_manager.add_child(ability)
 	ability.owner = self
 

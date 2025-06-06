@@ -170,7 +170,7 @@ script = ExtResource("15_ysn08")
 metadata/_custom_type_script = "uid://c4wlca85qi4fe"
 
 [node name="Barrier2" type="CollisionShape2D" parent="Scenarios/Scenario_river/Barriers" index="1"]
-position = Vector2(336, 56)
+position = Vector2(311, 57)
 shape = SubResource("RectangleShape2D_ysn08")
 script = ExtResource("15_ysn08")
 metadata/_custom_type_script = "uid://c4wlca85qi4fe"
