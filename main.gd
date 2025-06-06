@@ -7,5 +7,5 @@ class_name Main extends Node
 	#get_tree().change_scene_to_file("res://world/world.tscn")
 
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+func _on_video_finished() -> void:
 	get_tree().change_scene_to_file("res://world/world.tscn")

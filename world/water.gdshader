@@ -9,5 +9,5 @@ void fragment() {
 	vec4 noise_col = texture(noise,UV + scroll * TIME);
 	vec4 screen_col = texture(screen_texture, UV + distortion_strength * noise_col.rr);
 	COLOR = screen_col;
-	
+
 }

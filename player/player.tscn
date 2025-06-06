@@ -64,6 +64,11 @@ script = ExtResource("4_yw30f")
 
 [node name="CorruptionMeter" parent="HUD" instance=ExtResource("5_boad6")]
 unique_name_in_owner = true
+visible = true
+offset_top = -48.0
+offset_right = 64.0
+offset_bottom = 16.0
+scale = Vector2(0.75, 0.75)
 
 [node name="HealthBar" type="TextureProgressBar" parent="HUD"]
 unique_name_in_owner = true
@@ -73,10 +78,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -64.0
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 16.0
+offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(0.75, 0.75)
 max_value = 64.0
 value = 46.0
 fill_mode = 3
