@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=25 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://br1y013botc56" path="res://assets/steps.png" id="1_b2suy"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://b0w04lk0mmumo" path="res://world/gate/gate.tscn" id="10_fyhu2"]
 [ext_resource type="Texture2D" uid="uid://dwhw6comrj8jp" path="res://assets/sign.png" id="11_ov2xu"]
 [ext_resource type="Shader" uid="uid://krkibu8qrggw" path="res://world/water.gdshader" id="12_mad0u"]
-[ext_resource type="Texture2D" uid="uid://ctenpu3rxwqme" path="res://icon.svg" id="12_ocfjn"]
 [ext_resource type="PackedScene" uid="uid://cmiih1f6mjgh5" path="res://misc/menus/pause/pause_menu.tscn" id="14_dqqhb"]
 [ext_resource type="Script" uid="uid://c4wlca85qi4fe" path="res://world/scenario/barrier/barrier.gd" id="15_ysn08"]
 
@@ -71,19 +70,6 @@ _data = {
 &"RESET": SubResource("Animation_4papg"),
 &"new_animation": SubResource("Animation_ai45w")
 }
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ocfjn"]
-seed = -1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dqqhb"]
-generate_mipmaps = false
-noise = SubResource("FastNoiseLite_ocfjn")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ocfjn"]
-shader = ExtResource("12_mad0u")
-shader_parameter/noise = SubResource("NoiseTexture2D_dqqhb")
-shader_parameter/scroll = Vector2(0.05, 0.05)
-shader_parameter/distortion_strength = 0.2
 
 [node name="World" type="Node2D"]
 
@@ -159,6 +145,7 @@ material = SubResource("ShaderMaterial_dqqhb")
 [node name="Scenario_river" parent="Scenarios" instance=ExtResource("4_mmdvd")]
 position = Vector2(25, 87)
 max_spawns = 10
+title = "dream"
 
 [node name="CollisionShape" parent="Scenarios/Scenario_river" index="0"]
 position = Vector2(235.5, 24)
@@ -192,20 +179,6 @@ metadata/_custom_type_script = "uid://c4wlca85qi4fe"
 libraries = {
 &"": SubResource("AnimationLibrary_fyhu2")
 }
-
-[node name="Icon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(1080.5, 218)
-scale = Vector2(5.69531, 1.29688)
-texture = ExtResource("12_ocfjn")
-
-[node name="River" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_ocfjn")
-position = Vector2(1178, 252)
-scale = Vector2(57.25, 10.75)
-texture = ExtResource("4_fyhu2")
-region_enabled = true
-region_rect = Rect2(16, 0, 16, 16)
 
 [node name="PauseMenu" parent="." instance=ExtResource("14_dqqhb")]
 

@@ -1,6 +1,7 @@
-extends Area2D
-class_name Interactable
+class_name Interactable extends Area2D
 
+
+@export var force_interaction := false
 
 @onready var label: Label = $Label
 

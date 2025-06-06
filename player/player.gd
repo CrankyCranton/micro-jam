@@ -1,32 +1,43 @@
 class_name Player extends CharacterBody2D
 
-@export var max_health:int
 
+signal fully_corrupted
+
+const MAX_HEALTH := 5
 const SPEED := 160.0
 const JUMP_VELOCITY := 320.0
 const TRACTION := 11.0
 const AIR_TRACTION := 4.0
 const DEADZONE := 0.2
+const MAX_CORRUPTION := 50
 
+var interactable: Interactable = null
+var spiritual_chains: SpiritualChains
+var resurrection: Resurrection
+var enabled := true
 var direction := 0.0:
 	set(value):
 		direction = value
 		if absf(direction) > 0.0:
-			last_direction = direction
-var last_direction := 1.0
-var interactable: Interactable = null
-var spiritual_chains: SpiritualChains
-var resurrection: Resurrection
-var corruption := 0
-var enabled := true
+			last_direction = 1 if direction > 0 else -1
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
 @onready var interactor: Area2D = $Interactor
 @onready var ability_manager: AbilityManager = $AbilityManager
-@onready var corruption_meter: TextureRect = %CorruptionMeter
+@onready var corruption_meter: CorruptionMeter = %CorruptionMeter
 @onready var health_bar: TextureProgressBar = %HealthBar
-@onready var health := max_health:
+@onready var corruption := 0:
+	set(value):
+		corruption = value
+		corruption_meter.value = corruption
+		if corruption >= MAX_CORRUPTION:
+			fully_corrupted.emit()
+@onready var last_direction := 1:
+	set(value):
+		last_direction = value
+		sprite.flip_h = last_direction < 0
+@onready var health := MAX_HEALTH:
 	set(value):
 		health = value
 		if health <= 0:
@@ -34,6 +45,7 @@ var enabled := true
 
 
 func _ready() -> void:
+	corruption_meter.max_value = MAX_CORRUPTION
 	DialogueManager.dialogue_started.connect(_on_dialogue_manager_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_manager_dialogue_ended)
 
@@ -45,12 +57,8 @@ func _physics_process(delta: float) -> void:
 	if enabled:
 		if Input.is_action_just_pressed(&"jump") and is_on_floor():
 			velocity.y = -JUMP_VELOCITY
-
-		direction = Input.get_axis(&"left", &"right")
-		if absf(direction) <= DEADZONE:
-			direction = 0.0
-
-		sprite.flip_h = last_direction < 0.0
+		var new_direction := Input.get_axis(&"left", &"right")
+		direction = new_direction if absf(new_direction) > DEADZONE else 0.0
 
 		var traction := TRACTION if is_on_floor() else AIR_TRACTION
 		velocity.x = lerpf(velocity.x , direction * SPEED, traction * delta)
@@ -61,14 +69,18 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact") and interactable != null:
-		interactable.set_popup_visible(false)
+		interact()
 
-		if spiritual_chains != null and interactable is NPC:
-			spiritual_chains._execute()
-		elif resurrection != null and interactable is Gravestone:
-			resurrection._execute()
-		else:
-			interactable._interact(self)
+
+func interact(interactable := self.interactable) -> void:
+	interactable.set_popup_visible(false)
+
+	if spiritual_chains != null and interactable is NPC:
+		spiritual_chains._execute()
+	elif resurrection != null and interactable is Gravestone:
+		resurrection._execute()
+	else:
+		interactable._interact(self)
 
 
 func die() -> void:
@@ -101,15 +113,17 @@ func add_ability(ABILITY: PackedScene) -> void:
 	ability_manager.add_child(ability)
 	ability.owner = self
 
-	# There's probably a way to merge these.
 	if ability is SpiritualChains:
 		spiritual_chains = ability
-		for npc: NPC in get_tree().get_nodes_in_group(&"npcs"):
-			npc.label.text = "E to spiritually chain"
+		change_interactable_labels(&"npcs", "E to spiritually chain")
 	elif ability is Resurrection:
 		resurrection = ability
-		for gravestone: Gravestone in get_tree().get_nodes_in_group(&"gravestones"):
-			gravestone.label.text = "E to resurrect"
+		change_interactable_labels(&"gravestones", "E to resurrect")
+
+
+func change_interactable_labels(group: StringName, message: String) -> void:
+	for interactable: Interactable in get_tree().get_nodes_in_group(group):
+		interactable.label.text = message
 
 
 func _on_dialogue_manager_dialogue_started(_resource: DialogueResource) -> void:

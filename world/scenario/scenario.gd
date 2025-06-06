@@ -37,6 +37,9 @@ func end() -> void:
 	if ability != null:
 		player.add_ability(ability)
 	set_barriers_enabled(false)
+
+	player.set_enabled(false)
+	# TODO: Make a few seconds delay to transition to daytime and stuff.
 	if title != "":
 		await InteractionManager.start_dialogue(dialogue, title)
 	finished.emit()

@@ -1,11 +1,11 @@
 class_name CorruptionMeter extends TextureRect
 
 
-var max_corruption := 50
+var max_value := 50
 
-@onready var corruption := 0:
-	set(value):
-		corruption = value
+@onready var value := 0:
+	set(new_value):
+		value = new_value
 		@warning_ignore("integer_division")
-		for i in corruption / max_corruption * get_child_count():
+		for i in value / max_value * get_child_count():
 			get_child(i).play(&"light")
