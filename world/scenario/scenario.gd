@@ -21,6 +21,7 @@ var player: Player
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var spawn_patterns: AnimationPlayer = $SpawnPatterns
 @onready var barriers:StaticBody2D = $Barriers
+@onready var start_sound: AudioStreamPlayer = $StartSound
 
 
 func _ready() -> void:
@@ -51,16 +52,19 @@ func play_random() -> void:
 
 
 func _on_body_entered(player: Player) -> void:
-	if Global.met_shady_guy:
-		self.player = player
-		collision_shape.set_deferred(&"disabled", true)
-		#max_spawns += player.corruption
+	if not Global.met_shady_guy:
+		return
 
-		for spirit_spawn_point: SpiritSpawnPoint in spawn_points.get_children():
-			spirit_spawn_point.player = player
-		set_barriers_enabled(true)
+	start_sound.play()
+	self.player = player
+	collision_shape.set_deferred(&"disabled", true)
+	#max_spawns += player.corruption
 
-		play_random()
+	for spirit_spawn_point: SpiritSpawnPoint in spawn_points.get_children():
+		spirit_spawn_point.player = player
+	set_barriers_enabled(true)
+
+	play_random()
 
 
 func _on_spirit_spawn_point_spawned(spawn: EvilSpirit) -> void:
