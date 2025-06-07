@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 
 signal fully_corrupted
+signal ability_gained(ABILITY: PackedScene)
 
 const MAX_HEALTH := 5
 const SPEED := 160.0
@@ -121,6 +122,8 @@ func add_ability(ABILITY: PackedScene) -> void:
 	elif ability is Resurrection:
 		resurrection = ability
 		change_interactable_labels(&"gravestones", "E to resurrect")
+
+	ability_gained.emit(ABILITY)
 
 
 func change_interactable_labels(group: StringName, message: String) -> void:

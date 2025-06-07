@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b0w04lk0mmumo" path="res://world/gate/gate.tscn" id="10_fyhu2"]
 [ext_resource type="Texture2D" uid="uid://dwhw6comrj8jp" path="res://assets/sign.png" id="11_ov2xu"]
 [ext_resource type="Shader" uid="uid://krkibu8qrggw" path="res://world/water.gdshader" id="12_mad0u"]
-[ext_resource type="PackedScene" uid="uid://cmiih1f6mjgh5" path="res://misc/menus/pause/pause_menu.tscn" id="14_dqqhb"]
+[ext_resource type="PackedScene" uid="uid://cmiih1f6mjgh5" path="res://misc/menus/pause/pause_screen.tscn" id="14_dqqhb"]
 [ext_resource type="Script" uid="uid://c4wlca85qi4fe" path="res://world/scenario/barrier/barrier.gd" id="15_ysn08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocfjn"]
@@ -180,9 +180,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_fyhu2")
 }
 
-[node name="PauseMenu" parent="." instance=ExtResource("14_dqqhb")]
+[node name="PauseScreen" parent="." instance=ExtResource("14_dqqhb")]
 
 [node name="NightShade" type="CanvasModulate" parent="."]
 visible = false
+
+[connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
 [editable path="Scenarios/Scenario_river"]

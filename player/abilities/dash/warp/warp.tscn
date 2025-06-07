@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://c3h8dx83ssg0c"]
 
-[ext_resource type="Script" uid="uid://bllv4alwpuetp" path="res://player/abilities/dash/warp/warp.gd" id="1_mmmkw"]
+[ext_resource type="Script" uid="uid://bllv4alwpuetp" path="res://player/abilities/dash/warp/warp.gd" id="1_oakod"]
 
 [node name="DimensionalDash" type="Node2D"]
-script = ExtResource("1_mmmkw")
+script = ExtResource("1_oakod")
 action = &"dash"
 
 [node name="Projector" type="ShapeCast2D" parent="."]
