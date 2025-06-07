@@ -50,6 +50,8 @@ func _ready() -> void:
 	corruption_meter.max_value = MAX_CORRUPTION
 	DialogueManager.dialogue_started.connect(_on_dialogue_manager_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_manager_dialogue_ended)
+	await get_tree().process_frame
+	add_ability(preload("res://player/abilities/wand/wand.tscn"))
 
 
 func _physics_process(delta: float) -> void:

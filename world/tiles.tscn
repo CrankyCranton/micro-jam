@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0jp2e1erd1xa"]
+[gd_scene load_steps=8 format=3 uid="uid://0jp2e1erd1xa"]
 
 [ext_resource type="Texture2D" uid="uid://c6rrlmlbmf4dl" path="res://assets/grass_tiles.png" id="1_gcxek"]
 [ext_resource type="Texture2D" uid="uid://tg6aup8df5or" path="res://assets/decorations.png" id="2_n3fj0"]
@@ -36,6 +36,12 @@ texture = ExtResource("1_gcxek")
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_n3fj0")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ljjpf"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ljjpf"]
 texture = ExtResource("2_n3fj0")
 0:0/0 = 0
@@ -60,6 +66,8 @@ texture = ExtResource("2_n3fj0")
 3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:2/0 = 0
 4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ljjpf")
 
 [sub_resource type="TileSet" id="TileSet_ljjpf"]
 physics_layer_0/collision_layer = 1
@@ -70,3 +78,4 @@ sources/1 = SubResource("TileSetAtlasSource_ljjpf")
 
 [node name="Tiles" type="TileMapLayer"]
 tile_set = SubResource("TileSet_ljjpf")
+navigation_visibility_mode = 1
