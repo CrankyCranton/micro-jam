@@ -122,5 +122,16 @@ bus = &"Reverb"
 [node name="LeaveHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1bvp3")
 
+[node name="Label" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "[E] to skip"
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="finished" from="Video" to="." method="_on_video_finished"]

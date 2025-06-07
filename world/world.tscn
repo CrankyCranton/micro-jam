@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=30 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://br1y013botc56" path="res://assets/steps.png" id="1_b2suy"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dkapuo0hyc6ym" path="res://interactable/dialogable/npc/shady_stranger/shady_stranger.tscn" id="7_fyhu2"]
 [ext_resource type="PackedScene" uid="uid://b0w04lk0mmumo" path="res://world/gate/gate.tscn" id="10_fyhu2"]
 [ext_resource type="Shader" uid="uid://krkibu8qrggw" path="res://world/water.gdshader" id="12_mad0u"]
+[ext_resource type="PackedScene" uid="uid://c3h8dx83ssg0c" path="res://player/abilities/dash/warp/warp.tscn" id="13_h8lre"]
 [ext_resource type="PackedScene" uid="uid://cmiih1f6mjgh5" path="res://misc/menus/pause/pause_screen.tscn" id="14_dqqhb"]
 [ext_resource type="Texture2D" uid="uid://cbic17q56c5mo" path="res://assets/boat_redesign.png" id="15_b2suy"]
 [ext_resource type="Script" uid="uid://c4wlca85qi4fe" path="res://world/scenario/barrier/barrier.gd" id="15_ysn08"]
@@ -137,7 +138,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(4),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ysn08"]
@@ -168,10 +169,10 @@ tracks/0/path = NodePath("SpawnPoints/0:spawn")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(8, 9, 10.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(8, 10.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true, true]
+"values": [true, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -180,10 +181,10 @@ tracks/1/path = NodePath("SpawnPoints/1:spawn")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(8, 9, 10.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(8, 10.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true, true]
+"values": [true, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -192,10 +193,10 @@ tracks/2/path = NodePath("SpawnPoints/2:spawn")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(8, 9, 10.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(8, 10.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true, true]
+"values": [true, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -204,10 +205,10 @@ tracks/3/path = NodePath("SpawnPoints/3:spawn")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(8, 9, 10.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(8, 10.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true, true]
+"values": [true, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fyhu2"]
@@ -315,6 +316,7 @@ material = SubResource("ShaderMaterial_dqqhb")
 [node name="ScenarioRiver" parent="Scenarios" instance=ExtResource("4_mmdvd")]
 position = Vector2(880, 160)
 max_spawns = 10
+ability = ExtResource("13_h8lre")
 title = "dream"
 
 [node name="CollisionShape" parent="Scenarios/ScenarioRiver" index="0"]

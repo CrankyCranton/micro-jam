@@ -72,7 +72,6 @@ scale = Vector2(0.75, 0.75)
 
 [node name="HealthBar" type="TextureProgressBar" parent="HUD"]
 unique_name_in_owner = true
-editor_description = "13-46"
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

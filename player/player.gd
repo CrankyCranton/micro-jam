@@ -42,6 +42,9 @@ var direction := 0.0:
 @onready var health := MAX_HEALTH:
 	set(value):
 		health = value
+		const MIN_HEALTH_BAR_VALUE := 13
+		const MAX_HEALTH_BAR_VALUE := 46
+		health_bar.value = remap(health, 0, MAX_HEALTH, MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)
 		if health <= 0:
 			die()
 
@@ -52,6 +55,7 @@ func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_manager_dialogue_ended)
 	await get_tree().process_frame
 	add_ability(preload("res://player/abilities/wand/wand.tscn"))
+	add_ability(preload("res://player/abilities/dash/warp/warp.tscn"))
 
 
 func _physics_process(delta: float) -> void:
@@ -108,6 +112,8 @@ func get_interactables() -> Array[Area2D]:
 func set_enabled(enabled: bool) -> void:
 	self.enabled = enabled
 	set_process_input(enabled)
+	for ability in ability_manager.get_children():
+		ability.set_process_input(enabled)
 	if not enabled:
 		velocity.x = 0.0
 

@@ -36,7 +36,6 @@ func set_paused(paused: bool) -> void:
 	get_tree().paused = paused
 	animation.play(&"blur" if paused else &"unblur")
 	await animation.animation_finished
-	ok_button.grab_focus()
 
 
 func display_ability(ABILITY: PackedScene) -> void:
@@ -44,6 +43,8 @@ func display_ability(ABILITY: PackedScene) -> void:
 	pause_menu.hide()
 	ability_text.text = ABILITY_DATA[ABILITY]
 	await set_paused(true)
+	await get_tree().process_frame
+	ok_button.grab_focus()
 
 
 func _on_quit_pressed() -> void:
