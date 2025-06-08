@@ -14,15 +14,15 @@ signal died
 
 var player: Player
 
+@onready var sprite: Sprite2D = $Sprite
 @onready var soft_collider: SoftCollider = $SoftCollider
 @onready var nav_agent:NavigationAgent2D = $NavigationAgent2D
 
-func _ready() -> void:
-	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
 	assert(player)
 	follow_target(player, delta)
+	sprite.flip_h = velocity.x < 0
 
 
 func follow_target(target: Node2D, delta: float) -> void:
