@@ -3,15 +3,15 @@ class_name PauseMenu extends CanvasLayer
 
 var ability_data := {
 	preload("res://player/abilities/wand/wand.tscn"):
-		get_ability_description("Wand", "Hold [img]res://assets/player.png[/img] to charge. Release to fire."),
+		get_ability_description("Wand", "Hold [img]res://assets/inputs_b.png[/img] to charge. Release to fire.", "Flavor text goes here"),
 	preload("res://player/abilities/dash/warp/warp.tscn"):
-		get_ability_description("Warp", "Press V to warp forwards."),
+		get_ability_description("Warp", "Press [img]res://assets/inputs_v.png[/img] to warp forwards."),
 	preload("res://player/abilities/sacrifice/sacrifice.tscn"):
-		get_ability_description("sacrifice", "Press C to sacrifice corruption for health."),
+		get_ability_description("sacrifice", "Press [img]res://assets/inputs_c.png[/img] to sacrifice corruption for health."),
 	preload("res://player/abilities/spiritual_chains/spiritual_chains.tscn"):
-		get_ability_description("Spiritual Chains", "Press E to enslave a nearby NPC, at the cost of corruption."),
+		get_ability_description("Spiritual Chains", "Press [img]res://assets/inputs_e.png[/img] to enslave a nearby NPC, at the cost of corruption."),
 	preload("res://player/abilities/resurrection/resurrection.gd"):
-		get_ability_description("Resurrection", "Press E to resurrect from the grave."),
+		get_ability_description("Resurrection", "Press [img]res://assets/inputs_e.png[/img] to resurrect from the grave."),
 }
 
 @onready var pause_menu: PanelContainer = $PauseMenu
@@ -53,8 +53,9 @@ func _on_quit_pressed() -> void:
 	#get_tree().change_scene_to_file("res://misc/menus/main/main_menu.tscn")
 
 
-static func get_ability_description(title: String, instrections := "",
+static func get_ability_description(title: String, instructions := "",
 		flavor_text := "",) -> String:
-	title = "[font_size=16][center]%s[/center][/font_size]\n\n" % title
+	title = "[font_size=16][center][b]%s[/b][/center][/font_size]\n\n" % title
 	flavor_text = "[i]%s[/i]\n\n" % flavor_text
-	return title + flavor_text + instrections
+	instructions = "%s" % instructions
+	return title + flavor_text + instructions
