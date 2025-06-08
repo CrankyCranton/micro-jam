@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4a0gfld8li42"]
+[gd_scene load_steps=3 format=3 uid="uid://d4a0gfld8li42"]
 
 [ext_resource type="Script" uid="uid://ctniaddggyxks" path="res://interactable/interactable.gd" id="1_8p6r8"]
+[ext_resource type="Theme" uid="uid://crqac2uj30rsr" path="res://assets/theme.theme" id="2_pve3w"]
 
 [node name="Interactable" type="Area2D"]
 collision_layer = 128
@@ -14,6 +15,9 @@ offset_left = -64.0
 offset_top = -48.0
 offset_right = 64.0
 offset_bottom = -16.0
+theme = ExtResource("2_pve3w")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
 text = "E to interact"
 horizontal_alignment = 1
 vertical_alignment = 1

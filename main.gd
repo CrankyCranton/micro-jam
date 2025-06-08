@@ -1,4 +1,4 @@
-class_name Main extends Node
+class_name Main extends Control
 
 
 func _input(event: InputEvent) -> void:

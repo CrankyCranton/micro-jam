@@ -16,6 +16,7 @@ var current_spawned := 0
 var animations: PackedStringArray
 var has_final := false
 var player: Player
+var awaiting_unpause := false
 
 @onready var spawn_points: Node2D = $SpawnPoints
 @onready var collision_shape: CollisionShape2D = $CollisionShape
@@ -36,6 +37,11 @@ func _ready() -> void:
 		spirit_spawn_point.spawned.connect(_on_spirit_spawn_point_spawned)
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_UNPAUSED and awaiting_unpause:
+		player.health = player.MAX_HEALTH
+
+
 func end() -> void:
 	set_barriers_enabled(false)
 	player.set_enabled(false)
@@ -45,6 +51,7 @@ func end() -> void:
 		await InteractionManager.start_dialogue(dialogue, title)
 	if ability != null:
 		player.add_ability(ability)
+
 	finished.emit()
 	#queue_free()
 
