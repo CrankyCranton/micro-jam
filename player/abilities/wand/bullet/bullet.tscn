@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd4qvw0srslqr"]
+[gd_scene load_steps=9 format=3 uid="uid://bd4qvw0srslqr"]
 
 [ext_resource type="Script" uid="uid://7enw11duqhn4" path="res://player/abilities/wand/bullet/bullet.gd" id="1_jhbqf"]
 [ext_resource type="Texture2D" uid="uid://byul00y0t5ll6" path="res://assets/electro_ball.png" id="2_swhho"]
@@ -9,6 +9,21 @@ radius = 4.12311
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e514l"]
 radius = 4.12311
+
+[sub_resource type="Gradient" id="Gradient_jhbqf"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_swhho"]
+gradient = SubResource("Gradient_jhbqf")
+width = 1
+height = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jhbqf"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 4.0
+gravity = Vector3(0, 0, 0)
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
@@ -28,6 +43,11 @@ shape = SubResource("CircleShape2D_e514l")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(0.3, 0.3)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+texture = SubResource("GradientTexture2D_swhho")
+process_material = SubResource("ParticleProcessMaterial_jhbqf")
 
 [connection signal="area_entered" from="." to="." method="delete"]
 [connection signal="body_entered" from="." to="." method="delete"]

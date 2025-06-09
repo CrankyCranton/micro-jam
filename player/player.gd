@@ -29,6 +29,7 @@ var direction := 0.0:
 @onready var corruption_meter: CorruptionMeter = %CorruptionMeter
 @onready var health_bar: TextureProgressBar = %HealthBar
 @onready var collision_shape: CollisionShape2D = $CollisionShape
+@onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
 @onready var corruption := 0:
 	set(value):
 		corruption = value
@@ -150,6 +151,7 @@ func _on_dialogue_manager_dialogue_ended(_resource: DialogueResource) -> void:
 
 func _on_hit_box_damage_taken(damage: int) -> void:
 	health -= damage
+	hurt_sound.play()
 	if health <= 0:
 		die()
 

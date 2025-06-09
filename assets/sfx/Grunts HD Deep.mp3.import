@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b2wag2ry8d6q2"
+path="res://.godot/imported/Grunts HD Deep.mp3-dc9258bb04651ca45a0f0d7fa354729e.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Grunts HD Deep.mp3"
+dest_files=["res://.godot/imported/Grunts HD Deep.mp3-dc9258bb04651ca45a0f0d7fa354729e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

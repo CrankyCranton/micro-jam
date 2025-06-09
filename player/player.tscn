@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=12 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://cir8w4ceg5fcq" path="res://assets/player.png" id="2_rgyib"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dhtbqtyyhj8m3" path="res://player/hud/corruption_meter.tscn" id="5_boad6"]
 [ext_resource type="Texture2D" uid="uid://cscmn3dsbgnpm" path="res://assets/health_bar_bg.png" id="5_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://cvwnl07bekuq" path="res://assets/health_bar_fill.png" id="6_boad6"]
+[ext_resource type="AudioStream" uid="uid://bgy41ajl5jabc" path="res://assets/sfx/hurt_1.wav" id="8_rgyib"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 4.0
@@ -47,6 +48,9 @@ monitoring = true
 [node name="CollisionShape" parent="HitBox" index="0"]
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_rgyib")
+
+[node name="ImmunityTime" parent="HitBox" index="1"]
+wait_time = 3.0
 
 [node name="Interactor" type="Area2D" parent="."]
 collision_layer = 0
@@ -89,6 +93,9 @@ value = 46.0
 fill_mode = 3
 texture_under = ExtResource("5_g6k8r")
 texture_progress = ExtResource("6_boad6")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_rgyib")
 
 [connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
 [connection signal="area_exited" from="Interactor" to="." method="_on_interactor_area_exited"]
