@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=13 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://drnljhuqsdpjv" path="res://assets/characters/player.png" id="2_rgyib"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://cba3hmbl8n3c" path="res://player/camera.gd" id="3_hg6s5"]
 [ext_resource type="Script" uid="uid://f2ik8l16afl6" path="res://player/abilities/ability_manager.gd" id="4_yw30f"]
 [ext_resource type="PackedScene" uid="uid://dhtbqtyyhj8m3" path="res://player/hud/corruption_meter.tscn" id="5_boad6"]
 [ext_resource type="Texture2D" uid="uid://cs45b7oc6ojlf" path="res://assets/hud/health_bar_bg.png" id="6_rgyib"]
@@ -41,6 +42,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
+script = ExtResource("3_hg6s5")
 
 [node name="HitBox" parent="." groups=["players"] instance=ExtResource("2_rkbax")]
 max_health = 5
