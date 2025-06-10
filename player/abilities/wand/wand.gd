@@ -9,6 +9,7 @@ class_name Wand extends Ability
 @onready var cooldown: Timer = $Cooldown
 @onready var explode_delay: Timer = $ExplodeDelay
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var shape: Shape2D = %Size.shape
 
 
 func _input(event: InputEvent) -> void:
@@ -23,13 +24,16 @@ func _execute() -> void:
 	transform.x.x = player.last_direction
 
 	if laser:
-		const LASER := preload()
+		pass#const LASER := preload()
 	else:
 		const BULLET := preload("res://player/abilities/wand/bullet/bullet.tscn")
 		var bullet: Area2D = BULLET.instantiate()
 		bullet.direction = player.last_direction
 		bullet.position = tip.global_position
+		bullet.speed = speed
 		get_tree().current_scene.add_child(bullet)
+		bullet.total_damage = damage
+		bullet.shape = shape.duplicate()
 
 	cooldown.start()
 	animation_player.play(&"RESET")
@@ -43,7 +47,7 @@ func start_explode_chance(time_range: float) -> void:
 
 
 func explode() -> void:
-	const EXPLOSION := preload()
+	pass#const EXPLOSION := preload()
 
 
 func _on_explode_delay_timeout() -> void:

@@ -4,7 +4,6 @@ class_name Player extends CharacterBody2D
 signal fully_corrupted
 signal ability_gained(ABILITY: PackedScene)
 
-const MAX_HEALTH := 5
 const SPEED := 160.0
 const JUMP_VELOCITY := 320.0
 const TRACTION := 11.0
@@ -30,6 +29,7 @@ var direction := 0.0:
 @onready var health_bar: TextureProgressBar = %HealthBar
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
+@onready var hit_box: HitBox = $HitBox
 @onready var corruption := 0:
 	set(value):
 		corruption = value
@@ -40,14 +40,6 @@ var direction := 0.0:
 	set(value):
 		last_direction = value
 		sprite.flip_h = last_direction < 0
-@onready var health := MAX_HEALTH:
-	set(value):
-		health = value
-		const MIN_HEALTH_BAR_VALUE := 13
-		const MAX_HEALTH_BAR_VALUE := 46
-		health_bar.value = remap(health, 0, MAX_HEALTH, MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)
-		if health <= 0:
-			die()
 
 
 func _ready() -> void:
@@ -149,14 +141,19 @@ func _on_dialogue_manager_dialogue_ended(_resource: DialogueResource) -> void:
 	set_enabled(true)
 
 
-func _on_hit_box_damage_taken(damage: int) -> void:
-	health -= damage
-	hurt_sound.play()
-	if health <= 0:
-		die()
-
-
 func _on_interactor_area_exited(interactable: Interactable) -> void:
 	interactable.set_popup_visible(false)
 	if interactable == self.interactable:
 		self.interactable = null
+
+
+func _on_hit_box_died() -> void:
+	die()
+
+
+func _on_hit_box_health_changed(health: int) -> void:
+	hurt_sound.play()
+	const MIN_HEALTH_BAR_VALUE := 13
+	const MAX_HEALTH_BAR_VALUE := 46
+	health_bar.value = remap(health, 0, hit_box.max_health,
+			MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)

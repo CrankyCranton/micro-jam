@@ -43,6 +43,7 @@ shape = SubResource("CapsuleShape2D_4vt4j")
 shape = SubResource("CircleShape2D_wxait")
 
 [node name="HitBox" parent="." groups=["evil_spirits"] instance=ExtResource("3_spcom")]
+max_health = 10
 
 [node name="CollisionShape" parent="HitBox" index="0"]
 shape = SubResource("CapsuleShape2D_ttybi")
@@ -55,6 +56,7 @@ path_postprocessing = 1
 
 [connection signal="dealt_damage" from="HurtBox" to="." method="_on_hurt_box_dealt_damage"]
 [connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
+[connection signal="died" from="HitBox" to="." method="_on_hit_box_died"]
 
 [editable path="HurtBox"]
 [editable path="SoftCollider"]

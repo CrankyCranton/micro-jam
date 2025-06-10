@@ -1,14 +1,39 @@
 class_name Bullet extends Area2D
 
 
-@export var spd := 300.0
-
+var speed: float
 var direction: float
+
+@onready var hurt_box: HurtBox = $HurtBox
+@onready var total_damage: int:
+	set(value):
+		total_damage = value
+		damage = total_damage
+@onready var damage: int:
+	set(value):
+		damage = value
+		modulate.a = float(damage) / total_damage
+		hurt_box.damage = damage
+		if damage <= 0:
+			delete()
+@onready var shape: Shape2D:
+	set(value):
+		shape = value
+		hurt_box.collision_shape.shape = shape
 
 
 func _physics_process(delta: float) -> void:
-	position.x += direction * spd * delta
+	position.x += direction * speed * delta
 
 
-func delete(_collider: Node = null) -> void:
+func delete() -> void:
 	queue_free()
+
+
+func _on_hurt_box_dealt_damage(_target: HitBox, damage: int) -> void:
+	self.damage -= damage
+
+
+func _on_collision_detection_timer_timeout() -> void:
+	if get_overlapping_bodies().size() > 0:
+		damage -= 1

@@ -44,6 +44,7 @@ editor_draw_drag_margin = true
 
 [node name="HitBox" parent="." groups=["players"] instance=ExtResource("2_rkbax")]
 monitoring = true
+max_health = 5
 
 [node name="CollisionShape" parent="HitBox" index="0"]
 position = Vector2(0, -8)
@@ -97,7 +98,8 @@ texture_progress = ExtResource("6_boad6")
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_rgyib")
 
-[connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
+[connection signal="died" from="HitBox" to="." method="_on_hit_box_died"]
+[connection signal="health_changed" from="HitBox" to="." method="_on_hit_box_health_changed"]
 [connection signal="area_exited" from="Interactor" to="." method="_on_interactor_area_exited"]
 
 [editable path="HitBox"]

@@ -1,13 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd4qvw0srslqr"]
+[gd_scene load_steps=8 format=3 uid="uid://bd4qvw0srslqr"]
 
 [ext_resource type="Script" uid="uid://7enw11duqhn4" path="res://player/abilities/wand/bullet/bullet.gd" id="1_jhbqf"]
 [ext_resource type="Texture2D" uid="uid://byul00y0t5ll6" path="res://assets/electro_ball.png" id="2_swhho"]
 [ext_resource type="PackedScene" uid="uid://crx7kk4gj06gp" path="res://misc/hurt_box/hurt_box.tscn" id="3_aff1s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m1oea"]
-radius = 4.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_e514l"]
 radius = 4.0
 
 [sub_resource type="Gradient" id="Gradient_jhbqf"]
@@ -28,7 +25,6 @@ gravity = Vector3(0, 0, 0)
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
 script = ExtResource("1_jhbqf")
-spd = 128.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_swhho")
@@ -39,9 +35,6 @@ shape = SubResource("CircleShape2D_m1oea")
 [node name="HurtBox" parent="." instance=ExtResource("3_aff1s")]
 ignored_groups = Array[StringName]([&"players"])
 
-[node name="CollisionShape2D" parent="HurtBox" index="0"]
-shape = SubResource("CircleShape2D_e514l")
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(0.3, 0.3)
 
@@ -50,9 +43,12 @@ visible = false
 texture = SubResource("GradientTexture2D_swhho")
 process_material = SubResource("ParticleProcessMaterial_jhbqf")
 
-[connection signal="area_entered" from="." to="." method="delete"]
-[connection signal="body_entered" from="." to="." method="delete"]
-[connection signal="dealt_damage" from="HurtBox" to="." method="delete"]
+[node name="CollisionDetectionTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="dealt_damage" from="HurtBox" to="." method="_on_hurt_box_dealt_damage"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="delete"]
+[connection signal="timeout" from="CollisionDetectionTimer" to="." method="_on_collision_detection_timer_timeout"]
 
 [editable path="HurtBox"]
