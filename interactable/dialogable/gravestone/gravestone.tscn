@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://da5m7i7icxmw6" path="res://interactable/dialogable/dialogable.tscn" id="1_p1e0u"]
 [ext_resource type="Script" uid="uid://b7lid3vwiuvva" path="res://interactable/dialogable/gravestone/gravestone.gd" id="2_pl5fj"]
-[ext_resource type="Texture2D" uid="uid://dgwqdkfuaugap" path="res://assets/gravestone.png" id="2_v31b3"]
+[ext_resource type="Texture2D" uid="uid://d2rhe0m3ixgvs" path="res://assets/enviroment/obstacles/gravestone.png" id="3_v31b3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl5fj"]
 size = Vector2(16, 16)
@@ -13,7 +13,7 @@ title = "gravestone"
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 position = Vector2(0, -8)
-texture = ExtResource("2_v31b3")
+texture = ExtResource("3_v31b3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, -8)

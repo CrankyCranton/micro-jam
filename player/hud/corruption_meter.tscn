@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhtbqtyyhj8m3"]
 
-[ext_resource type="Texture2D" uid="uid://57themcj7a72" path="res://assets/corruption_meter.png" id="1_060vp"]
+[ext_resource type="Texture2D" uid="uid://drrf3k7b1qiiv" path="res://assets/hud/corruption_meter.png" id="1_pefs0"]
 [ext_resource type="Script" uid="uid://cvmx05i7leoll" path="res://player/hud/corruption_meter.gd" id="2_pefs0"]
 
 [node name="CorruptionMeter" type="TextureRect"]
@@ -11,5 +11,5 @@ anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
-texture = ExtResource("1_060vp")
+texture = ExtResource("1_pefs0")
 script = ExtResource("2_pefs0")
