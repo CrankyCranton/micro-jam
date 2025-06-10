@@ -16,6 +16,7 @@ var current_spawned := 0
 var animations: PackedStringArray
 var has_final := false
 var player: Player
+var awaiting_unpause := false
 
 @onready var spawn_points: Node2D = $SpawnPoints
 @onready var collision_shape: CollisionShape2D = $CollisionShape
@@ -25,7 +26,9 @@ var player: Player
 
 
 func _ready() -> void:
-	animations = spawn_patterns.get_animation_list()
+	animations = spawn_patterns.get_animation_list().duplicate()
+	if animations.has("RESET"):
+		animations.remove_at(animations.find("RESET"))
 	if animations.has(FINAL_NAME):
 		has_final = true
 		animations.remove_at(animations.find(FINAL_NAME))
@@ -34,21 +37,33 @@ func _ready() -> void:
 		spirit_spawn_point.spawned.connect(_on_spirit_spawn_point_spawned)
 
 
-func end() -> void:
-	if ability != null:
-		player.add_ability(ability)
-	set_barriers_enabled(false)
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_UNPAUSED and awaiting_unpause:
+		player.health = player.MAX_HEALTH
 
+
+func end() -> void:
+	set_barriers_enabled(false)
 	player.set_enabled(false)
 	# TODO: Make a few seconds delay to transition to daytime and stuff.
+
 	if title != "":
 		await InteractionManager.start_dialogue(dialogue, title)
+	if ability != null:
+		player.add_ability(ability)
+
 	finished.emit()
 	#queue_free()
 
 
 func play_random() -> void:
-	spawn_patterns.play(animations[randi() % animations.size()])
+	var animation := animations[randi() % animations.size()]
+	spawn_patterns.play(animation)
+
+
+func set_barriers_enabled(enabled: bool) -> void:
+	for barrier: CollisionShape2D in barriers.get_children():
+		barrier.set_enabled(enabled)
 
 
 func _on_body_entered(player: Player) -> void:
@@ -88,8 +103,3 @@ func _on_spawn_patterns_animation_finished(anim_name: StringName) -> void:
 				spawn_patterns.play(FINAL_NAME)
 		else:
 			play_random()
-
-
-func set_barriers_enabled(enabled: bool) -> void:
-	for barrier: CollisionShape2D in barriers.get_children():
-		barrier.set_enabled(enabled)

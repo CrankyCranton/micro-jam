@@ -4,7 +4,6 @@ class_name Player extends CharacterBody2D
 signal fully_corrupted
 signal ability_gained(ABILITY: PackedScene)
 
-const MAX_HEALTH := 5
 const SPEED := 160.0
 const JUMP_VELOCITY := 320.0
 const TRACTION := 11.0
@@ -16,10 +15,11 @@ var interactable: Interactable = null
 var spiritual_chains: SpiritualChains
 var resurrection: Resurrection
 var enabled := true
+var turning_enabled := true
 var direction := 0.0:
 	set(value):
 		direction = value
-		if absf(direction) > 0.0:
+		if absf(direction) > 0.0 and turning_enabled:
 			last_direction = 1 if direction > 0 else -1
 
 @onready var sprite: Sprite2D = $Sprite
@@ -29,6 +29,8 @@ var direction := 0.0:
 @onready var corruption_meter: CorruptionMeter = %CorruptionMeter
 @onready var health_bar: TextureProgressBar = %HealthBar
 @onready var collision_shape: CollisionShape2D = $CollisionShape
+@onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
+@onready var hit_box: HitBox = $HitBox
 @onready var corruption := 0:
 	set(value):
 		corruption = value
@@ -39,19 +41,15 @@ var direction := 0.0:
 	set(value):
 		last_direction = value
 		sprite.flip_h = last_direction < 0
-@onready var health := MAX_HEALTH:
-	set(value):
-		health = value
-		if health <= 0:
-			die()
 
 
 func _ready() -> void:
 	corruption_meter.max_value = MAX_CORRUPTION
 	DialogueManager.dialogue_started.connect(_on_dialogue_manager_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_manager_dialogue_ended)
-	await get_tree().process_frame
-	add_ability(preload("res://player/abilities/wand/wand.tscn"))
+	#await get_tree().process_frame
+	#add_ability(preload("res://player/abilities/wand/wand.tscn"))
+	#add_ability(preload("res://player/abilities/dash/warp/warp.tscn"))
 
 
 func _physics_process(delta: float) -> void:
@@ -77,6 +75,7 @@ func _input(event: InputEvent) -> void:
 
 
 func interact(interactable := self.interactable) -> void:
+	set_enabled(false)
 	interactable.set_popup_visible(false)
 
 	if spiritual_chains != null and interactable is NPC:
@@ -108,6 +107,8 @@ func get_interactables() -> Array[Area2D]:
 func set_enabled(enabled: bool) -> void:
 	self.enabled = enabled
 	set_process_input(enabled)
+	for ability in ability_manager.get_children():
+		ability.set_process_input(enabled)
 	if not enabled:
 		velocity.x = 0.0
 
@@ -141,13 +142,19 @@ func _on_dialogue_manager_dialogue_ended(_resource: DialogueResource) -> void:
 	set_enabled(true)
 
 
-func _on_hit_box_damage_taken(damage: int) -> void:
-	health -= damage
-	if health <= 0:
-		die()
-
-
 func _on_interactor_area_exited(interactable: Interactable) -> void:
 	interactable.set_popup_visible(false)
 	if interactable == self.interactable:
 		self.interactable = null
+
+
+func _on_hit_box_died() -> void:
+	die()
+
+
+func _on_hit_box_health_changed(health: int) -> void:
+	hurt_sound.play()
+	const MIN_HEALTH_BAR_VALUE := 13
+	const MAX_HEALTH_BAR_VALUE := 46
+	health_bar.value = remap(health, 0, hit_box.max_health,
+			MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)

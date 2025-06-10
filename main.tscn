@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cj5gebroaw03a"]
+[gd_scene load_steps=9 format=3 uid="uid://cj5gebroaw03a"]
 
 [ext_resource type="Script" uid="uid://icyrnq6l5knb" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Theme" uid="uid://crqac2uj30rsr" path="res://assets/theme.theme" id="1_lquwl"]
 [ext_resource type="VideoStream" uid="uid://cbf6q1buee8gr" path="res://dialogue/first_cutscene.ogv" id="2_0xm2m"]
 [ext_resource type="AudioStream" uid="uid://dxrya28t83ftu" path="res://assets/sfx/krank_sounds/water/anchor_action.wav" id="3_h2yge"]
 [ext_resource type="AudioStream" uid="uid://bcov1ne5jeknq" path="res://assets/sfx/Metal Hit.mp3" id="4_1bvp3"]
@@ -81,10 +82,18 @@ _data = {
 &"dream": SubResource("Animation_ig7tw")
 }
 
-[node name="Main" type="Node"]
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lquwl")
 script = ExtResource("1_ig7tw")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -93,6 +102,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -107,6 +117,7 @@ libraries = {
 autoplay = "dream"
 
 [node name="Video" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -122,5 +133,18 @@ bus = &"Reverb"
 [node name="LeaveHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1bvp3")
 
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -13.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "[E] to skip"
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="finished" from="Video" to="." method="_on_video_finished"]

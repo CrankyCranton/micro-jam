@@ -3,9 +3,6 @@ class_name EvilSpirit extends CharacterBody2D
 
 signal died
 
-@export_group("Combat")
-@export var damage := 1
-@export var health := 1
 @export_group("Movement")
 @export var speed := 32.0
 @export var traction := 5.0
@@ -14,15 +11,15 @@ signal died
 
 var player: Player
 
+@onready var sprite: Sprite2D = $Sprite
 @onready var soft_collider: SoftCollider = $SoftCollider
 @onready var nav_agent:NavigationAgent2D = $NavigationAgent2D
 
-func _ready() -> void:
-	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
 	assert(player)
 	follow_target(player, delta)
+	sprite.flip_h = velocity.x < 0
 
 
 func follow_target(target: Node2D, delta: float) -> void:
@@ -38,15 +35,17 @@ func follow_target(target: Node2D, delta: float) -> void:
 
 
 func die() -> void:
-	died.emit()
 	queue_free()
+	died.emit()
 
 
-func _on_hit_box_damage_taken(damage: int) -> void:
-	health -= damage
-	if health <= 0:
-		die()
-
-
-func _on_hurt_box_dealt_damage(_target: HitBox) -> void:
+func _on_hurt_box_dealt_damage(_target: HitBox, _damage: int) -> void:
 	die()
+
+
+func _on_hit_box_died() -> void:
+	die()
+
+
+func _on_hit_box_damage_taken(_damage: int) -> void:
+	pass # Replace with function body.

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch7vlx8mxtj"]
+
+[ext_resource type="PackedScene" uid="uid://crx7kk4gj06gp" path="res://misc/hurt_box/hurt_box.tscn" id="1_s52j6"]
+[ext_resource type="Script" uid="uid://cjqm70341ofuh" path="res://player/abilities/wand/laser/laser.gd" id="2_b2k5f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s52j6"]
+radius = 64.0
+height = 1024.0
+
+[node name="Laser" instance=ExtResource("1_s52j6")]
+script = ExtResource("2_b2k5f")
+damage = 1000
+ignored_groups = Array[StringName]([&"players"])
+
+[node name="CollisionShape" parent="." index="0"]
+position = Vector2(528, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_s52j6")
+
+[node name="Timer" type="Timer" parent="." index="1"]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

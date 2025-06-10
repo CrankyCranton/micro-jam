@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=12 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://cir8w4ceg5fcq" path="res://assets/player.png" id="2_rgyib"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dhtbqtyyhj8m3" path="res://player/hud/corruption_meter.tscn" id="5_boad6"]
 [ext_resource type="Texture2D" uid="uid://cscmn3dsbgnpm" path="res://assets/health_bar_bg.png" id="5_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://cvwnl07bekuq" path="res://assets/health_bar_fill.png" id="6_boad6"]
+[ext_resource type="AudioStream" uid="uid://bgy41ajl5jabc" path="res://assets/sfx/hurt_1.wav" id="8_rgyib"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 4.0
@@ -42,11 +43,14 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="HitBox" parent="." groups=["players"] instance=ExtResource("2_rkbax")]
-monitoring = true
+max_health = 5
 
 [node name="CollisionShape" parent="HitBox" index="0"]
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_rgyib")
+
+[node name="ImmunityTime" parent="HitBox" index="1"]
+wait_time = 3.0
 
 [node name="Interactor" type="Area2D" parent="."]
 collision_layer = 0
@@ -72,7 +76,6 @@ scale = Vector2(0.75, 0.75)
 
 [node name="HealthBar" type="TextureProgressBar" parent="HUD"]
 unique_name_in_owner = true
-editor_description = "13-46"
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -91,7 +94,11 @@ fill_mode = 3
 texture_under = ExtResource("5_g6k8r")
 texture_progress = ExtResource("6_boad6")
 
-[connection signal="damage_taken" from="HitBox" to="." method="_on_hit_box_damage_taken"]
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_rgyib")
+
+[connection signal="died" from="HitBox" to="." method="_on_hit_box_died"]
+[connection signal="health_changed" from="HitBox" to="." method="_on_hit_box_health_changed"]
 [connection signal="area_exited" from="Interactor" to="." method="_on_interactor_area_exited"]
 
 [editable path="HitBox"]

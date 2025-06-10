@@ -1,10 +1,12 @@
 class_name HurtBox extends Area2D
 
 
-signal dealt_damage(target: HitBox)
+signal dealt_damage(target: HitBox, damage: int)
 
 @export var damage := 1
 @export var ignored_groups: Array[StringName] = []
+
+@onready var collision_shape: CollisionShape2D = $CollisionShape
 
 
 func _on_area_entered(hit_box: HitBox) -> void:
@@ -14,5 +16,4 @@ func _on_area_entered(hit_box: HitBox) -> void:
 	if hit_box.immune:
 		return
 
-	hit_box.take_damage(damage)
-	dealt_damage.emit(hit_box)
+	dealt_damage.emit(hit_box, hit_box.take_damage(damage))
