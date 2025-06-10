@@ -36,4 +36,5 @@ func _on_hurt_box_dealt_damage(_target: HitBox, damage: int) -> void:
 
 func _on_collision_detection_timer_timeout() -> void:
 	if get_overlapping_bodies().size() > 0:
-		damage -= 1
+		const WALL_DAMAGE := 10
+		damage -= WALL_DAMAGE

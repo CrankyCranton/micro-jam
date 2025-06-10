@@ -43,7 +43,6 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="HitBox" parent="." groups=["players"] instance=ExtResource("2_rkbax")]
-monitoring = true
 max_health = 5
 
 [node name="CollisionShape" parent="HitBox" index="0"]

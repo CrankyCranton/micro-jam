@@ -15,10 +15,11 @@ var interactable: Interactable = null
 var spiritual_chains: SpiritualChains
 var resurrection: Resurrection
 var enabled := true
+var turning_enabled := true
 var direction := 0.0:
 	set(value):
 		direction = value
-		if absf(direction) > 0.0:
+		if absf(direction) > 0.0 and turning_enabled:
 			last_direction = 1 if direction > 0 else -1
 
 @onready var sprite: Sprite2D = $Sprite

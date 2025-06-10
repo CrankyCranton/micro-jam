@@ -9,17 +9,15 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8nhym"]
 radius = 8.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4vt4j"]
-radius = 4.0
-height = 14.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_gcd8g"]
+radius = 5.09902
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wxait"]
 resource_local_to_scene = true
 radius = 8.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ttybi"]
-radius = 11.0
-height = 22.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ttybi"]
+radius = 7.0
 
 [node name="EvilSpirit" type="CharacterBody2D"]
 collision_layer = 4
@@ -34,8 +32,8 @@ shape = SubResource("CircleShape2D_8nhym")
 [node name="HurtBox" parent="." instance=ExtResource("2_4vt4j")]
 ignored_groups = Array[StringName]([&"evil_spirits"])
 
-[node name="CollisionShape2D" parent="HurtBox" index="0"]
-shape = SubResource("CapsuleShape2D_4vt4j")
+[node name="CollisionShape" parent="HurtBox" index="0"]
+shape = SubResource("CircleShape2D_gcd8g")
 
 [node name="SoftCollider" parent="." instance=ExtResource("2_wxait")]
 
@@ -46,7 +44,7 @@ shape = SubResource("CircleShape2D_wxait")
 max_health = 10
 
 [node name="CollisionShape" parent="HitBox" index="0"]
-shape = SubResource("CapsuleShape2D_ttybi")
+shape = SubResource("CircleShape2D_ttybi")
 
 [node name="ImmunityTime" parent="HitBox" index="1"]
 wait_time = 0.001

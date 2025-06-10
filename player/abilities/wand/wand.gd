@@ -5,6 +5,9 @@ class_name Wand extends Ability
 @export var damage := 0
 @export var laser := false
 
+var holding := false
+var cooling := false
+
 @onready var tip: Marker2D = $Tip
 @onready var cooldown: Timer = $Cooldown
 @onready var explode_delay: Timer = $ExplodeDelay
@@ -13,18 +16,29 @@ class_name Wand extends Ability
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"zap") and cooldown.is_stopped():
+	if event.is_action_pressed(&"zap") and not cooling:
+		holding = true
 		animation_player.play(&"charge")
-	if event.is_action_released(&"zap"):
+	if event.is_action_released(&"zap") and holding:
+		holding = false
 		_execute()
 
 
 func _execute() -> void:
 	explode_delay.stop()
+	animation_player.play(&"RESET")
 	transform.x.x = player.last_direction
+	cooling = true
 
 	if laser:
-		pass#const LASER := preload()
+		player.turning_enabled = false
+		const LASER := preload("res://player/abilities/wand/laser/laser.tscn")
+		var laser: Laser = LASER.instantiate()
+		add_child(laser)
+		await laser.tree_exited
+		player.turning_enabled = true
+
+		cooling = false
 	else:
 		const BULLET := preload("res://player/abilities/wand/bullet/bullet.tscn")
 		var bullet: Area2D = BULLET.instantiate()
@@ -35,20 +49,30 @@ func _execute() -> void:
 		bullet.total_damage = damage
 		bullet.shape = shape.duplicate()
 
-	cooldown.start()
-	animation_player.play(&"RESET")
+		cooldown.start()
 
 
 func start_explode_chance(time_range: float) -> void:
-	const CHANCE := 0.25
+	const CHANCE := 0.1
 	if randf() <= CHANCE:
 		var time := randf_range(0.0, time_range)
 		explode_delay.start(time)
 
 
 func explode() -> void:
-	pass#const EXPLOSION := preload()
+	const EXPLOSION := preload("res://player/abilities/wand/explosion/explosion.tscn")
+	var explosion: HurtBox = EXPLOSION.instantiate()
+	explosion.position = tip.global_position
+	get_tree().current_scene.add_child(explosion)
+
+	cooldown.start()
+	animation_player.play(&"RESET")
+	holding = false
 
 
 func _on_explode_delay_timeout() -> void:
 	explode()
+
+
+func _on_cooldown_timeout() -> void:
+	cooling = false

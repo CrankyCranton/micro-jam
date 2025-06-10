@@ -3,7 +3,7 @@ class_name PauseMenu extends CanvasLayer
 
 var ability_data := {
 	preload("res://player/abilities/wand/wand.tscn"):
-		get_ability_description("Wand", "Hold down [img]res://assets/inputs_b.png[/img] to charge. Release to fire."),
+		get_ability_description("Wand", "Press [img]res://assets/inputs_b.png[/img] to zap.\n Hold down to charge.\nBut beware: Overcharging can make it explode!"),
 	preload("res://player/abilities/dash/warp/warp.tscn"):
 		get_ability_description("Warp", "Press [img]res://assets/inputs_v.png[/img] to warp forwards.",  "With this newfound power, I will chase after you to the ends of the earth"),
 	preload("res://player/abilities/sacrifice/sacrifice.tscn"):
