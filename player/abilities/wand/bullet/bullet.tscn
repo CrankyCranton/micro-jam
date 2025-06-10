@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bd4qvw0srslqr"]
 
 [ext_resource type="Script" uid="uid://7enw11duqhn4" path="res://player/abilities/wand/bullet/bullet.gd" id="1_jhbqf"]
-[ext_resource type="Texture2D" uid="uid://byul00y0t5ll6" path="res://assets/electro_ball.png" id="2_swhho"]
+[ext_resource type="Texture2D" uid="uid://cudrpqpjjvdys" path="res://assets/items/electro_ball.png" id="2_swhho"]
 [ext_resource type="PackedScene" uid="uid://crx7kk4gj06gp" path="res://misc/hurt_box/hurt_box.tscn" id="3_aff1s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m1oea"]
