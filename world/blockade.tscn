@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jauefqgye8qo" path="res://world/blockade.gd" id="1_41x0p"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="1_a4nuu"]
-[ext_resource type="Texture2D" uid="uid://nst0yy34645e" path="res://assets/enviroment/obstacles/crate.png" id="2_41x0p"]
+[ext_resource type="Texture2D" uid="uid://bilnk7uc8wgkx" path="res://assets/enviroment/obstacles/crate.png" id="2_41x0p"]
 [ext_resource type="PackedScene" uid="uid://da5m7i7icxmw6" path="res://interactable/dialogable/dialogable.tscn" id="2_il5we"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41x0p"]

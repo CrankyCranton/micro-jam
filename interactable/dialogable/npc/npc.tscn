@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://da5m7i7icxmw6" path="res://interactable/dialogable/dialogable.tscn" id="1_0epmk"]
 [ext_resource type="Script" uid="uid://culf5re72gc8s" path="res://interactable/dialogable/npc/npc.gd" id="2_wtarq"]
-[ext_resource type="Texture2D" uid="uid://bvgw503gl0odo" path="res://assets/npc.png" id="3_7lsvl"]
+[ext_resource type="Texture2D" uid="uid://gbhnpam3kdom" path="res://assets/characters/npc.png" id="3_7lsvl"]
 
 [node name="NPC" groups=["npcs"] instance=ExtResource("1_0epmk")]
 script = ExtResource("2_wtarq")

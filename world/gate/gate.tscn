@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0w04lk0mmumo"]
 
-[ext_resource type="Texture2D" uid="uid://d383fxcl8kd3e" path="res://assets/enviroment/obstacles/gate/gate_back.png" id="1_dec5w"]
-[ext_resource type="Texture2D" uid="uid://cmbi4jvfncbw0" path="res://assets/enviroment/obstacles/gate/gate_front.png" id="2_dec5w"]
+[ext_resource type="Texture2D" uid="uid://b0plwytbctdym" path="res://assets/enviroment/obstacles/gate/gate_back.png" id="1_dec5w"]
+[ext_resource type="Texture2D" uid="uid://dm4g5fyddknd1" path="res://assets/enviroment/obstacles/gate/gate_front.png" id="2_dec5w"]
 
 [node name="Gate" type="StaticBody2D"]
 scale = Vector2(1.5, 1.5)

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://o4kyh4s6tvex" path="res://spirits/evil_spirit/evil_spirit.tscn" id="1_hehiv"]
 [ext_resource type="Script" uid="uid://boci6kwwm57b6" path="res://spirits/evil_spirit/slave/slave.gd" id="2_ilxhy"]
-[ext_resource type="Texture2D" uid="uid://dhb6kukycysyx" path="res://assets/characters/evil_spirit.png" id="3_pogta"]
+[ext_resource type="Texture2D" uid="uid://qirj7fbifae3" path="res://assets/characters/evil_spirit.png" id="3_pogta"]
 [ext_resource type="AudioStream" uid="uid://bhmmy70sirrbn" path="res://assets/sfx/horrorghostscream.wav" id="4_pogta"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ilxhy"]

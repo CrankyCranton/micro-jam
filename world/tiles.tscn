@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://0jp2e1erd1xa"]
 
-[ext_resource type="Texture2D" uid="uid://bdyhqi7d2wgjg" path="res://assets/enviroment/nature/grass_tiles.png" id="2_ljjpf"]
-[ext_resource type="Texture2D" uid="uid://dicge5kaes5kl" path="res://assets/enviroment/decorations.png" id="2_n3fj0"]
+[ext_resource type="Texture2D" uid="uid://qterjha5nx6d" path="res://assets/enviroment/nature/grass_tiles.png" id="2_ljjpf"]
+[ext_resource type="Texture2D" uid="uid://bix2h2g1irty1" path="res://assets/enviroment/decorations.png" id="2_n3fj0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n3fj0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
