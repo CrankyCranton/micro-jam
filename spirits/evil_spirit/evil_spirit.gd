@@ -36,6 +36,7 @@ func follow_target(target: Node2D, delta: float) -> void:
 
 
 func _on_hurt_box_dealt_damage(_target: HitBox, _damage: int) -> void:
+	animation.play("attack")
 	died.emit()
 
 func _on_hit_box_died() -> void:
