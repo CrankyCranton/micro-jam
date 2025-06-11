@@ -7,13 +7,6 @@ extends Camera2D
 var trauma : float = 0.0 # Current shake strength
 var trauma_power : int = 2 # Trauma exponent. Increase for more extreme shaking
 
-func _ready() -> void:
-	#? Randomize the game seed
-	randomize()
-	await get_tree().create_timer(2).timeout
-	add_trauma(1)
-	shake()
-
 func _process(delta : float) -> void:
 	if trauma: # If the camera is currently shaking
 		trauma = max(trauma - decay * delta, 0) # Decay the shake strength
