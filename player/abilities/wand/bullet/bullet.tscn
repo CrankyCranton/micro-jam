@@ -9,7 +9,7 @@ radius = 4.0
 
 [sub_resource type="Gradient" id="Gradient_jhbqf"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 1, 1, 1)
+colors = PackedColorArray(0.615686, 0.721569, 0.756863, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_swhho"]
 gradient = SubResource("Gradient_jhbqf")
@@ -20,7 +20,21 @@ height = 1
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 4.0
-gravity = Vector3(0, 0, 0)
+angular_velocity_min = 262.18
+angular_velocity_max = 262.18
+orbit_velocity_min = -0.0109999
+orbit_velocity_max = -0.0109999
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(-5, 0, 0)
+linear_accel_min = 10.32
+linear_accel_max = 10.32
+radial_accel_min = -1.09
+radial_accel_max = -1.09
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+scale_over_velocity_min = 461.95
+scale_over_velocity_max = 1000.0
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
@@ -39,7 +53,8 @@ ignored_groups = Array[StringName]([&"players"])
 scale = Vector2(0.3, 0.3)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
+position = Vector2(-6, 0)
+amount = 20
 texture = SubResource("GradientTexture2D_swhho")
 process_material = SubResource("ParticleProcessMaterial_jhbqf")
 

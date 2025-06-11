@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bl7mgcfb0uxdx"]
+[gd_scene load_steps=8 format=3 uid="uid://bl7mgcfb0uxdx"]
 
 [ext_resource type="Script" uid="uid://bf8wbym1avoj" path="res://player/abilities/wand/wand.gd" id="1_35oqd"]
 [ext_resource type="Texture2D" uid="uid://c5p8eaqdy56kr" path="res://assets/effects/direction.png" id="3_i3e62"]
@@ -68,10 +68,58 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(0, 0.6, 0.7, 0.42)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GPUParticles2D:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GPUParticles2D:amount")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GPUParticles2D:process_material:radial_velocity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13.01, 145.27)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("GPUParticles2D:lifetime")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.3]
+}
 
 [sub_resource type="Animation" id="Animation_xrgny"]
 resource_name = "charge"
-length = 10.0
+length = 3.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -80,7 +128,7 @@ tracks/0/path = NodePath(".:speed")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [176, 512]
@@ -92,7 +140,7 @@ tracks/1/path = NodePath(".:damage")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 4, 9),
+"times": PackedFloat32Array(0, 2.8, 3),
 "transitions": PackedFloat32Array(1, 1e+06, 1),
 "update": 0,
 "values": [1, 30, 1000]
@@ -104,7 +152,7 @@ tracks/2/path = NodePath("Tip/Size:shape:radius")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 4),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [4.0, 16.0]
@@ -116,7 +164,7 @@ tracks/3/path = NodePath(".:laser")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 9),
+"times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -128,7 +176,7 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(6, 10),
+"times": PackedFloat32Array(2, 3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [3.0],
@@ -145,10 +193,58 @@ tracks/5/path = NodePath("Tip/Size:debug_color")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 5, 8.9999, 9),
+"times": PackedFloat32Array(0, 1.5, 2, 3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0, 0.6, 0.7, 0.42), Color(0, 0.6, 0.7, 0.42), Color(0.7, 0, 0.0116665, 0.419608), Color(1, 1, 1, 1)]
+"values": [Color(0, 0.6, 0.7, 0.42), Color(0, 0.6, 0.7, 0.42), Color(1, 1, 1, 1), Color(0.7, 0, 0.0116665, 0.419608)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GPUParticles2D:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GPUParticles2D:amount")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 40, 50]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("GPUParticles2D:process_material:radial_velocity")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13.01, 145.27)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("GPUParticles2D:lifetime")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.1, 0.3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_usf8x"]
@@ -157,9 +253,29 @@ _data = {
 &"charge": SubResource("Animation_xrgny")
 }
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_usf8x"]
+particle_flag_disable_z = true
+angle_min = 101.8
+angle_max = 101.8
+spread = 180.0
+initial_velocity_min = 69.06
+initial_velocity_max = 69.06
+angular_velocity_min = 55.95
+angular_velocity_max = 55.95
+orbit_velocity_min = 0.0960001
+orbit_velocity_max = 0.0960001
+radial_velocity_min = 13.01
+radial_velocity_max = 145.27
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -3.19
+linear_accel_max = -3.19
+radial_accel_min = 8.77
+radial_accel_max = 8.77
+tangential_accel_min = 25.23
+tangential_accel_max = 25.23
+
 [node name="Wand" type="Node2D"]
 position = Vector2(0, -5)
-rotation = -1.5708
 script = ExtResource("1_35oqd")
 speed = 176
 damage = 1
@@ -190,6 +306,11 @@ libraries = {
 position = Vector2(0, -5)
 rotation = 1.5708
 texture = ExtResource("3_i3e62")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_usf8x")
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="timeout" from="ExplodeDelay" to="." method="_on_explode_delay_timeout"]
