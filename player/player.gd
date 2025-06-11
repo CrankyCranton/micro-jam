@@ -31,6 +31,7 @@ var direction := 0.0:
 @onready var collision_shape: CollisionShape2D = $CollisionShape
 @onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
 @onready var hit_box: HitBox = $HitBox
+@onready var animation:AnimationPlayer = $AnimationPlayer
 @onready var corruption := 0:
 	set(value):
 		corruption = value
@@ -44,6 +45,7 @@ var direction := 0.0:
 
 
 func _ready() -> void:
+	print(self)
 	corruption_meter.max_value = MAX_CORRUPTION
 	DialogueManager.dialogue_started.connect(_on_dialogue_manager_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_manager_dialogue_ended)
@@ -151,9 +153,8 @@ func _on_interactor_area_exited(interactable: Interactable) -> void:
 func _on_hit_box_died() -> void:
 	die()
 
-
 func _on_hit_box_health_changed(health: int) -> void:
-	hurt_sound.play()
+	animation.play("hit")
 	const MIN_HEALTH_BAR_VALUE := 13
 	const MAX_HEALTH_BAR_VALUE := 46
 	health_bar.value = remap(health, 0, hit_box.max_health,

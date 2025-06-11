@@ -1,5 +1,6 @@
 class_name EvilSpirit extends CharacterBody2D
 
+var facing_left:bool
 
 signal died
 
@@ -14,13 +15,13 @@ var player: Player
 @onready var sprite: Sprite2D = $Sprite
 @onready var soft_collider: SoftCollider = $SoftCollider
 @onready var nav_agent:NavigationAgent2D = $NavigationAgent2D
-
+@onready var animation:AnimationPlayer = $AnimationPlayer
+@onready var hitbox:HitBox = $HitBox
 
 func _physics_process(delta: float) -> void:
 	assert(player)
 	follow_target(player, delta)
-	sprite.flip_h = velocity.x < 0
-
+	flip()
 
 func follow_target(target: Node2D, delta: float) -> void:
 	var direction := Vector2()
@@ -34,18 +35,22 @@ func follow_target(target: Node2D, delta: float) -> void:
 	move_and_slide()
 
 
-func die() -> void:
-	queue_free()
+func _on_hurt_box_dealt_damage(_target: HitBox, _damage: int) -> void:
 	died.emit()
 
-
-func _on_hurt_box_dealt_damage(_target: HitBox, _damage: int) -> void:
-	die()
-
-
 func _on_hit_box_died() -> void:
-	die()
-
+	animation.play("death")
+	died.emit()
 
 func _on_hit_box_damage_taken(_damage: int) -> void:
-	pass # Replace with function body.
+	if hitbox.health > 0:
+		animation.play("hit")
+
+func flip():
+	if velocity.x < 0 and not facing_left:
+		animation.play("flip_left")
+		facing_left = true
+
+	elif velocity.x > 0 and facing_left:
+		animation.play("flip_right")
+		facing_left = false

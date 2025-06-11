@@ -10,12 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://bl7mgcfb0uxdx" path="res://player/abilities/wand/wand.tscn" id="6_8t03j"]
 [ext_resource type="Texture2D" uid="uid://mfli6yt0clbx" path="res://assets/hud/health_bar_bg.png" id="6_rgyib"]
 [ext_resource type="Texture2D" uid="uid://bqmjo2rjrh4s7" path="res://assets/hud/health_bar_fill.png" id="7_rgyib"]
-[ext_resource type="AudioStream" uid="uid://bgy41ajl5jabc" path="res://assets/sfx/hurt_1.wav" id="8_rgyib"]
+[ext_resource type="AudioStream" uid="uid://f8o8iql380yn" path="res://misc/hurt_2.wav" id="11_2ieo8"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebec5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ieo8"]
 shader = ExtResource("1_2ieo8")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_value = 1.0
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
 radius = 4.0
@@ -34,14 +34,38 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Sprite:material:shader_parameter/flash_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.75, 1)]
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:material:shader_parameter/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_8t03j"]
@@ -51,38 +75,50 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/flash_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/flash_value")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:material:shader_parameter/flash_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:material:shader_parameter/flash_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ieo8"]
@@ -92,13 +128,12 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-material = SubResource("ShaderMaterial_ebec5")
-scale = Vector2(0.75, 1)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_oul6g")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2ieo8")
 position = Vector2(0, -8)
 texture = ExtResource("2_rgyib")
 
@@ -177,7 +212,7 @@ texture_under = ExtResource("6_rgyib")
 texture_progress = ExtResource("7_rgyib")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_rgyib")
+stream = ExtResource("11_2ieo8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
