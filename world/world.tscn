@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=50 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://p28kdkphpqkx" path="res://assets/enviroment/nature/grass.png" id="1_h8lre"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://c3h8dx83ssg0c" path="res://player/abilities/dash/warp/warp.tscn" id="13_h8lre"]
 [ext_resource type="PackedScene" uid="uid://cmiih1f6mjgh5" path="res://misc/menus/pause/pause_screen.tscn" id="14_dqqhb"]
 [ext_resource type="Script" uid="uid://c4wlca85qi4fe" path="res://world/scenario/barrier/barrier.gd" id="15_ysn08"]
+[ext_resource type="PackedScene" uid="uid://dvhuaaqve01vv" path="res://player/abilities/sacrifice/sacrifice.tscn" id="19_aysyn"]
 [ext_resource type="PackedScene" uid="uid://daus27g6kp0go" path="res://world/scenario/barrier/barrier.tscn" id="19_p2iis"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
@@ -341,10 +342,201 @@ size = Vector2(16, 256)
 
 [sub_resource type="Animation" id="Animation_o1net"]
 resource_name = "final"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpawnPoints/SpiritSpawnPoint5:spawn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpawnPoints/SpiritSpawnPoint3:spawn")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1, 2.1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpawnPoints/SpiritSpawnPoint2:spawn")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2, 2.2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpawnPoints/SpiritSpawnPoint7:spawn")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.3, 2.3, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpawnPoints/SpiritSpawnPoint6:spawn")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.4, 2.4, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpawnPoints/SpiritSpawnPoint:spawn")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.5, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpawnPoints/SpiritSpawnPoint4:spawn")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.6, 2.6, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_3ljsx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpawnPoints/SpiritSpawnPoint5:spawn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpawnPoints/SpiritSpawnPoint3:spawn")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpawnPoints/SpiritSpawnPoint2:spawn")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpawnPoints/SpiritSpawnPoint7:spawn")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpawnPoints/SpiritSpawnPoint6:spawn")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpawnPoints/SpiritSpawnPoint:spawn")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpawnPoints/SpiritSpawnPoint4:spawn")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_gi7ib"]
+resource_name = "top"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpawnPoints/SpiritSpawnPoint5:spawn")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3ljsx"]
 _data = {
-&"final": SubResource("Animation_o1net")
+&"RESET": SubResource("Animation_3ljsx"),
+&"final": SubResource("Animation_o1net"),
+&"top": SubResource("Animation_gi7ib")
 }
 
 [node name="World" type="Node2D"]
@@ -562,31 +754,33 @@ libraries = {
 
 [node name="ScenarioShrine" parent="Scenarios" instance=ExtResource("4_mmdvd")]
 position = Vector2(1728, 16)
+max_spawns = 30
+ability = ExtResource("19_aysyn")
 
 [node name="CollisionShape" parent="Scenarios/ScenarioShrine" index="0"]
 position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_3ljsx")
 
-[node name="SpiritSpawnPoint" parent="Scenarios/ScenarioShrine/SpawnPoints" index="0" instance=ExtResource("5_fn3g3")]
-position = Vector2(-136, 0)
-
-[node name="SpiritSpawnPoint2" parent="Scenarios/ScenarioShrine/SpawnPoints" index="1" instance=ExtResource("5_fn3g3")]
-position = Vector2(136, 0)
-
-[node name="SpiritSpawnPoint3" parent="Scenarios/ScenarioShrine/SpawnPoints" index="2" instance=ExtResource("5_fn3g3")]
-position = Vector2(136, -48)
-
-[node name="SpiritSpawnPoint4" parent="Scenarios/ScenarioShrine/SpawnPoints" index="3" instance=ExtResource("5_fn3g3")]
-position = Vector2(-136, -48)
-
-[node name="SpiritSpawnPoint5" parent="Scenarios/ScenarioShrine/SpawnPoints" index="4" instance=ExtResource("5_fn3g3")]
+[node name="SpiritSpawnPoint5" parent="Scenarios/ScenarioShrine/SpawnPoints" index="0" instance=ExtResource("5_fn3g3")]
 position = Vector2(0, -152)
 
-[node name="SpiritSpawnPoint6" parent="Scenarios/ScenarioShrine/SpawnPoints" index="5" instance=ExtResource("5_fn3g3")]
+[node name="SpiritSpawnPoint3" parent="Scenarios/ScenarioShrine/SpawnPoints" index="1" instance=ExtResource("5_fn3g3")]
+position = Vector2(136, -48)
+
+[node name="SpiritSpawnPoint2" parent="Scenarios/ScenarioShrine/SpawnPoints" index="2" instance=ExtResource("5_fn3g3")]
+position = Vector2(136, 0)
+
+[node name="SpiritSpawnPoint7" parent="Scenarios/ScenarioShrine/SpawnPoints" index="3" instance=ExtResource("5_fn3g3")]
+position = Vector2(136, 88)
+
+[node name="SpiritSpawnPoint6" parent="Scenarios/ScenarioShrine/SpawnPoints" index="4" instance=ExtResource("5_fn3g3")]
 position = Vector2(-136, 88)
 
-[node name="SpiritSpawnPoint7" parent="Scenarios/ScenarioShrine/SpawnPoints" index="6" instance=ExtResource("5_fn3g3")]
-position = Vector2(136, 88)
+[node name="SpiritSpawnPoint" parent="Scenarios/ScenarioShrine/SpawnPoints" index="5" instance=ExtResource("5_fn3g3")]
+position = Vector2(-136, 0)
+
+[node name="SpiritSpawnPoint4" parent="Scenarios/ScenarioShrine/SpawnPoints" index="6" instance=ExtResource("5_fn3g3")]
+position = Vector2(-136, -48)
 
 [node name="Barrier" parent="Scenarios/ScenarioShrine/Barriers" index="0" instance=ExtResource("19_p2iis")]
 position = Vector2(-136, -16)
