@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl7mgcfb0uxdx"]
+[gd_scene load_steps=7 format=3 uid="uid://bl7mgcfb0uxdx"]
 
 [ext_resource type="Script" uid="uid://bf8wbym1avoj" path="res://player/abilities/wand/wand.gd" id="1_35oqd"]
+[ext_resource type="Texture2D" uid="uid://ctenpu3rxwqme" path="res://icon.svg" id="2_usf8x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xrgny"]
 radius = 4.0
@@ -192,6 +193,10 @@ position = Vector2(16, -8)
 [node name="Size" type="CollisionShape2D" parent="Tip"]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_xrgny")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tip"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_usf8x")
 
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 0.2

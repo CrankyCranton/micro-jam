@@ -24,10 +24,15 @@ func _input(event: InputEvent) -> void:
 		_execute()
 
 
+func _process(delta: float) -> void:
+	var mouse:Vector2 = get_global_mouse_position()
+	
+	tip.look_at(mouse)
+
 func _execute() -> void:
 	explode_delay.stop()
 	animation_player.play(&"RESET")
-	transform.x.x = player.last_direction
+	#transform.x.x = player.last_direction
 	cooling = true
 
 	if laser:
@@ -37,12 +42,11 @@ func _execute() -> void:
 		add_child(laser)
 		await laser.tree_exited
 		player.turning_enabled = true
-
 		cooling = false
 	else:
 		const BULLET := preload("res://player/abilities/wand/bullet/bullet.tscn")
 		var bullet: Area2D = BULLET.instantiate()
-		bullet.direction = player.last_direction
+		bullet.global_rotation = tip.global_rotation
 		bullet.position = tip.global_position
 		bullet.speed = speed
 		get_tree().current_scene.add_child(bullet)

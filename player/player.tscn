@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=14 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://da7l2pr64jay5" path="res://assets/characters/player.png" id="2_rgyib"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cba3hmbl8n3c" path="res://player/camera.gd" id="3_hg6s5"]
 [ext_resource type="Script" uid="uid://f2ik8l16afl6" path="res://player/abilities/ability_manager.gd" id="4_yw30f"]
 [ext_resource type="PackedScene" uid="uid://dhtbqtyyhj8m3" path="res://player/hud/corruption_meter.tscn" id="5_boad6"]
+[ext_resource type="PackedScene" uid="uid://bl7mgcfb0uxdx" path="res://player/abilities/wand/wand.tscn" id="6_8t03j"]
 [ext_resource type="Texture2D" uid="uid://mfli6yt0clbx" path="res://assets/hud/health_bar_bg.png" id="6_rgyib"]
 [ext_resource type="Texture2D" uid="uid://bqmjo2rjrh4s7" path="res://assets/hud/health_bar_fill.png" id="7_rgyib"]
 [ext_resource type="AudioStream" uid="uid://bgy41ajl5jabc" path="res://assets/sfx/hurt_1.wav" id="8_rgyib"]
@@ -65,6 +66,8 @@ shape = SubResource("RectangleShape2D_boad6")
 
 [node name="AbilityManager" type="Node2D" parent="."]
 script = ExtResource("4_yw30f")
+
+[node name="Wand" parent="AbilityManager" instance=ExtResource("6_8t03j")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

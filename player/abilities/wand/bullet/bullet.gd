@@ -2,7 +2,7 @@ class_name Bullet extends Area2D
 
 
 var speed: float
-var direction: float
+var direction = Vector2.RIGHT
 
 @onready var hurt_box: HurtBox = $HurtBox
 @onready var total_damage: int:
@@ -23,7 +23,7 @@ var direction: float
 
 
 func _physics_process(delta: float) -> void:
-	position.x += direction * speed * delta
+	position += direction.rotated(global_rotation) * speed * delta
 
 
 func delete() -> void:
