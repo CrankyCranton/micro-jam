@@ -18,6 +18,9 @@ func _process(delta : float) -> void:
 	if trauma: # If the camera is currently shaking
 		trauma = max(trauma - decay * delta, 0) # Decay the shake strength
 		shake()
+	var mouse_pos:Vector2 = get_global_mouse_position()
+	drag_horizontal_offset = (mouse_pos.x - get_parent().global_position.x) / (1920.0/ 2.0)
+	drag_vertical_offset = (mouse_pos.y - get_parent().global_position.y) / (1080 / 2.0)
 
 ## The function to use for adding trauma (screen shake)
 func add_trauma(amount : float) -> void:
