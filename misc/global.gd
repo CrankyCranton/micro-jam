@@ -1,4 +1,4 @@
 extends Node
 
 
-var met_shady_guy:bool = false
+var met_shady_guy:bool = true

@@ -13,6 +13,7 @@ var cooling := false
 @onready var explode_delay: Timer = $ExplodeDelay
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var shape: Shape2D = %Size.shape
+@onready var direction: Sprite2D = $Direction
 
 
 func _input(event: InputEvent) -> void:
@@ -28,6 +29,8 @@ func _process(delta: float) -> void:
 	var mouse:Vector2 = get_global_mouse_position()
 	
 	tip.look_at(mouse)
+	direction.look_at(mouse)
+	direction.global_position = global_position + (mouse - global_position).limit_length(20)
 
 func _execute() -> void:
 	explode_delay.stop()

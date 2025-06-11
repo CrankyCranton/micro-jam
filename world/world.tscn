@@ -60,7 +60,7 @@ shader_parameter/scroll = Vector2(0.05, 0.05)
 shader_parameter/distortion_strength = 0.2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc4t8"]
-size = Vector2(304, 108)
+size = Vector2(296, 108)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysn08"]
 size = Vector2(16, 176)
@@ -711,7 +711,7 @@ ability = ExtResource("13_h8lre")
 title = "dream"
 
 [node name="CollisionShape" parent="Scenarios/ScenarioRiver" index="0"]
-position = Vector2(64, -42)
+position = Vector2(8, -42)
 shape = SubResource("RectangleShape2D_sc4t8")
 
 [node name="0" parent="Scenarios/ScenarioRiver/SpawnPoints" index="0" instance=ExtResource("5_fn3g3")]

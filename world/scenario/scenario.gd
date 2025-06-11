@@ -70,6 +70,7 @@ func _on_body_entered(player: Player) -> void:
 	if not Global.met_shady_guy:
 		return
 
+	print("what the hell is happening")
 	start_sound.play()
 	self.player = player
 	collision_shape.set_deferred(&"disabled", true)
