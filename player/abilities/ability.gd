@@ -3,7 +3,7 @@ class_name Ability extends Node2D
 
 @export var action := &""
 
-var player: Player
+@onready var player: Player = get_tree().get_first_node_in_group("player")
 
 
 func _input(event: InputEvent) -> void:

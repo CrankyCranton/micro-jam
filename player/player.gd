@@ -16,6 +16,7 @@ var spiritual_chains: SpiritualChains
 var resurrection: Resurrection
 var enabled := true
 var turning_enabled := true
+var new_direction
 var direction := 0.0:
 	set(value):
 		direction = value
@@ -45,7 +46,6 @@ var direction := 0.0:
 
 
 func _ready() -> void:
-	print(self)
 	corruption_meter.max_value = MAX_CORRUPTION
 	DialogueManager.dialogue_started.connect(_on_dialogue_manager_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_manager_dialogue_ended)
@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	if enabled:
 		if Input.is_action_just_pressed(&"jump") and is_on_floor():
 			velocity.y = -JUMP_VELOCITY
-		var new_direction := Input.get_axis(&"left", &"right")
+		new_direction = Input.get_axis(&"left", &"right")
 		direction = new_direction if absf(new_direction) > DEADZONE else 0.0
 
 		var traction := TRACTION if is_on_floor() else AIR_TRACTION

@@ -37,6 +37,7 @@ func _execute() -> void:
 	animation_player.play(&"RESET")
 	#transform.x.x = player.last_direction
 	cooling = true
+	player.velocity += player.velocity.normalized() * -200 
 
 	if laser:
 		player.turning_enabled = false
