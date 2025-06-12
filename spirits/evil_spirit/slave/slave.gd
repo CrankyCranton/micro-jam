@@ -22,5 +22,5 @@ func _physics_process(delta: float) -> void:
 		follow_target(player, delta)
 
 
-func die() -> void:
+func die(_anim_name: StringName) -> void:
 	pass # Slaves can't die.

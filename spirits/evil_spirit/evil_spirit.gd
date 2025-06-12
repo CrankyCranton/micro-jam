@@ -1,5 +1,6 @@
 class_name EvilSpirit extends CharacterBody2D
 
+
 var facing_left:bool
 
 signal died
@@ -11,6 +12,7 @@ signal died
 @export var desired_distance := 16.0
 
 var player: Player
+var dead := false
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var soft_collider: SoftCollider = $SoftCollider
@@ -18,10 +20,12 @@ var player: Player
 @onready var animation:AnimationPlayer = $AnimationPlayer
 @onready var hitbox:HitBox = $HitBox
 
+
 func _physics_process(delta: float) -> void:
 	assert(player)
 	follow_target(player, delta)
 	flip()
+
 
 func follow_target(target: Node2D, delta: float) -> void:
 	var direction := Vector2()
@@ -35,23 +39,35 @@ func follow_target(target: Node2D, delta: float) -> void:
 	move_and_slide()
 
 
+func die(anim_name: StringName) -> void:
+	if not dead:
+		animation.play(anim_name)
+		dead = true
+
+		await animation.animation_finished
+		# Putting it here to reduce redundancy in animations.
+		queue_free()
+		died.emit()
+
+
 func _on_hurt_box_dealt_damage(_target: HitBox, _damage: int) -> void:
-	animation.play("attack")
-	died.emit()
+	die(&"attack")
+
 
 func _on_hit_box_died() -> void:
-	animation.play("death")
-	died.emit()
+	die(&"death")
+
 
 func _on_hit_box_damage_taken(_damage: int) -> void:
 	if hitbox.health > 0:
-		animation.play("hit")
+		animation.play(&"hit")
 
-func flip():
+
+func flip() -> void:
 	if velocity.x < 0 and not facing_left:
-		animation.play("flip_left")
+		animation.play(&"flip_left")
 		facing_left = true
 
 	elif velocity.x > 0 and facing_left:
-		animation.play("flip_right")
+		animation.play(&"flip_right")
 		facing_left = false
