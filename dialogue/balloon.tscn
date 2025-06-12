@@ -8,6 +8,7 @@
 [node name="ExampleBalloon" type="CanvasLayer"]
 script = ExtResource("1_s2gbs")
 next_action = &"interact"
+skip_action = &"interact"
 
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true
