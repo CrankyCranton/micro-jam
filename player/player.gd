@@ -4,7 +4,7 @@ class_name Player extends CharacterBody2D
 signal fully_corrupted
 signal ability_gained(ABILITY: PackedScene)
 
-const SPEED := 160.0
+var SPEED:float = 160.0
 const JUMP_VELOCITY := 320.0
 const TRACTION := 11.0
 const AIR_TRACTION := 4.0
