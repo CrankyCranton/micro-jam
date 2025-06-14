@@ -127,6 +127,7 @@ func add_ability(ABILITY: PackedScene) -> void:
 		change_interactable_labels(&"gravestones", "E to resurrect")
 
 	ability_gained.emit(ABILITY)
+	enabled = true
 
 
 func change_interactable_labels(group: StringName, message: String) -> void:
