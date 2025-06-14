@@ -6,6 +6,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xrgny"]
 radius = 4.0
 
+[sub_resource type="Gradient" id="Gradient_usf8x"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_usf8x"]
 length = 0.001
 tracks/0/type = "value"
@@ -115,6 +119,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.3]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("GPUParticles2D:texture:gradient")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Gradient_usf8x")]
 }
 
 [sub_resource type="Animation" id="Animation_xrgny"]
@@ -246,16 +262,24 @@ tracks/9/keys = {
 "update": 0,
 "values": [0.1, 0.3]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("GPUParticles2D:texture:gradient")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [SubResource("Gradient_usf8x"), SubResource("Gradient_usf8x"), SubResource("Gradient_usf8x")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_usf8x"]
 _data = {
 &"RESET": SubResource("Animation_usf8x"),
 &"charge": SubResource("Animation_xrgny")
 }
-
-[sub_resource type="Gradient" id="Gradient_usf8x"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_i3e62"]
 gradient = SubResource("Gradient_usf8x")
