@@ -8,6 +8,8 @@ class_name Wand extends Ability
 var holding := false
 var cooling := false
 
+var mouse:Vector2
+
 @onready var tip: Marker2D = $Tip
 @onready var cooldown: Timer = $Cooldown
 @onready var explode_delay: Timer = $ExplodeDelay
@@ -26,18 +28,18 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	var mouse:Vector2 = get_global_mouse_position()
+	mouse = get_global_mouse_position()
 	
 	tip.look_at(mouse)
 	direction.look_at(mouse)
-	direction.global_position = global_position + (mouse - global_position).limit_length(20)
+	direction.global_position = player.global_position + (player.global_position.direction_to(mouse) * 20)
 
 func _execute() -> void:
 	explode_delay.stop()
 	animation_player.play(&"RESET")
 	#transform.x.x = player.last_direction
 	cooling = true
-	#aaaaaplayer.velocity.x  = player.direction * -200 
+	player.velocity += 200 * -(get_global_mouse_position() - global_position).normalized()
 
 	if laser:
 		player.turning_enabled = false

@@ -54,8 +54,9 @@ scale = Vector2(0.3, 0.3)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(-6, 0)
-amount = 20
+amount = 10
 texture = SubResource("GradientTexture2D_swhho")
+lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_jhbqf")
 
 [node name="CollisionDetectionTimer" type="Timer" parent="."]

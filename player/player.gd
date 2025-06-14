@@ -16,7 +16,6 @@ var spiritual_chains: SpiritualChains
 var resurrection: Resurrection
 var enabled := true
 var turning_enabled := true
-var new_direction
 var direction := 0.0:
 	set(value):
 		direction = value
@@ -61,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	if enabled:
 		if Input.is_action_just_pressed(&"jump") and is_on_floor():
 			velocity.y = -JUMP_VELOCITY
-		new_direction = Input.get_axis(&"left", &"right")
+		var new_direction = Input.get_axis(&"left", &"right")
 		direction = new_direction if absf(new_direction) > DEADZONE else 0.0
 
 		var traction := TRACTION if is_on_floor() else AIR_TRACTION
@@ -69,7 +68,6 @@ func _physics_process(delta: float) -> void:
 		scan_interactables()
 
 	move_and_slide()
-
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact") and interactable != null:
