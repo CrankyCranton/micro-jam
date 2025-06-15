@@ -55,13 +55,15 @@ size = Vector2(128, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1net"]
 size = Vector2(96, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pnie"]
-size = Vector2(333, 16)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqqhb"]
 shader = ExtResource("12_mad0u")
-shader_parameter/scroll = Vector2(0.05, 0.05)
+shader_parameter/scroll1 = Vector2(0.05, 0.05)
+shader_parameter/scroll2 = Vector2(-0.05, -0.05)
 shader_parameter/distortion_strength = 0.2
+shader_parameter/tone_color = Color(0, 0, 0, 1)
+shader_parameter/top_color = Color(0, 0, 0, 1)
+shader_parameter/light_start = 0.275
+shader_parameter/light_end = 0.4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc4t8"]
 size = Vector2(296, 108)
@@ -543,6 +545,9 @@ _data = {
 &"top": SubResource("Animation_gi7ib")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pnie"]
+size = Vector2(333, 16)
+
 [node name="World" type="Node2D"]
 material = SubResource("ShaderMaterial_m0cxt")
 
@@ -696,24 +701,8 @@ texture = ExtResource("4_fyhu2")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 32)
 
-[node name="Water" type="Node" parent="."]
-
-[node name="Water" parent="Water" instance=ExtResource("12_o1net")]
-position = Vector2(886, 183)
-collision_layer = 0
-collision_mask = 2
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" parent="Water/Water" index="0"]
-position = Vector2(2.5, 6)
-shape = SubResource("RectangleShape2D_0pnie")
-
-[node name="Sprite2D" parent="Water/Water" index="2"]
-position = Vector2(1.99996, 11.5)
-scale = Vector2(5.25, 0.421875)
-
 [node name="Player" parent="." instance=ExtResource("1_6xmxd")]
-position = Vector2(647, 124)
+position = Vector2(652, 136)
 
 [node name="TileLayers" type="Node2D" parent="."]
 
@@ -820,6 +809,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_3ljsx")
 }
 
+[node name="Water" type="Node" parent="."]
+
+[node name="Water" parent="Water" instance=ExtResource("12_o1net")]
+position = Vector2(886, 183)
+collision_layer = 0
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" parent="Water/Water" index="0"]
+position = Vector2(2.5, 6)
+shape = SubResource("RectangleShape2D_0pnie")
+
+[node name="Sprite2D" parent="Water/Water" index="2"]
+position = Vector2(1.99996, 11.5)
+scale = Vector2(5.25, 0.421875)
+
 [node name="PauseScreen" parent="." instance=ExtResource("14_dqqhb")]
 
 [node name="NightShade" type="CanvasModulate" parent="."]
@@ -827,6 +832,6 @@ visible = false
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
-[editable path="Water/Water"]
 [editable path="Scenarios/ScenarioRiver"]
 [editable path="Scenarios/ScenarioShrine"]
+[editable path="Water/Water"]

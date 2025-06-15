@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhqfevob616ui"]
+[gd_scene load_steps=13 format=3 uid="uid://dhqfevob616ui"]
 
 [ext_resource type="Script" uid="uid://c8itgg6x7qkvu" path="res://world/water/water.gd" id="1_nl8eq"]
+[ext_resource type="Shader" uid="uid://krkibu8qrggw" path="res://world/water.gdshader" id="2_s33lq"]
 
 [sub_resource type="Gradient" id="Gradient_s33lq"]
 offsets = PackedFloat32Array(1)
@@ -24,6 +25,28 @@ radial_accel_min = 31.37
 radial_accel_max = 31.37
 tangential_accel_min = 22.75
 tangential_accel_max = 22.75
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s33lq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_delex"]
+noise = SubResource("FastNoiseLite_s33lq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ho7eo"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vy5aa"]
+noise = SubResource("FastNoiseLite_ho7eo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_delex"]
+shader = ExtResource("2_s33lq")
+shader_parameter/noise1 = SubResource("NoiseTexture2D_delex")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_vy5aa")
+shader_parameter/scroll1 = Vector2(0.05, 0.05)
+shader_parameter/scroll2 = Vector2(-0.05, -0.05)
+shader_parameter/distortion_strength = 1.0
+shader_parameter/tone_color = Color(3.94672e-06, 0.499938, 0.772984, 1)
+shader_parameter/top_color = Color(1, 1, 1, 1)
+shader_parameter/light_start = 0.275
+shader_parameter/light_end = 0.4
 
 [sub_resource type="Gradient" id="Gradient_nl8eq"]
 offsets = PackedFloat32Array(0)
@@ -53,6 +76,8 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_nl8eq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_delex")
+position = Vector2(-7, -6)
 texture = SubResource("GradientTexture2D_s33lq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

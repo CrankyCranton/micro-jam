@@ -19,8 +19,10 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	player = body
 	player.SPEED = old_speed
+	print("player : " + str(player))
 
-	var pos:Vector2 = player.global_position
+	var pos:Vector2 = player.global_position + Vector2(0,20)
+	print("Position : " + str(pos))
 	enable_particles(pos)
 
 func enable_particles(pos:Vector2):
