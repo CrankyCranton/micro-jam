@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=54 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://p28kdkphpqkx" path="res://assets/enviroment/nature/grass.png" id="1_h8lre"]
@@ -13,8 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://bk0bq4lwt3lrm" path="res://world/blockade.tscn" id="5_mad0u"]
 [ext_resource type="PackedScene" uid="uid://0jp2e1erd1xa" path="res://world/tiles.tscn" id="6_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://dkapuo0hyc6ym" path="res://interactable/dialogable/npc/shady_stranger/shady_stranger.tscn" id="7_fyhu2"]
+[ext_resource type="Texture2D" uid="uid://klg0msujmu0t" path="res://assets/characters/fisher.png" id="10_3ljsx"]
 [ext_resource type="PackedScene" uid="uid://b0w04lk0mmumo" path="res://world/gate/gate.tscn" id="10_fyhu2"]
 [ext_resource type="PackedScene" uid="uid://diw2ahd7t46gw" path="res://interactable/dialogable/npc/npc.tscn" id="10_j34ew"]
+[ext_resource type="Texture2D" uid="uid://caylb4g3otc8y" path="res://assets/characters/monk.png" id="11_gi7ib"]
 [ext_resource type="Shader" uid="uid://krkibu8qrggw" path="res://world/water.gdshader" id="12_mad0u"]
 [ext_resource type="PackedScene" uid="uid://dhqfevob616ui" path="res://world/water/water.tscn" id="12_o1net"]
 [ext_resource type="PackedScene" uid="uid://c3h8dx83ssg0c" path="res://player/abilities/dash/warp/warp.tscn" id="13_h8lre"]
@@ -679,12 +681,18 @@ position = Vector2(48, 180)
 position = Vector2(289, 196)
 
 [node name="Fisherman" parent="Interactables" instance=ExtResource("10_j34ew")]
-position = Vector2(1072, 168)
+position = Vector2(1047, 178)
 title = "fisherman"
+
+[node name="Sprite2D" parent="Interactables/Fisherman" index="1"]
+texture = ExtResource("10_3ljsx")
 
 [node name="Monk" parent="Interactables" instance=ExtResource("10_j34ew")]
 position = Vector2(1568, 136)
 title = "monk"
+
+[node name="Sprite2D" parent="Interactables/Monk" index="1"]
+texture = ExtResource("11_gi7ib")
 
 [node name="random_decorations" type="Node" parent="."]
 
@@ -832,6 +840,8 @@ visible = false
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
+[editable path="Interactables/Fisherman"]
+[editable path="Interactables/Monk"]
 [editable path="Scenarios/ScenarioRiver"]
 [editable path="Scenarios/ScenarioShrine"]
 [editable path="Water/Water"]
