@@ -14,7 +14,9 @@ func _ready() -> void:
 
 
 func _execute() -> void:
-	projector.target_position.x = absf(projector.target_position.x) * player.last_direction
+	var mouse:Vector2 = get_global_mouse_position()
+	#projector.target_position.x = absf(projector.target_position.x) * player.last_direction
+	projector.target_position = mouse
 	projector.force_shapecast_update()
 	var dash_length := projector.get_closest_collision_safe_fraction() \
 			* projector.target_position.length()
