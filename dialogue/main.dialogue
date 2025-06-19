@@ -24,6 +24,14 @@ Natsuki: How?…[wait=0.2] how do know about him?
 Shady stranger: I know many things. Take this wand, it can destroy anything that gets in your way.
 => END
 
+~ fisher
+<Mentions observing Natsuki jumping around from boat to boat waving a stick around?>
+=> END
+
+~ monk
+
+=> END
+
 ~ sign
 Developers: Hello! Developers here. As you can see, this is an unfinished game.
 Developers: We unfortunately ran out of time, but hope to publish a finished version in about a week. Stay tuned and thanks for playing!
