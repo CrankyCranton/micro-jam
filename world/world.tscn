@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=58 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://p28kdkphpqkx" path="res://assets/enviroment/nature/grass.png" id="1_h8lre"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://mfli6yt0clbx" path="res://assets/hud/health_bar_bg.png" id="2_m0cxt"]
 [ext_resource type="PackedScene" uid="uid://dfbleu5p60l3u" path="res://interactable/dialogable/gravestone/gravestone.tscn" id="3_dqqhb"]
 [ext_resource type="Texture2D" uid="uid://x3eictprvv8v" path="res://assets/enviroment/obstacles/boat_redesign.png" id="3_h8lre"]
+[ext_resource type="Script" uid="uid://cpg1j0fufwcq7" path="res://world/world.gd" id="3_llyeo"]
 [ext_resource type="Texture2D" uid="uid://bix2h2g1irty1" path="res://assets/enviroment/decorations.png" id="4_fyhu2"]
 [ext_resource type="PackedScene" uid="uid://ce17h080iour3" path="res://world/scenario/scenario.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://bibr0dnr2e6t8" path="res://world/scenario/spirit_spawn_point/spirit_spawn_point.tscn" id="5_fn3g3"]
@@ -25,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dvhuaaqve01vv" path="res://player/abilities/sacrifice/sacrifice.tscn" id="19_aysyn"]
 [ext_resource type="PackedScene" uid="uid://daus27g6kp0go" path="res://world/scenario/barrier/barrier.tscn" id="19_p2iis"]
 [ext_resource type="PackedScene" uid="uid://cu55reqdkm15n" path="res://spirits/drum_enemy/drum_enemy.tscn" id="25_0pnie"]
+[ext_resource type="PackedScene" uid="uid://o4kyh4s6tvex" path="res://spirits/evil_spirit/evil_spirit.tscn" id="27_2tavo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("1_m0cxt")
@@ -32,6 +34,9 @@ shader_parameter/grayscaleImage = ExtResource("2_m0cxt")
 shader_parameter/lowColor = Color(0.699653, 0.699653, 0.699653, 1)
 shader_parameter/midColor = Color(0.190762, 0.190762, 0.190762, 1)
 shader_parameter/highColor = Color(0.362829, 0.362829, 0.362829, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_llyeo"]
+noise_type = 0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b2suy"]
 vertices = PackedVector2Array(2086, -118, 2086, 150, 1916.14, 150, 1868.14, 102, 1046, 186, 1094, 186, 1094, 198, 1038, 198, 1038, 222, 1026, 222, 1026, 206, 990, 206, 990, 222, 978, 222, 978, 206, 942, 206, 942, 222, 930, 222, 930, 206, 894, 206, 894, 222, 882, 222, 882, 206, 846, 206, 846, 222, 834, 222, 834, 206, 798, 206, 798, 222, 786, 222, 786, 206, 750, 206, 750, 222, 738, 222, 738, 198, 730, 198, 730, 150, 550, 150, 550, 166, 486, 166, 234, 166, 42, 166, 42, -118, 486, 182.203, 309.109, 185.992, 234, 182.453, 1788.14, 102, 1772.14, 86, 1683.86, 86, 1667.86, 102, 1587.86, 102, 1539.86, 150, 1046, 150)
@@ -553,6 +558,8 @@ size = Vector2(333, 16)
 
 [node name="World" type="Node2D"]
 material = SubResource("ShaderMaterial_m0cxt")
+script = ExtResource("3_llyeo")
+noise = SubResource("FastNoiseLite_llyeo")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
@@ -841,6 +848,12 @@ visible = false
 
 [node name="DrumEnemy" parent="." instance=ExtResource("25_0pnie")]
 position = Vector2(404, -295)
+
+[node name="EvilSpirit" parent="." instance=ExtResource("27_2tavo")]
+position = Vector2(281, 130)
+
+[node name="Noose" type="Sprite2D" parent="."]
+position = Vector2(300, 200.06)
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 

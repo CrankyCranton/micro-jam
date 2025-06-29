@@ -22,9 +22,10 @@ var dead := false
 
 
 func _physics_process(delta: float) -> void:
-	assert(player)
-	follow_target(player, delta)
-	flip()
+	#assert(player)
+	#follow_target(player, delta)
+	#flip()
+	pass
 
 
 func follow_target(target: Node2D, delta: float) -> void:
@@ -71,3 +72,11 @@ func flip() -> void:
 	elif velocity.x > 0 and facing_left:
 		animation.play(&"flip_right")
 		facing_left = false
+
+func get_haga(noise:FastNoiseLite):
+	var wth = noise.get_noise_2d(global_position.x,global_position.y)
+	if wth > 1.5:
+		print("This is black")
+	else:
+		print("this is white or gray")
+		noise.noise
