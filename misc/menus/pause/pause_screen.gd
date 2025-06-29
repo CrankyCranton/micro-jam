@@ -53,8 +53,7 @@ func _on_quit_pressed() -> void:
 	#get_tree().change_scene_to_file("res://misc/menus/main/main_menu.tscn")
 
 
-static func get_ability_description(title: String, instructions := "",
-		flavor_text := "",) -> String:
+static func get_ability_description(title: String, instructions := "",flavor_text := "",) -> String:
 	title = "[font_size=16][center][b]%s[/b][/center][/font_size]\n\n" % title
 	flavor_text = "[i]%s[/i]\n\n" % flavor_text
 	instructions = "%s" % instructions

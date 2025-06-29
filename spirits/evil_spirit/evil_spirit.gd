@@ -21,11 +21,16 @@ var dead := false
 @onready var hitbox:HitBox = $HitBox
 
 
+func _ready() -> void:
+	var main = get_tree().get_first_node_in_group("main")
+	main.get_haga(global_position)
+	if main.get_haga(global_position) == false:
+		main.move(global_position)
+
 func _physics_process(delta: float) -> void:
-	#assert(player)
-	#follow_target(player, delta)
-	#flip()
-	pass
+	assert(player)
+	follow_target(player, delta)
+	flip()
 
 
 func follow_target(target: Node2D, delta: float) -> void:
@@ -72,11 +77,3 @@ func flip() -> void:
 	elif velocity.x > 0 and facing_left:
 		animation.play(&"flip_right")
 		facing_left = false
-
-func get_haga(noise:FastNoiseLite):
-	var wth = noise.get_noise_2d(global_position.x,global_position.y)
-	if wth > 1.5:
-		print("This is black")
-	else:
-		print("this is white or gray")
-		noise.noise
