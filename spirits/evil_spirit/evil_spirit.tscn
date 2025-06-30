@@ -367,7 +367,7 @@ angular_velocity_min = 332.61
 angular_velocity_max = 332.61
 gravity = Vector3(0, 2, 0)
 
-[node name="EvilSpirit" type="CharacterBody2D"]
+[node name="EvilSpirit" type="CharacterBody2D" groups=["evil_spirits"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_8nhym")

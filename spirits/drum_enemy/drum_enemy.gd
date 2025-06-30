@@ -35,13 +35,10 @@ func flip() -> void:
 		direction = -1
 		animation.play(&"flip_left")
 		facing_left = true
-		print(speed * direction)
-
 	elif player.global_position.x > global_position.x and facing_left:
 		direction = 1
 		animation.play(&"flip_right")
 		facing_left = false
-		print(speed * direction)
 
 func move(_delta):
 	velocity.x = speed * direction

@@ -21,6 +21,12 @@ var dead := false
 @onready var hitbox:HitBox = $HitBox
 
 
+func _ready() -> void:
+	var main = get_tree().get_first_node_in_group("main")
+	main.get_haga(global_position)
+	if main.get_haga(global_position) == false:
+		main.move(global_position)
+
 func _physics_process(delta: float) -> void:
 	assert(player)
 	follow_target(player, delta)
