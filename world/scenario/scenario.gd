@@ -7,10 +7,15 @@ const FINAL_NAME := &"final"
 
 @export var max_spawns := 1
 @export var ability: PackedScene
+@export_group("Movement Noise")
+@export var noise: FastNoiseLite
+@export var color_gradient: Gradient
+@export var time_step := 1
 @export_group("Dialogue")
 @export var dialogue: DialogueResource
 @export var title := ""
 
+var time := 0
 var total_spawned := 0
 var current_spawned := 0
 var animations: PackedStringArray
@@ -34,12 +39,13 @@ func _ready() -> void:
 		animations.remove_at(animations.find(FINAL_NAME))
 
 	for spirit_spawn_point: SpiritSpawnPoint in spawn_points.get_children():
+		spirit_spawn_point.get_noise = get_noise
 		spirit_spawn_point.spawned.connect(_on_spirit_spawn_point_spawned)
 
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_UNPAUSED and awaiting_unpause:
-		player.health = player.MAX_HEALTH
+		player.hit_box.health = player.hit_box.max_health
 
 
 func end() -> void:
@@ -52,6 +58,7 @@ func end() -> void:
 	if ability != null:
 		player.add_ability(ability)
 
+	awaiting_unpause = true
 	finished.emit()
 	#queue_free()
 
@@ -64,6 +71,10 @@ func play_random() -> void:
 func set_barriers_enabled(enabled: bool) -> void:
 	for barrier: CollisionShape2D in barriers.get_children():
 		barrier.set_enabled(enabled)
+
+
+func get_noise(x: int, y: int) -> float:
+	return color_gradient.sample((noise.get_noise_3d(x, y, time) + 1) / 2.0).v
 
 
 func _on_body_entered(player: Player) -> void:
@@ -103,3 +114,7 @@ func _on_spawn_patterns_animation_finished(anim_name: StringName) -> void:
 				spawn_patterns.play(FINAL_NAME)
 		else:
 			play_random()
+
+
+func _on_step_timer_timeout() -> void:
+	time += time_step
