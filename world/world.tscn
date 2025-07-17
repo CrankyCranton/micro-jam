@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=55 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://p28kdkphpqkx" path="res://assets/enviroment/nature/grass.png" id="1_h8lre"]
@@ -32,9 +32,6 @@ shader_parameter/grayscaleImage = ExtResource("2_m0cxt")
 shader_parameter/lowColor = Color(0.699653, 0.699653, 0.699653, 1)
 shader_parameter/midColor = Color(0.190762, 0.190762, 0.190762, 1)
 shader_parameter/highColor = Color(0.362829, 0.362829, 0.362829, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_llyeo"]
-noise_type = 0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b2suy"]
 vertices = PackedVector2Array(2086, -118, 2086, 150, 1916.14, 150, 1868.14, 102, 1046, 186, 1094, 186, 1094, 198, 1038, 198, 1038, 222, 1026, 222, 1026, 206, 990, 206, 990, 222, 978, 222, 978, 206, 942, 206, 942, 222, 930, 222, 930, 206, 894, 206, 894, 222, 882, 222, 882, 206, 846, 206, 846, 222, 834, 222, 834, 206, 798, 206, 798, 222, 786, 222, 786, 206, 750, 206, 750, 222, 738, 222, 738, 198, 730, 198, 730, 150, 550, 150, 550, 166, 486, 166, 234, 166, 42, 166, 42, -118, 486, 182.203, 309.109, 185.992, 234, 182.453, 1788.14, 102, 1772.14, 86, 1683.86, 86, 1667.86, 102, 1587.86, 102, 1539.86, 150, 1046, 150)
@@ -557,7 +554,6 @@ size = Vector2(333, 16)
 [node name="World" type="Node2D" groups=["main"]]
 material = SubResource("ShaderMaterial_m0cxt")
 script = ExtResource("3_llyeo")
-noise = SubResource("FastNoiseLite_llyeo")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
