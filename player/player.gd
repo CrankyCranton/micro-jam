@@ -115,6 +115,7 @@ func set_enabled(enabled: bool) -> void:
 
 func add_ability(ABILITY: PackedScene) -> void:
 	var ability: Ability = ABILITY.instantiate()
+	ability.executed.connect(_on_ability_executed)
 	ability.player = self
 	ability_manager.add_child(ability)
 	ability.owner = self
@@ -158,3 +159,6 @@ func _on_hit_box_health_changed(health: int) -> void:
 	const MAX_HEALTH_BAR_VALUE := 46
 	health_bar.value = remap(health, 0, hit_box.max_health,
 			MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)
+
+func _on_ability_executed(ability_name):
+	%dash_hud.find_child(ability_name)

@@ -10,6 +10,7 @@ var can_dash:bool = true
 
 func _execute() -> void:
 	if can_dash == true:
+		executed.emit(action)
 		var original_speed: float = player.SPEED
 
 		ghost_timer.start()
