@@ -9,7 +9,7 @@ signal died
 @export var speed := 32.0
 @export var traction := 5.0
 @export var soft_collider_strength := 32.0
-@export var noise_influence := 128.0
+@export var noise_influence := 10.0
 @export var desired_distance := 16.0
 
 var player: Player
@@ -41,6 +41,7 @@ func follow_target(target: Node2D, delta: float) -> void:
 	var noise_velocity := Vector2()
 	var current_noise := 1.0
 	var total_noise := 0.0
+	var total_noise_vector:Vector2 = Vector2(0,0)
 	for y in range(-1, 2):
 		for x in range(-1, 2):
 			if x == 0 and y == 0: # Skips scanning the spirit's current location
@@ -49,9 +50,10 @@ func follow_target(target: Node2D, delta: float) -> void:
 				var noise_value: float = get_noise.call(position.x + x, position.y + y)
 				if noise_value < current_noise:
 					current_noise = noise_value
-					noise_velocity = Vector2(x, y)
-				total_noise += noise_value
-	noise_velocity *= noise_influence# * total_noise
+					noise_velocity = Vector2(x,y)
+				total_noise += noise_value * noise_influence
+	noise_velocity *= total_noise - current_noise
+	print(noise_velocity)
 
 	velocity = velocity.lerp(direction * speed + soft_velocity + noise_velocity, traction * delta)
 	move_and_slide()
