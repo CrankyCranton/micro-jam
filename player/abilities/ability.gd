@@ -1,5 +1,6 @@
 class_name Ability extends Node2D
 
+signal executed(ability_name:StringName)
 
 @export var action := &""
 

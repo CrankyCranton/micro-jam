@@ -4,12 +4,14 @@
 
 [node name="DashAbility" type="Node2D"]
 script = ExtResource("1_i2pu6")
-dash_speed = 500.0
+dash_speed = 300.0
 action = &"dash"
 
 [node name="DashCooldown" type="Timer" parent="."]
+wait_time = 1.5
 
 [node name="GhostTimer" type="Timer" parent="."]
 wait_time = 0.05
 
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="GhostTimer" to="." method="_on_ghost_timer_timeout"]

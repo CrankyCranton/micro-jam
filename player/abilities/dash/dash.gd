@@ -6,17 +6,24 @@ class_name Dash extends Ability
 @onready var cooldown: Timer = $DashCooldown
 @onready var ghost_timer: Timer = $GhostTimer
 
+var can_dash:bool = true
 
 func _execute() -> void:
-	var original_speed: float = owner.SPEED
+	if can_dash == true:
+		executed.emit(action)
+		var original_speed: float = player.SPEED
 
-	ghost_timer.start()
-	owner.SPEED = dash_speed
+		ghost_timer.start()
+		player.velocity = Vector2.ZERO
+		player.velocity += player.global_position.direction_to(get_global_mouse_position()) * dash_speed
+		print(player.velocity.direction_to(get_global_mouse_position()))
 
-	await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.1).timeout
 
-	ghost_timer.stop()
-	owner.SPEED = original_speed
+		ghost_timer.stop()
+		player.SPEED = original_speed
+		can_dash = false
+		$DashCooldown.start()
 
 
 func add_trail() -> void:
@@ -28,3 +35,7 @@ func add_trail() -> void:
 
 func _on_ghost_timer_timeout() -> void:
 	add_trail()
+
+
+func _on_dash_cooldown_timeout() -> void:
+	can_dash = true
