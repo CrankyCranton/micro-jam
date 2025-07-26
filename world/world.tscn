@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=58 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://p28kdkphpqkx" path="res://assets/enviroment/nature/grass.png" id="1_h8lre"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://x3eictprvv8v" path="res://assets/enviroment/obstacles/boat_redesign.png" id="3_h8lre"]
 [ext_resource type="Script" uid="uid://cpg1j0fufwcq7" path="res://world/world.gd" id="3_llyeo"]
 [ext_resource type="Texture2D" uid="uid://bix2h2g1irty1" path="res://assets/enviroment/decorations.png" id="4_fyhu2"]
+[ext_resource type="Texture2D" uid="uid://cp2bdhcwufvog" path="res://assets/enviroment/nature/tree.png" id="4_llyeo"]
 [ext_resource type="PackedScene" uid="uid://ce17h080iour3" path="res://world/scenario/scenario.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://bibr0dnr2e6t8" path="res://world/scenario/spirit_spawn_point/spirit_spawn_point.tscn" id="5_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://bk0bq4lwt3lrm" path="res://world/blockade.tscn" id="5_mad0u"]
@@ -25,6 +26,7 @@
 [ext_resource type="Script" uid="uid://c4wlca85qi4fe" path="res://world/scenario/barrier/barrier.gd" id="15_ysn08"]
 [ext_resource type="PackedScene" uid="uid://dvhuaaqve01vv" path="res://player/abilities/sacrifice/sacrifice.tscn" id="19_aysyn"]
 [ext_resource type="PackedScene" uid="uid://daus27g6kp0go" path="res://world/scenario/barrier/barrier.tscn" id="19_p2iis"]
+[ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/effects/wand_charge/glow.png" id="27_2tavo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("1_m0cxt")
@@ -551,9 +553,28 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0pnie"]
 size = Vector2(333, 16)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k8wd0"]
+blend_mode = 1
+
 [node name="World" type="Node2D" groups=["main"]]
 material = SubResource("ShaderMaterial_m0cxt")
 script = ExtResource("3_llyeo")
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(93, 148)
+texture = ExtResource("4_llyeo")
+
+[node name="Tree2" type="Sprite2D" parent="."]
+position = Vector2(459, 164)
+texture = ExtResource("4_llyeo")
+
+[node name="Tree4" type="Sprite2D" parent="."]
+position = Vector2(449, 166)
+texture = ExtResource("4_llyeo")
+
+[node name="Tree3" type="Sprite2D" parent="."]
+position = Vector2(481, 164)
+texture = ExtResource("4_llyeo")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
@@ -842,6 +863,13 @@ visible = false
 
 [node name="Noose" type="Sprite2D" parent="."]
 position = Vector2(300, 200.06)
+
+[node name="Glow" type="Sprite2D" parent="."]
+modulate = Color(0.489808, 0.1855, 0.53, 0.501961)
+texture_filter = 2
+material = SubResource("CanvasItemMaterial_k8wd0")
+position = Vector2(292, 178)
+texture = ExtResource("27_2tavo")
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
