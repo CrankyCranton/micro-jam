@@ -1,13 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3h8dx83ssg0c"]
+[gd_scene load_steps=2 format=3 uid="uid://c3h8dx83ssg0c"]
 
 [ext_resource type="Script" uid="uid://bllv4alwpuetp" path="res://player/abilities/dash/warp/warp.gd" id="1_oakod"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_oakod"]
 
 [node name="DimensionalDash" type="Node2D"]
 script = ExtResource("1_oakod")
 action = &"dash"
 
 [node name="Projector" type="ShapeCast2D" parent="."]
-shape = SubResource("CircleShape2D_oakod")
 target_position = Vector2(64, 0)

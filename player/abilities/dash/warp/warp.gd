@@ -7,6 +7,9 @@ const MARGIN := 1.0
 
 
 func _ready() -> void:
+	print(player)
+	#print(player.collision_shape)
+	await player.ready
 	projector.shape = player.collision_shape.shape.duplicate()
 	projector.shape.radius -= MARGIN / 2.0
 	projector.shape.height -= MARGIN
