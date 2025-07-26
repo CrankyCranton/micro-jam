@@ -798,6 +798,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_fyhu2")
 }
 
+[node name="Sprite2D" parent="Scenarios/ScenarioRiver" index="6"]
+position = Vector2(-168, -152)
+scale = Vector2(0.779297, 1.29688)
+
 [node name="ScenarioShrine" parent="Scenarios" instance=ExtResource("4_mmdvd")]
 position = Vector2(1728, 16)
 ability = ExtResource("19_aysyn")
@@ -843,6 +847,7 @@ libraries = {
 [node name="Water" type="Node" parent="."]
 
 [node name="Water" parent="Water" instance=ExtResource("12_o1net")]
+visible = false
 position = Vector2(886, 183)
 collision_layer = 0
 collision_mask = 2

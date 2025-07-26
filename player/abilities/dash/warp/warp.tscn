@@ -7,5 +7,4 @@ script = ExtResource("1_oakod")
 action = &"dash"
 
 [node name="Projector" type="ShapeCast2D" parent="."]
-enabled = false
 target_position = Vector2(64, 0)
