@@ -2,9 +2,9 @@
 
 [ext_resource type="Shader" uid="uid://c1cwfwmljsk7s" path="res://assets/effects/shaders/hit.gdshader" id="1_2ieo8"]
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="Texture2D" uid="uid://da7l2pr64jay5" path="res://assets/characters/player.png" id="2_rgyib"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://cba3hmbl8n3c" path="res://player/camera.gd" id="3_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://b5yf5mejmys5x" path="res://assets/characters/natsuki.png" id="3_kb6p2"]
 [ext_resource type="Script" uid="uid://f2ik8l16afl6" path="res://player/abilities/ability_manager.gd" id="4_yw30f"]
 [ext_resource type="PackedScene" uid="uid://dhtbqtyyhj8m3" path="res://player/hud/corruption_meter.tscn" id="5_boad6"]
 [ext_resource type="PackedScene" uid="uid://bl7mgcfb0uxdx" path="res://player/abilities/wand/wand.tscn" id="6_8t03j"]
@@ -138,7 +138,7 @@ script = ExtResource("1_oul6g")
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2ieo8")
 position = Vector2(0, -8)
-texture = ExtResource("2_rgyib")
+texture = ExtResource("3_kb6p2")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 visible = false
@@ -220,6 +220,7 @@ texture_progress = ExtResource("7_rgyib")
 
 [node name="dash_hud" type="HBoxContainer" parent="HUD"]
 unique_name_in_owner = true
+visible = false
 offset_right = 40.0
 offset_bottom = 24.0
 

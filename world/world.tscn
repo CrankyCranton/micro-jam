@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=60 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://p28kdkphpqkx" path="res://assets/enviroment/nature/grass.png" id="1_h8lre"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dvhuaaqve01vv" path="res://player/abilities/sacrifice/sacrifice.tscn" id="19_aysyn"]
 [ext_resource type="PackedScene" uid="uid://daus27g6kp0go" path="res://world/scenario/barrier/barrier.tscn" id="19_p2iis"]
 [ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/effects/wand_charge/glow.png" id="27_2tavo"]
+[ext_resource type="Texture2D" uid="uid://k5kfyowvjxdu" path="res://assets/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("1_m0cxt")
@@ -556,9 +557,28 @@ size = Vector2(333, 16)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k8wd0"]
 blend_mode = 1
 
+[sub_resource type="Environment" id="Environment_2tavo"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_intensity = 1.75
+glow_strength = 1.6
+glow_hdr_threshold = 0.9
+
 [node name="World" type="Node2D" groups=["main"]]
 material = SubResource("ShaderMaterial_m0cxt")
 script = ExtResource("3_llyeo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("28_k8wd0")
 
 [node name="Tree" type="Sprite2D" parent="."]
 position = Vector2(93, 148)
@@ -870,11 +890,14 @@ visible = false
 position = Vector2(300, 200.06)
 
 [node name="Glow" type="Sprite2D" parent="."]
-modulate = Color(0.489808, 0.1855, 0.53, 0.501961)
+modulate = Color(0.490196, 0.184314, 0.529412, 0.501961)
 texture_filter = 2
 material = SubResource("CanvasItemMaterial_k8wd0")
-position = Vector2(292, 178)
+position = Vector2(289, 178)
 texture = ExtResource("27_2tavo")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2tavo")
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
