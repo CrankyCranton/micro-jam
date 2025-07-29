@@ -370,6 +370,7 @@ gravity = Vector3(0, 2, 0)
 [node name="EvilSpirit" type="CharacterBody2D" groups=["evil_spirits"]]
 collision_layer = 4
 collision_mask = 0
+safe_margin = 2.0
 script = ExtResource("1_8nhym")
 
 [node name="Sprite" type="Sprite2D" parent="."]

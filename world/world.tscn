@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://x3eictprvv8v" path="res://assets/enviroment/obstacles/boat_redesign.png" id="3_h8lre"]
 [ext_resource type="Script" uid="uid://cpg1j0fufwcq7" path="res://world/world.gd" id="3_llyeo"]
 [ext_resource type="Texture2D" uid="uid://bix2h2g1irty1" path="res://assets/enviroment/decorations.png" id="4_fyhu2"]
-[ext_resource type="Texture2D" uid="uid://cp2bdhcwufvog" path="res://assets/enviroment/nature/tree.png" id="4_llyeo"]
+[ext_resource type="Texture2D" uid="uid://du7lqp3jnedic" path="res://assets/enviroment/nature/tree.png" id="4_llyeo"]
 [ext_resource type="PackedScene" uid="uid://ce17h080iour3" path="res://world/scenario/scenario.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://bibr0dnr2e6t8" path="res://world/scenario/spirit_spawn_point/spirit_spawn_point.tscn" id="5_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://bk0bq4lwt3lrm" path="res://world/blockade.tscn" id="5_mad0u"]
@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dvhuaaqve01vv" path="res://player/abilities/sacrifice/sacrifice.tscn" id="19_aysyn"]
 [ext_resource type="PackedScene" uid="uid://daus27g6kp0go" path="res://world/scenario/barrier/barrier.tscn" id="19_p2iis"]
 [ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/effects/wand_charge/glow.png" id="27_2tavo"]
-[ext_resource type="Texture2D" uid="uid://k5kfyowvjxdu" path="res://assets/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
+[ext_resource type="Texture2D" uid="uid://dyewwtvqwd0aj" path="res://assets/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("1_m0cxt")
@@ -593,7 +593,7 @@ position = Vector2(449, 166)
 texture = ExtResource("4_llyeo")
 
 [node name="Tree3" type="Sprite2D" parent="."]
-position = Vector2(481, 164)
+position = Vector2(481, 166)
 texture = ExtResource("4_llyeo")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
