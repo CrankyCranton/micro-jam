@@ -47,7 +47,7 @@ func follow_target_noise(target: Node2D, delta: float) -> void:
 
 	var soft_velocity := soft_collider.get_vector() * soft_collider_strength
 
-	#var noise_velocity := Vector2()
+	var noise_velocity := Vector2()
 	#var current_noise := 1.0
 	#var total_noise := 0.0
 	#var total_noise_vector:Vector2 = Vector2(0,0)

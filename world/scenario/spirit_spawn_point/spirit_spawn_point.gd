@@ -10,12 +10,10 @@ signal spawned(spawn: EvilSpirit)
 			const EVIL_SPIRIT := preload("res://spirits/evil_spirit/evil_spirit.tscn")
 			var evil_spirit: EvilSpirit = EVIL_SPIRIT.instantiate()
 			evil_spirit.player = player
-			evil_spirit.get_noise = get_noise
 			add_child(evil_spirit)
 			spawned.emit(evil_spirit)
 
 var player: Player
-var get_noise: Callable
 
 @onready var label: Label = $Label
 
