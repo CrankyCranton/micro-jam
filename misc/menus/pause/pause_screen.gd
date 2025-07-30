@@ -4,7 +4,7 @@ class_name PauseMenu extends CanvasLayer
 var ability_data := {
 	preload("res://player/abilities/wand/wand.tscn"):
 		get_ability_description("Wand", "Click [img]res://assets/hud/mouse_0001.png[/img] to zap.\n Hold down to charge.\nBut beware: Overcharging can make it explode!"),
-	preload("res://player/abilities/dash/warp/warp.tscn"):
+	preload("res://player/abilities/dash/dash.tscn"):
 		get_ability_description("Warp", "Click [img]res://assets/hud/mouse_0003.png[/img] to warp forwards.",  "With this newfound power, I will chase after you to the ends of the earth"),
 	preload("res://player/abilities/sacrifice/sacrifice.tscn"):
 		get_ability_description("sacrifice", "Press [img]res://assets/inputs_c.png[/img] to sacrifice corruption for health."),
@@ -41,6 +41,7 @@ func set_paused(paused: bool) -> void:
 func display_ability(ABILITY: PackedScene) -> void:
 	ability_display.show()
 	pause_menu.hide()
+	print(ABILITY)
 	ability_text.text = ability_data[ABILITY]
 	await set_paused(true)
 	await get_tree().process_frame

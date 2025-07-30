@@ -53,7 +53,6 @@ func follow_target(target: Node2D, delta: float) -> void:
 					noise_velocity = Vector2(x,y)
 				total_noise += noise_value * noise_influence
 	noise_velocity *= total_noise - current_noise
-	print(noise_velocity)
 
 	velocity = velocity.lerp(direction * speed + soft_velocity + noise_velocity, traction * delta)
 	move_and_slide()

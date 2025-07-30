@@ -113,7 +113,7 @@ func set_enabled(enabled: bool) -> void:
 		velocity.x = 0.0
 
 
-func add_ability(ABILITY: PackedScene) -> void:
+func scenario_end(ABILITY: PackedScene) -> void:
 	var ability: Ability = ABILITY.instantiate()
 	ability.executed.connect(_on_ability_executed)
 	ability.player = self
@@ -129,6 +129,7 @@ func add_ability(ABILITY: PackedScene) -> void:
 
 	ability_gained.emit(ABILITY)
 	enabled = true
+	hit_box.health = hit_box.max_health
 
 
 func change_interactable_labels(group: StringName, message: String) -> void:
@@ -153,12 +154,22 @@ func _on_interactor_area_exited(interactable: Interactable) -> void:
 func _on_hit_box_died() -> void:
 	die()
 
-func _on_hit_box_health_changed(health: int) -> void:
+
+
+func _on_ability_executed(ability_name):
+	%dash_hud.find_child(ability_name)
+
+func _on_hit_box_health_decreased(health: int) -> void:
+	print("yolo")
 	animation.play("hit")
 	const MIN_HEALTH_BAR_VALUE := 13
 	const MAX_HEALTH_BAR_VALUE := 46
 	health_bar.value = remap(health, 0, hit_box.max_health,
 			MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)
 
-func _on_ability_executed(ability_name):
-	%dash_hud.find_child(ability_name)
+func _on_hit_box_health_increased(health: int) -> void:
+	print("wha?a")
+	const MIN_HEALTH_BAR_VALUE := 13
+	const MAX_HEALTH_BAR_VALUE := 46
+	health_bar.value = remap(health, 0, hit_box.max_health,
+			MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)

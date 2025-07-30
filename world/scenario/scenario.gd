@@ -56,7 +56,7 @@ func end() -> void:
 	if title != "":
 		await InteractionManager.start_dialogue(dialogue, title)
 	if ability != null:
-		player.add_ability(ability)
+		player.scenario_end(ability)
 
 	awaiting_unpause = true
 	finished.emit()

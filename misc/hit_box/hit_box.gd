@@ -2,15 +2,21 @@ class_name HitBox extends Area2D
 
 
 signal damage_taken(damage: int)
-signal health_changed(health: int)
+signal health_decreased(health: int)
+signal health_increased(health: int)
 signal died
 
 @export var max_health := 1
 
 @onready var health := max_health:
 	set(value):
+		if value > health:
+			health_increased.emit(health)
+			print("1")
+		elif value < health:
+			print('2')
+			health_decreased.emit(health)
 		health = value
-		health_changed.emit(health)
 		if health <= 0:
 			died.emit()
 @onready var collision_shape: CollisionShape2D = $CollisionShape

@@ -21,11 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://caylb4g3otc8y" path="res://assets/characters/monk.png" id="11_gi7ib"]
 [ext_resource type="Shader" uid="uid://krkibu8qrggw" path="res://world/water.gdshader" id="12_mad0u"]
 [ext_resource type="PackedScene" uid="uid://dhqfevob616ui" path="res://world/water/water.tscn" id="12_o1net"]
-[ext_resource type="PackedScene" uid="uid://c3h8dx83ssg0c" path="res://player/abilities/dash/warp/warp.tscn" id="13_h8lre"]
 [ext_resource type="PackedScene" uid="uid://cmiih1f6mjgh5" path="res://misc/menus/pause/pause_screen.tscn" id="14_dqqhb"]
 [ext_resource type="Script" uid="uid://c4wlca85qi4fe" path="res://world/scenario/barrier/barrier.gd" id="15_ysn08"]
 [ext_resource type="PackedScene" uid="uid://dvhuaaqve01vv" path="res://player/abilities/sacrifice/sacrifice.tscn" id="19_aysyn"]
 [ext_resource type="PackedScene" uid="uid://daus27g6kp0go" path="res://world/scenario/barrier/barrier.tscn" id="19_p2iis"]
+[ext_resource type="PackedScene" uid="uid://d3aik1ux28bp5" path="res://player/abilities/dash/dash.tscn" id="21_k8wd0"]
 [ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/effects/wand_charge/glow.png" id="27_2tavo"]
 [ext_resource type="Texture2D" uid="uid://dyewwtvqwd0aj" path="res://assets/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
 
@@ -737,6 +737,9 @@ title = "monk"
 [node name="Sprite2D" parent="Interactables/Monk" index="1"]
 texture = ExtResource("11_gi7ib")
 
+[node name="Player" parent="." instance=ExtResource("1_6xmxd")]
+position = Vector2(695, 160)
+
 [node name="random_decorations" type="Node" parent="."]
 
 [node name="Gate" parent="random_decorations" instance=ExtResource("10_fyhu2")]
@@ -751,9 +754,6 @@ position = Vector2(296, 180)
 texture = ExtResource("4_fyhu2")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 32)
-
-[node name="Player" parent="." instance=ExtResource("1_6xmxd")]
-position = Vector2(309, 194)
 
 [node name="TileLayers" type="Node2D" parent="."]
 
@@ -773,7 +773,7 @@ material = SubResource("ShaderMaterial_dqqhb")
 [node name="ScenarioRiver" parent="Scenarios" instance=ExtResource("4_mmdvd")]
 position = Vector2(880, 160)
 max_spawns = 5
-ability = ExtResource("13_h8lre")
+ability = ExtResource("21_k8wd0")
 title = "dream"
 
 [node name="CollisionShape" parent="Scenarios/ScenarioRiver" index="0"]
