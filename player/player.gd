@@ -160,7 +160,6 @@ func _on_ability_executed(ability_name):
 	%dash_hud.find_child(ability_name)
 
 func _on_hit_box_health_decreased(health: int) -> void:
-	print("yolo")
 	animation.play("hit")
 	const MIN_HEALTH_BAR_VALUE := 13
 	const MAX_HEALTH_BAR_VALUE := 46
@@ -168,7 +167,6 @@ func _on_hit_box_health_decreased(health: int) -> void:
 			MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)
 
 func _on_hit_box_health_increased(health: int) -> void:
-	print("wha?a")
 	const MIN_HEALTH_BAR_VALUE := 13
 	const MAX_HEALTH_BAR_VALUE := 46
 	health_bar.value = remap(health, 0, hit_box.max_health,
