@@ -22,6 +22,5 @@ func spawn():
 		get_parent().call_deferred("add_child",bullet)
 
 		var angle:int = total_spread_degrees/number_of_bullets
-		bullet.global_rotation_degrees = global_rotation_degrees + angle * i
+		bullet.global_rotation_degrees = (global_rotation_degrees + angle * i) - (number_of_bullets * 8)
 		bullet.global_position = global_position
-		

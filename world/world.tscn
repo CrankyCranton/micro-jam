@@ -894,8 +894,8 @@ environment = SubResource("Environment_2tavo")
 [node name="Spawner" parent="." instance=ExtResource("29_j7vgi")]
 position = Vector2(552, 144)
 loaded_bullet = ExtResource("30_inp7a")
-number_of_bullets = 5
-total_spread_degrees = 90
+number_of_bullets = 6
+total_spread_degrees = 147
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
