@@ -7,11 +7,16 @@ class_name Spawner extends Node2D
 @export var number_of_bullets:int
 @export var total_spread_degrees:int
 
+@export_group("spawner_characteristics")
+@export var rotate_speed:int
+
 func _ready() -> void:
 	spawn()
 
 func _process(delta: float) -> void:
-	look_at(get_global_mouse_position())
+	var new_rotation = rotation_degrees + rotate_speed * delta
+	rotation_degrees = fmod(new_rotation, 360)
+
 	if Input.is_action_just_pressed("ui_accept"):
 		spawn()
 
@@ -23,4 +28,4 @@ func spawn():
 
 		var angle:int = total_spread_degrees/number_of_bullets
 		bullet.global_rotation_degrees = (global_rotation_degrees + angle * i) - (number_of_bullets * 8)
-		bullet.global_position = global_position
+		bullet.global_position = global_position.rotated(deg_to_rad(angle))

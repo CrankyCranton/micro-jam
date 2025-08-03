@@ -895,7 +895,8 @@ environment = SubResource("Environment_2tavo")
 position = Vector2(552, 144)
 loaded_bullet = ExtResource("30_inp7a")
 number_of_bullets = 6
-total_spread_degrees = 147
+total_spread_degrees = 360
+rotate_speed = 50
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
