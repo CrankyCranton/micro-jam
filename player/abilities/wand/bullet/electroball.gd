@@ -1,8 +1,5 @@
-class_name Bullet extends Area2D
+class_name electroBall extends Bullet
 
-
-var speed: float
-var direction = Vector2.RIGHT
 
 @onready var hurt_box: HurtBox = $HurtBox
 @onready var total_damage: int:
@@ -23,8 +20,7 @@ var direction = Vector2.RIGHT
 
 
 func _physics_process(delta: float) -> void:
-	position += direction.rotated(global_rotation) * speed * delta
-
+	move(delta)
 
 func delete() -> void:
 	queue_free()

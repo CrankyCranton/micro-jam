@@ -50,7 +50,7 @@ func _execute() -> void:
 		player.turning_enabled = true
 		cooling = false
 	else:
-		const BULLET := preload("res://player/abilities/wand/bullet/bullet.tscn")
+		const BULLET := preload("res://player/abilities/wand/bullet/electro_ball.tscn")
 		var bullet: Area2D = BULLET.instantiate()
 		bullet.global_rotation = tip.global_rotation
 		bullet.position = tip.global_position
