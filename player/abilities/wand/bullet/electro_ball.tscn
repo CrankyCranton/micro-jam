@@ -36,9 +36,10 @@ tangential_accel_max = -2.23517e-06
 scale_over_velocity_min = 461.95
 scale_over_velocity_max = 1000.0
 
-[node name="Bullet" type="Area2D"]
+[node name="ElectroBall" type="Area2D" node_paths=PackedStringArray("hurt_box")]
 collision_layer = 0
 script = ExtResource("1_jhbqf")
+hurt_box = NodePath("HurtBox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_swhho")

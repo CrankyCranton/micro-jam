@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=60 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://p28kdkphpqkx" path="res://assets/enviroment/nature/grass.png" id="1_h8lre"]
@@ -28,8 +28,6 @@
 [ext_resource type="PackedScene" uid="uid://d3aik1ux28bp5" path="res://player/abilities/dash/dash.tscn" id="21_k8wd0"]
 [ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/effects/wand_charge/glow.png" id="27_2tavo"]
 [ext_resource type="Texture2D" uid="uid://dyewwtvqwd0aj" path="res://assets/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
-[ext_resource type="PackedScene" uid="uid://cffrsvtj3pbme" path="res://spirits/bosses/bullet/spawner.tscn" id="29_j7vgi"]
-[ext_resource type="PackedScene" uid="uid://bd4qvw0srslqr" path="res://player/abilities/wand/bullet/electro_ball.tscn" id="30_inp7a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("1_m0cxt")
@@ -37,6 +35,11 @@ shader_parameter/grayscaleImage = ExtResource("2_m0cxt")
 shader_parameter/lowColor = Color(0.699653, 0.699653, 0.699653, 1)
 shader_parameter/midColor = Color(0.190762, 0.190762, 0.190762, 1)
 shader_parameter/highColor = Color(0.362829, 0.362829, 0.362829, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_b2suy"]
+vertices = PackedVector2Array(2086, -118, 2086, 150, 1916.14, 150, 1868.14, 102, 1046, 186, 1094, 186, 1094, 198, 1038, 198, 1038, 222, 1026, 222, 1026, 206, 990, 206, 990, 222, 978, 222, 978, 206, 942, 206, 942, 222, 930, 222, 930, 206, 894, 206, 894, 222, 882, 222, 882, 206, 846, 206, 846, 222, 834, 222, 834, 206, 798, 206, 798, 222, 786, 222, 786, 206, 750, 206, 750, 222, 738, 222, 738, 198, 730, 198, 730, 150, 550, 150, 550, 166, 486, 166, 234, 166, 42, 166, 42, -118, 486, 182.203, 309.109, 185.992, 234, 182.453, 1788.14, 102, 1772.14, 86, 1683.86, 86, 1667.86, 102, 1587.86, 102, 1539.86, 150, 1046, 150)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(19, 20, 21, 22), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(27, 28, 29, 30), PackedInt32Array(31, 32, 33, 34), PackedInt32Array(34, 35, 36), PackedInt32Array(37, 38, 39), PackedInt32Array(40, 41, 42, 0), PackedInt32Array(39, 43, 44), PackedInt32Array(44, 45, 40, 0, 37), PackedInt32Array(31, 34, 36, 30), PackedInt32Array(0, 3, 46, 47), PackedInt32Array(48, 49, 50), PackedInt32Array(27, 30, 36), PackedInt32Array(50, 51, 52), PackedInt32Array(26, 27, 36), PackedInt32Array(52, 4, 7, 10, 11), PackedInt32Array(52, 11, 14), PackedInt32Array(52, 14, 15), PackedInt32Array(0, 47, 48), PackedInt32Array(52, 15, 18), PackedInt32Array(23, 26, 36), PackedInt32Array(52, 18, 19), PackedInt32Array(22, 23, 36, 52), PackedInt32Array(52, 19, 22), PackedInt32Array(0, 48, 50, 52, 36), PackedInt32Array(0, 36, 37), PackedInt32Array(44, 37, 39)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(32, -128, 32, 176, 224, 176, 224, 192, 309, 196, 496, 192, 496, 176, 560, 176, 560, 160, 720, 160, 720, 208, 728, 208, 728, 232, 760, 232, 760, 216, 776, 216, 776, 232, 808, 232, 808, 216, 824, 216, 824, 232, 856, 232, 856, 216, 872, 216, 872, 232, 904, 232, 904, 216, 920, 216, 920, 232, 952, 232, 952, 216, 968, 216, 968, 232, 1000, 232, 1000, 216, 1016, 216, 1016, 232, 1048, 232, 1048, 208, 1104, 208, 1104, 176, 1056, 176, 1056, 160, 1544, 160, 1592, 112, 1672, 112, 1688, 96, 1768, 96, 1784, 112, 1864, 112, 1912, 160, 2096, 160, 2096, -128)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocfjn"]
 size = Vector2(16, 192)
@@ -577,23 +580,26 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("28_k8wd0")
 
-[node name="Trees" type="Node" parent="."]
-
-[node name="Tree" type="Sprite2D" parent="Trees"]
+[node name="Tree" type="Sprite2D" parent="."]
 position = Vector2(93, 148)
 texture = ExtResource("4_llyeo")
 
-[node name="Tree2" type="Sprite2D" parent="Trees"]
+[node name="Tree2" type="Sprite2D" parent="."]
 position = Vector2(459, 164)
 texture = ExtResource("4_llyeo")
 
-[node name="Tree4" type="Sprite2D" parent="Trees"]
+[node name="Tree4" type="Sprite2D" parent="."]
 position = Vector2(449, 166)
 texture = ExtResource("4_llyeo")
 
-[node name="Tree3" type="Sprite2D" parent="Trees"]
+[node name="Tree3" type="Sprite2D" parent="."]
 position = Vector2(481, 166)
 texture = ExtResource("4_llyeo")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_b2suy")
+enabled = false
 
 [node name="MiscCollision" type="StaticBody2D" parent="."]
 collision_mask = 71
@@ -732,7 +738,7 @@ title = "monk"
 texture = ExtResource("11_gi7ib")
 
 [node name="Player" parent="." instance=ExtResource("1_6xmxd")]
-position = Vector2(567, 136)
+position = Vector2(695, 160)
 
 [node name="random_decorations" type="Node" parent="."]
 
@@ -890,12 +896,6 @@ texture = ExtResource("27_2tavo")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2tavo")
-
-[node name="Spawner" parent="." instance=ExtResource("29_j7vgi")]
-position = Vector2(552, 144)
-loaded_bullet = ExtResource("30_inp7a")
-number_of_bullets = 5
-total_spread_degrees = 90
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
