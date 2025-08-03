@@ -19,9 +19,9 @@ func spawn():
 	for i in number_of_bullets:
 		print(i)
 		var bullet:Area2D = loaded_bullet.instantiate()
-		get_tree().root.call_deferred("add_child", bullet)
+		get_parent().call_deferred("add_child",bullet)
 
-		#var angle:int = total_spread_degrees/number_of_bullets
-		bullet.global_rotation_degrees = global_rotation
+		var angle:int = total_spread_degrees/number_of_bullets
+		bullet.global_rotation_degrees = global_rotation_degrees + angle * i
 		bullet.global_position = global_position
 		
