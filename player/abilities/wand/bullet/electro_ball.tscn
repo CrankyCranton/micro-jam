@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bd4qvw0srslqr"]
 
-[ext_resource type="Script" uid="uid://7enw11duqhn4" path="res://player/abilities/wand/bullet/bullet.gd" id="1_jhbqf"]
+[ext_resource type="Script" uid="uid://7enw11duqhn4" path="res://player/abilities/wand/bullet/electroball.gd" id="1_jhbqf"]
 [ext_resource type="Texture2D" uid="uid://cudrpqpjjvdys" path="res://assets/items/electro_ball.png" id="2_swhho"]
 [ext_resource type="PackedScene" uid="uid://crx7kk4gj06gp" path="res://misc/hurt_box/hurt_box.tscn" id="3_aff1s"]
 
@@ -36,9 +36,10 @@ tangential_accel_max = -2.23517e-06
 scale_over_velocity_min = 461.95
 scale_over_velocity_max = 1000.0
 
-[node name="Bullet" type="Area2D"]
+[node name="ElectroBall" type="Area2D" node_paths=PackedStringArray("hurt_box")]
 collision_layer = 0
 script = ExtResource("1_jhbqf")
+hurt_box = NodePath("HurtBox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_swhho")
