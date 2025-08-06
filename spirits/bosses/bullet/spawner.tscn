@@ -4,3 +4,5 @@
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_esckd")
+
+[node name="ShootTimer" type="Timer" parent="."]

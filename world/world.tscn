@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=60 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://p28kdkphpqkx" path="res://assets/enviroment/nature/grass.png" id="1_h8lre"]
@@ -29,7 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/effects/wand_charge/glow.png" id="27_2tavo"]
 [ext_resource type="Texture2D" uid="uid://dyewwtvqwd0aj" path="res://assets/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
 [ext_resource type="PackedScene" uid="uid://cffrsvtj3pbme" path="res://spirits/bosses/bullet/spawner.tscn" id="29_j7vgi"]
-[ext_resource type="PackedScene" uid="uid://bd4qvw0srslqr" path="res://player/abilities/wand/bullet/electro_ball.tscn" id="30_inp7a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("1_m0cxt")
@@ -893,10 +892,6 @@ environment = SubResource("Environment_2tavo")
 
 [node name="Spawner" parent="." instance=ExtResource("29_j7vgi")]
 position = Vector2(552, 144)
-loaded_bullet = ExtResource("30_inp7a")
-number_of_bullets = 6
-total_spread_degrees = 360
-rotate_speed = 50
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
