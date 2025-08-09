@@ -54,8 +54,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	#if not is_on_floor():
+		#velocity += get_gravity() * delta
+	if Input.is_action_pressed("jump"):
+		position.y -= 10;
+	if Input.is_action_pressed("ui_down"):
+		position.y += 10;
+
+	#rmove if needed
 
 	if enabled:
 		if Input.is_action_just_pressed(&"jump") and is_on_floor():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=61 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://p28kdkphpqkx" path="res://assets/enviroment/nature/grass.png" id="1_h8lre"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/effects/wand_charge/glow.png" id="27_2tavo"]
 [ext_resource type="Texture2D" uid="uid://dyewwtvqwd0aj" path="res://assets/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
 [ext_resource type="PackedScene" uid="uid://cffrsvtj3pbme" path="res://spirits/bosses/bullet/spawner.tscn" id="29_j7vgi"]
+[ext_resource type="PackedScene" uid="uid://bd4qvw0srslqr" path="res://player/abilities/wand/bullet/electro_ball.tscn" id="30_inp7a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("1_m0cxt")
@@ -567,6 +568,7 @@ script = ExtResource("3_llyeo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -576,7 +578,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("28_k8wd0")
 
-[node name="Trees" type="Node" parent="."]
+[node name="Trees" type="Node2D" parent="."]
+visible = false
 
 [node name="Tree" type="Sprite2D" parent="Trees"]
 position = Vector2(93, 148)
@@ -595,6 +598,7 @@ position = Vector2(481, 166)
 texture = ExtResource("4_llyeo")
 
 [node name="MiscCollision" type="StaticBody2D" parent="."]
+visible = false
 collision_mask = 71
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiscCollision"]
@@ -706,6 +710,7 @@ one_way_collision = true
 polygon = PackedVector2Array(1544, 160, 1592, 112, 1672, 112, 1688, 96, 1768, 96, 1784, 112, 1864, 112, 1912, 160)
 
 [node name="Interactables" type="Node2D" parent="."]
+visible = false
 
 [node name="Blockade" parent="Interactables" instance=ExtResource("5_mad0u")]
 position = Vector2(395, 196)
@@ -878,9 +883,11 @@ scale = Vector2(5.25, 0.421875)
 visible = false
 
 [node name="Noose" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(300, 200.06)
 
 [node name="Glow" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.490196, 0.184314, 0.529412, 0.501961)
 texture_filter = 2
 material = SubResource("CanvasItemMaterial_k8wd0")
@@ -891,7 +898,12 @@ texture = ExtResource("27_2tavo")
 environment = SubResource("Environment_2tavo")
 
 [node name="Spawner" parent="." instance=ExtResource("29_j7vgi")]
-position = Vector2(552, 144)
+position = Vector2(575, 80)
+bullet_scene = ExtResource("30_inp7a")
+rotate_speed = 10
+shoot_timer_wait_time = 1
+spawn_point_count = 3
+radius = 180
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
@@ -900,3 +912,4 @@ position = Vector2(552, 144)
 [editable path="Scenarios/ScenarioRiver"]
 [editable path="Scenarios/ScenarioShrine"]
 [editable path="Water/Water"]
+[editable path="Spawner"]
