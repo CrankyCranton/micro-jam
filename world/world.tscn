@@ -898,12 +898,12 @@ texture = ExtResource("27_2tavo")
 environment = SubResource("Environment_2tavo")
 
 [node name="Spawner" parent="." instance=ExtResource("29_j7vgi")]
-position = Vector2(575, 80)
+position = Vector2(114, 104)
 bullet_scene = ExtResource("30_inp7a")
-rotate_speed = 10
+rotate_speed = 100
 shoot_timer_wait_time = 1
-spawn_point_count = 3
-radius = 180
+spawn_point_count = 10
+radius = 360
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
