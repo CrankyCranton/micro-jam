@@ -1,31 +1,49 @@
 class_name Spawner extends Node2D
 
+@onready var spawn:PackedScene = preload("res://spawn.tscn")
+@export var bullet_scene:PackedScene
+@onready var shoot_timer:Timer = $ShootTimer
 
-@export var loaded_bullet:PackedScene
-
-@export_group("bullet_characteristics")
-@export var number_of_bullets:int
-@export var total_spread_degrees:int
-
-@export_group("spawner_characteristics")
+@export_group("bullet")
 @export var rotate_speed:int
+@export var shoot_timer_wait_time:int
 
-func _ready() -> void:
-	spawn()
+@export_group("spawning")
+@export var spawn_point_count:int
+@export var radius:int
 
-func _process(delta: float) -> void:
+func _ready():
+	var step = 2 * PI / spawn_point_count
+	print(global_position)
+	
+	var pos:Vector2
+	for i in range(spawn_point_count):
+		var spawn_point = Node2D.new()
+		pos = Vector2(radius, 0).rotated(step * i)
+		spawn_point.rotation = pos.angle()
+		%Bullets.add_child(spawn_point)
+
+	await get_tree().create_timer(1).timeout
+	for i in %Bullets.get_children():
+		i.position = pos
+		if i.position != global_position:
+			i.global_position = pos
+			print("noo")
+		print(i.global_position)
+
+	shoot_timer.wait_time = shoot_timer_wait_time
+	shoot_timer.start()
+
+
+func _process(delta):
 	var new_rotation = rotation_degrees + rotate_speed * delta
 	rotation_degrees = fmod(new_rotation, 360)
+	
 
-	if Input.is_action_just_pressed("ui_accept"):
-		spawn()
-
-func spawn():
-	for i in number_of_bullets:
-		print(i)
-		var bullet:Area2D = loaded_bullet.instantiate()
-		get_parent().call_deferred("add_child",bullet)
-
-		var angle:int = total_spread_degrees/number_of_bullets
-		bullet.global_rotation_degrees = (global_rotation_degrees + angle * i) - (number_of_bullets * 8)
-		bullet.global_position = global_position.rotated(deg_to_rad(angle))
+func _on_shoot_timer_timeout() -> void:
+	for s in %Bullets.get_children():
+		var bullet = bullet_scene.instantiate()
+		get_tree().root.add_child(bullet)
+		bullet.position = s.global_position
+		bullet.rotation = s.global_rotation
+	shoot_timer.start()
