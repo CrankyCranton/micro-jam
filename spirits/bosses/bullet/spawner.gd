@@ -12,33 +12,20 @@ class_name Spawner extends Node2D
 @export var spawn_point_count:int
 @export var radius:int
 
-func _ready():
-	var step = 2 * PI / spawn_point_count
-	print(global_position)
-	
-	var pos:Vector2
-	for i in range(spawn_point_count):
-		var spawn_point = Node2D.new()
-		pos = Vector2(radius, 0).rotated(step * i)
-		spawn_point.rotation = pos.angle()
+func _ready() -> void:
+	for i in spawn_point_count:
+		var spawn_point:Node2D = spawn.instantiate()
+		var Position:Vector2 = (Vector2(cos(i), sin(i)) * radius) 
+		spawn_point.global_position = Position
+		spawn_point.global_rotation = Position.angle()
 		%Bullets.add_child(spawn_point)
-
-	await get_tree().create_timer(1).timeout
-	for i in %Bullets.get_children():
-		i.position = pos
-		if i.position != global_position:
-			i.global_position = pos
-			print("noo")
-		print(i.global_position)
-
+	
 	shoot_timer.wait_time = shoot_timer_wait_time
 	shoot_timer.start()
 
-
-func _process(delta):
-	var new_rotation = rotation_degrees + rotate_speed * delta
-	rotation_degrees = fmod(new_rotation, 360)
-	
+func _physics_process(delta: float) -> void:
+	var new_rotation = %Bullets.rotation_degrees + rotate_speed * delta
+	%Bullets.rotation_degrees = fmod(new_rotation, 360)
 
 func _on_shoot_timer_timeout() -> void:
 	for s in %Bullets.get_children():

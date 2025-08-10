@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=60 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Texture2D" uid="uid://p28kdkphpqkx" path="res://assets/enviroment/nature/grass.png" id="1_h8lre"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://x3eictprvv8v" path="res://assets/enviroment/obstacles/boat_redesign.png" id="3_h8lre"]
 [ext_resource type="Script" uid="uid://cpg1j0fufwcq7" path="res://world/world.gd" id="3_llyeo"]
 [ext_resource type="Texture2D" uid="uid://bix2h2g1irty1" path="res://assets/enviroment/decorations.png" id="4_fyhu2"]
-[ext_resource type="Texture2D" uid="uid://du7lqp3jnedic" path="res://assets/enviroment/nature/tree.png" id="4_llyeo"]
+[ext_resource type="Texture2D" uid="uid://dd3fuj1474c45" path="res://assets/enviroment/nature/tree.png" id="4_llyeo"]
 [ext_resource type="PackedScene" uid="uid://ce17h080iour3" path="res://world/scenario/scenario.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://bibr0dnr2e6t8" path="res://world/scenario/spirit_spawn_point/spirit_spawn_point.tscn" id="5_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://bk0bq4lwt3lrm" path="res://world/blockade.tscn" id="5_mad0u"]
@@ -27,9 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://daus27g6kp0go" path="res://world/scenario/barrier/barrier.tscn" id="19_p2iis"]
 [ext_resource type="PackedScene" uid="uid://d3aik1ux28bp5" path="res://player/abilities/dash/dash.tscn" id="21_k8wd0"]
 [ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/effects/wand_charge/glow.png" id="27_2tavo"]
-[ext_resource type="Texture2D" uid="uid://dyewwtvqwd0aj" path="res://assets/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
+[ext_resource type="Texture2D" uid="uid://b6txkfeshabv3" path="res://assets/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
 [ext_resource type="PackedScene" uid="uid://cffrsvtj3pbme" path="res://spirits/bosses/bullet/spawner.tscn" id="29_j7vgi"]
-[ext_resource type="PackedScene" uid="uid://bd4qvw0srslqr" path="res://player/abilities/wand/bullet/electro_ball.tscn" id="30_inp7a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("1_m0cxt")
@@ -899,11 +898,9 @@ environment = SubResource("Environment_2tavo")
 
 [node name="Spawner" parent="." instance=ExtResource("29_j7vgi")]
 position = Vector2(114, 104)
-bullet_scene = ExtResource("30_inp7a")
-rotate_speed = 100
-shoot_timer_wait_time = 1
+rotate_speed = 1
 spawn_point_count = 10
-radius = 360
+radius = 20
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
