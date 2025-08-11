@@ -10,12 +10,14 @@ class_name Spawner extends Node2D
 
 @export_group("spawning")
 @export var spawn_point_count:int
-@export var radius:int
+@export var increment:int
 
 func _ready() -> void:
-	for i in spawn_point_count:
+	var step:float = TAU / spawn_point_count
+	
+	for i in range(spawn_point_count):
 		var spawn_point:Node2D = spawn.instantiate()
-		var Position:Vector2 = (Vector2(cos(i), sin(i)) * radius) 
+		var Position:Vector2 = Vector2(increment,0).rotated(step * i)
 		spawn_point.global_position = Position
 		spawn_point.global_rotation = Position.angle()
 		%Bullets.add_child(spawn_point)

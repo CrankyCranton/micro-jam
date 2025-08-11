@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://cba3hmbl8n3c" path="res://player/camera.gd" id="3_hg6s5"]
-[ext_resource type="Texture2D" uid="uid://4t8ljf3r7ayj" path="res://assets/characters/natsuki.png" id="3_kb6p2"]
+[ext_resource type="Texture2D" uid="uid://04trcewiahi0" path="res://assets/characters/natsuki.png" id="3_kb6p2"]
 [ext_resource type="Script" uid="uid://f2ik8l16afl6" path="res://player/abilities/ability_manager.gd" id="4_yw30f"]
 [ext_resource type="PackedScene" uid="uid://dhtbqtyyhj8m3" path="res://player/hud/corruption_meter.tscn" id="5_boad6"]
 [ext_resource type="PackedScene" uid="uid://bl7mgcfb0uxdx" path="res://player/abilities/wand/wand.tscn" id="6_8t03j"]
