@@ -897,8 +897,11 @@ texture = ExtResource("27_2tavo")
 environment = SubResource("Environment_2tavo")
 
 [node name="Spawner" parent="." instance=ExtResource("29_j7vgi")]
-position = Vector2(114, 104)
-rotate_speed = 10000
+position = Vector2(408, 8)
+rotate_speed = 90
+shoot_timer_wait_time = 0.2
+spawn_point_count = 6
+radius = 10
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 

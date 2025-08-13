@@ -8,7 +8,6 @@ position = Vector2(86, 95)
 script = ExtResource("1_esckd")
 bullet_scene = ExtResource("2_wo88y")
 rotate_speed = 1
-shoot_timer_wait_time = 1
 spawn_point_count = 3
 metadata/_edit_group_ = true
 

@@ -9,7 +9,7 @@ class_name electroBall extends Bullet
 
 func _physics_process(delta: float) -> void:
 	move(delta)
-	speed = 200
+	speed = 200 #ignore matey
 
 func _on_hurt_box_dealt_damage(_target: HitBox, damage: int) -> void:
 	self.damage -= damage
