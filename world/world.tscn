@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=62 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Shader" uid="uid://cl1ghs6h176a6" path="res://world/pallete_swap_2.gdshader" id="1_m0cxt"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://daus27g6kp0go" path="res://world/scenario/barrier/barrier.tscn" id="19_p2iis"]
 [ext_resource type="PackedScene" uid="uid://d3aik1ux28bp5" path="res://player/abilities/dash/dash.tscn" id="21_k8wd0"]
 [ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/art/effects/wand_charge/glow.png" id="27_2tavo"]
+[ext_resource type="AudioStream" uid="uid://ctsnmtlmaeumo" path="res://assets/music/tsubaki-soothing-calm-piano-music-144414.mp3" id="27_k8wd0"]
 [ext_resource type="Texture2D" uid="uid://k5kfyowvjxdu" path="res://assets/art/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
@@ -629,11 +630,11 @@ shape = SubResource("RectangleShape2D_ocfjn")
 
 [node name="Steps" type="CollisionPolygon2D" parent="TempMiscCollision"]
 position = Vector2(-16, 0)
-polygon = PackedVector2Array(238, 184, 238, 200, 262, 200, 243, 184)
+polygon = PackedVector2Array(238, 183, 238, 200, 262, 200, 243, 183)
 
 [node name="Steps" type="Sprite2D" parent="TempMiscCollision/Steps"]
 material = SubResource("ShaderMaterial_ysn08")
-position = Vector2(254, 192)
+position = Vector2(254, 191)
 texture = ExtResource("7_llyeo")
 
 [node name="Boat" type="CollisionShape2D" parent="TempMiscCollision"]
@@ -901,6 +902,10 @@ texture = ExtResource("27_2tavo")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2tavo")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_k8wd0")
+autoplay = true
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 

@@ -32,6 +32,7 @@ var direction := 0.0:
 @onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
 @onready var hit_box: HitBox = $HitBox
 @onready var animation:AnimationPlayer = $AnimationPlayer
+@onready var footsteps_sound: AudioStreamPlayer2D = $FootstepSound
 @onready var corruption := 0:
 	set(value):
 		corruption = value
@@ -57,16 +58,20 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-
 	if enabled:
 		if Input.is_action_just_pressed(&"jump") and is_on_floor():
 			velocity.y = -JUMP_VELOCITY
 		var new_direction = Input.get_axis(&"left", &"right")
+		var old_direction := direction
 		direction = new_direction if absf(new_direction) > DEADZONE else 0.0
+		if direction != 0.0 and is_on_floor():
+			if old_direction == 0.0 or not footsteps_sound.playing:
+				footsteps_sound.play()
 
 		var traction := TRACTION if is_on_floor() else AIR_TRACTION
 		velocity.x = lerpf(velocity.x , direction * speed, traction * delta)
 		scan_interactables()
+
 
 	move_and_slide()
 
