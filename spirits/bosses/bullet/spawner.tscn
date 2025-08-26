@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bd4qvw0srslqr" path="res://player/abilities/wand/bullet/electro_ball.tscn" id="2_wo88y"]
 
 [node name="Spawner" type="Node2D"]
-position = Vector2(86, 95)
 script = ExtResource("1_esckd")
 bullet_scene = ExtResource("2_wo88y")
 rotate_speed = 1

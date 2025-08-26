@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://36t364seh31a"]
+[gd_scene load_steps=3 format=3 uid="uid://36t364seh31a"]
 
 [ext_resource type="Script" uid="uid://csoyxvoowflms" path="res://spirits/bosses/Forlorn/forlorn.gd" id="1_hkheg"]
+[ext_resource type="PackedScene" uid="uid://cffrsvtj3pbme" path="res://spirits/bosses/bullet/spawner.tscn" id="2_3fn22"]
 
-[node name="Forlorn" type="CharacterBody2D"]
+[node name="Forlorn" type="Area2D"]
 script = ExtResource("1_hkheg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Spawner" parent="." instance=ExtResource("2_3fn22")]

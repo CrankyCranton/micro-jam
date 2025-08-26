@@ -1,28 +1,20 @@
-extends Area2D
+class_name Water extends Area2D
 
-var player:Player
 
-var old_speed:float
+@export var speed_modifier := 0.5
 
-@export var new_speed:float
 
 func _on_body_entered(body: Node2D) -> void:
-	player = body
-	old_speed = player.SPEED
-	var pos:Vector2 = player.global_position
-
-	enable_particles(pos)
-
-	player.SPEED = new_speed
+	body.speed *= speed_modifier
+	spawn_splash(to_local(body.global_position).x)
 
 
 func _on_body_exited(body: Node2D) -> void:
-	player = body
-	player.SPEED = old_speed
+	body.speed /= speed_modifier
 
-	var pos:Vector2 = player.global_position + Vector2(0,20)
-	enable_particles(pos)
 
-func enable_particles(pos:Vector2):
-	$GPUParticles2D.global_position = pos
-	$GPUParticles2D.emitting = true
+func spawn_splash(x: float) -> void:
+	const SPLASH := preload("res://world/water/splash.tscn")
+	var splash: GPUParticles2D = SPLASH.instantiate()
+	splash.position.x = x
+	add_child(splash)

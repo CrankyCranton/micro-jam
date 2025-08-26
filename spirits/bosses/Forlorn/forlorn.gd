@@ -1,1 +1,1 @@
-extends CharacterBody2D
+class_name Forlorn extends Area2D

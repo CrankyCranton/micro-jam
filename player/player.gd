@@ -4,13 +4,13 @@ class_name Player extends CharacterBody2D
 signal fully_corrupted
 signal ability_gained(ABILITY: PackedScene)
 
-var SPEED:float = 160.0
 const JUMP_VELOCITY := 320.0
 const TRACTION := 11.0
 const AIR_TRACTION := 4.0
 const DEADZONE := 0.2
 const MAX_CORRUPTION := 50
 
+var speed := 64.0
 var interactable: Interactable = null
 var spiritual_chains: SpiritualChains
 var resurrection: Resurrection
@@ -54,14 +54,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	#if not is_on_floor():
-		#velocity += get_gravity() * delta
-	if Input.is_action_pressed("jump"):
-		position.y -= 10;
-	if Input.is_action_pressed("ui_down"):
-		position.y += 10;
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 
-	#rmove if needed
 
 	if enabled:
 		if Input.is_action_just_pressed(&"jump") and is_on_floor():
@@ -70,10 +65,11 @@ func _physics_process(delta: float) -> void:
 		direction = new_direction if absf(new_direction) > DEADZONE else 0.0
 
 		var traction := TRACTION if is_on_floor() else AIR_TRACTION
-		velocity.x = lerpf(velocity.x , direction * SPEED, traction * delta)
+		velocity.x = lerpf(velocity.x , direction * speed, traction * delta)
 		scan_interactables()
 
 	move_and_slide()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact") and interactable != null:
@@ -161,9 +157,9 @@ func _on_hit_box_died() -> void:
 	die()
 
 
-
 func _on_ability_executed(ability_name):
 	%dash_hud.find_child(ability_name)
+
 
 func _on_hit_box_health_decreased(health: int) -> void:
 	animation.play("hit")
@@ -171,6 +167,7 @@ func _on_hit_box_health_decreased(health: int) -> void:
 	const MAX_HEALTH_BAR_VALUE := 46
 	health_bar.value = remap(health, 0, hit_box.max_health,
 			MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)
+
 
 func _on_hit_box_health_increased(health: int) -> void:
 	const MIN_HEALTH_BAR_VALUE := 13

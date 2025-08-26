@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cj5gebroaw03a"]
 
 [ext_resource type="Script" uid="uid://icyrnq6l5knb" path="res://main.gd" id="1_ig7tw"]
-[ext_resource type="Theme" uid="uid://crqac2uj30rsr" path="res://assets/theme.theme" id="1_lquwl"]
+[ext_resource type="Theme" uid="uid://crqac2uj30rsr" path="res://assets/art/theme.theme" id="1_lquwl"]
 [ext_resource type="VideoStream" uid="uid://cbf6q1buee8gr" path="res://dialogue/first_cutscene.ogv" id="2_0xm2m"]
 [ext_resource type="AudioStream" uid="uid://dxrya28t83ftu" path="res://assets/sfx/krank_sounds/water/anchor_action.wav" id="3_h2yge"]
 [ext_resource type="AudioStream" uid="uid://bcov1ne5jeknq" path="res://assets/sfx/Metal Hit.mp3" id="4_1bvp3"]
