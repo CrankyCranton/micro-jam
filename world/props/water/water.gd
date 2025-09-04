@@ -14,7 +14,7 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func spawn_splash(x: float) -> void:
-	const SPLASH := preload("res://world/water/splash.tscn")
+	const SPLASH := preload("res://world/props/water/splash.tscn")
 	var splash: GPUParticles2D = SPLASH.instantiate()
 	splash.position.x = x
 	add_child(splash)

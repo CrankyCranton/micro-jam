@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=20 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Shader" uid="uid://c1cwfwmljsk7s" path="res://assets/art/effects/shaders/hit.gdshader" id="1_2ieo8"]
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://mfli6yt0clbx" path="res://assets/art/hud/health_bar_bg.png" id="6_rgyib"]
 [ext_resource type="Texture2D" uid="uid://bqmjo2rjrh4s7" path="res://assets/art/hud/health_bar_fill.png" id="7_rgyib"]
 [ext_resource type="AudioStream" uid="uid://f8o8iql380yn" path="res://misc/hurt_2.wav" id="11_2ieo8"]
-[ext_resource type="Texture2D" uid="uid://bu670cg0llc0g" path="res://assets/art/effects/wand_charge/energy_ball.png" id="12_yllr7"]
 [ext_resource type="AudioStream" uid="uid://ssjwvcxcodm0" path="res://assets/sfx/rustling-grass-2-101283.mp3" id="13_yllr7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ieo8"]
@@ -140,7 +139,6 @@ position = Vector2(0, -8)
 texture = ExtResource("3_kb6p2")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_oul6g")
 
@@ -157,7 +155,6 @@ editor_draw_drag_margin = true
 script = ExtResource("3_hg6s5")
 
 [node name="HitBox" parent="." groups=["players"] instance=ExtResource("2_rkbax")]
-visible = false
 max_health = 5
 
 [node name="CollisionShape" parent="HitBox" index="0"]
@@ -168,7 +165,6 @@ shape = SubResource("CapsuleShape2D_rgyib")
 wait_time = 3.0
 
 [node name="Interactor" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 128
 monitorable = false
@@ -212,19 +208,6 @@ value = 46.0
 fill_mode = 3
 texture_under = ExtResource("6_rgyib")
 texture_progress = ExtResource("7_rgyib")
-
-[node name="dash_hud" type="HBoxContainer" parent="HUD"]
-unique_name_in_owner = true
-visible = false
-offset_right = 40.0
-offset_bottom = 24.0
-
-[node name="dash" type="TextureRect" parent="HUD/dash_hud"]
-layout_mode = 2
-texture = ExtResource("12_yllr7")
-
-[node name="zap" type="TextureRect" parent="HUD/dash_hud"]
-layout_mode = 2
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_2ieo8")

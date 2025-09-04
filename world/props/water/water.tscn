@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dhqfevob616ui"]
 
-[ext_resource type="Script" uid="uid://c8itgg6x7qkvu" path="res://world/water/water.gd" id="1_nl8eq"]
+[ext_resource type="Script" uid="uid://c8itgg6x7qkvu" path="res://world/props/water/water.gd" id="1_nl8eq"]
 [ext_resource type="Shader" uid="uid://krkibu8qrggw" path="res://world/water.gdshader" id="2_s33lq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_s33lq"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cmukoojdv2l3b"]
 
-[ext_resource type="Script" uid="uid://leobgrpktxix" path="res://world/water/splash.gd" id="1_xcs2q"]
+[ext_resource type="Script" uid="uid://leobgrpktxix" path="res://world/props/water/splash.gd" id="1_xcs2q"]
 
 [sub_resource type="Gradient" id="Gradient_s33lq"]
 offsets = PackedFloat32Array(1)
