@@ -1,8 +1,7 @@
-[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://b7bj3suamem1g"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://b7bj3suamem1g"]
 
 [ext_resource type="Texture2D" uid="uid://dvg4uujnmv34n" path="res://assets/art/enviroment/props/buildings/house.png" id="1_tobf7"]
 [ext_resource type="Texture2D" uid="uid://qterjha5nx6d" path="res://assets/art/enviroment/nature/grass_tiles.png" id="2_02pe3"]
-[ext_resource type="Texture2D" uid="uid://bix2h2g1irty1" path="res://assets/art/enviroment/props/decorations.png" id="3_u6ior"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n43jm"]
 texture = ExtResource("1_tobf7")
@@ -129,25 +128,6 @@ texture = ExtResource("2_02pe3")
 4:2/0/terrains_peering_bit/bottom_left_corner = 0
 4:2/0/terrains_peering_bit/top_right_corner = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ljjpf"]
-texture = ExtResource("3_u6ior")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-
 [resource]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 71
@@ -156,5 +136,4 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 navigation_layer_0/layers = 1
 sources/2 = SubResource("TileSetAtlasSource_66clw")
-sources/3 = SubResource("TileSetAtlasSource_ljjpf")
 sources/0 = SubResource("TileSetAtlasSource_n43jm")
