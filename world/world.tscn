@@ -1,21 +1,21 @@
-[gd_scene load_steps=59 format=4 uid="uid://catfpb4icauq2"]
+[gd_scene load_steps=60 format=4 uid="uid://catfpb4icauq2"]
 
 [ext_resource type="PackedScene" uid="uid://4iymnecmxam5" path="res://player/player.tscn" id="1_6xmxd"]
 [ext_resource type="Shader" uid="uid://cl1ghs6h176a6" path="res://world/pallete_swap_2.gdshader" id="1_m0cxt"]
-[ext_resource type="Texture2D" uid="uid://mfli6yt0clbx" path="res://assets/art/hud/health_bar_bg.png" id="2_m0cxt"]
+[ext_resource type="Texture2D" uid="uid://kjhgp84dsqxn" path="res://assets/art/hud/health_bar_bg.png" id="2_m0cxt"]
 [ext_resource type="PackedScene" uid="uid://dfbleu5p60l3u" path="res://interactable/dialogable/gravestone/gravestone.tscn" id="3_dqqhb"]
 [ext_resource type="Script" uid="uid://cpg1j0fufwcq7" path="res://world/world.gd" id="3_llyeo"]
-[ext_resource type="Texture2D" uid="uid://bix2h2g1irty1" path="res://assets/art/enviroment/props/decorations.png" id="4_fyhu2"]
+[ext_resource type="Texture2D" uid="uid://c7cl3ov7xl63y" path="res://assets/art/enviroment/props/decorations.png" id="4_fyhu2"]
 [ext_resource type="PackedScene" uid="uid://ce17h080iour3" path="res://world/scenario/scenario.tscn" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://bibr0dnr2e6t8" path="res://world/scenario/spirit_spawn_point/spirit_spawn_point.tscn" id="5_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://dl08he4ulo8t2" path="res://world/props/tree.tscn" id="5_j7vgi"]
 [ext_resource type="PackedScene" uid="uid://bk0bq4lwt3lrm" path="res://world/blockade.tscn" id="5_mad0u"]
 [ext_resource type="PackedScene" uid="uid://dkapuo0hyc6ym" path="res://interactable/dialogable/npc/shady_stranger/shady_stranger.tscn" id="7_fyhu2"]
-[ext_resource type="Texture2D" uid="uid://bd4fxmb7o0m0g" path="res://assets/art/enviroment/props/steps.png" id="7_llyeo"]
-[ext_resource type="Texture2D" uid="uid://klg0msujmu0t" path="res://assets/art/characters/fisher.png" id="10_3ljsx"]
+[ext_resource type="Texture2D" uid="uid://cfsaibnm81crb" path="res://assets/art/enviroment/props/steps.png" id="7_llyeo"]
+[ext_resource type="Texture2D" uid="uid://dhxdh1uebrf7f" path="res://assets/art/characters/fisher.png" id="10_3ljsx"]
 [ext_resource type="PackedScene" uid="uid://b0w04lk0mmumo" path="res://world/props/gate/gate.tscn" id="10_fyhu2"]
 [ext_resource type="PackedScene" uid="uid://diw2ahd7t46gw" path="res://interactable/dialogable/npc/npc.tscn" id="10_j34ew"]
-[ext_resource type="Texture2D" uid="uid://caylb4g3otc8y" path="res://assets/art/characters/monk.png" id="11_gi7ib"]
+[ext_resource type="Texture2D" uid="uid://dy7unxnafhisv" path="res://assets/art/characters/monk.png" id="11_gi7ib"]
 [ext_resource type="PackedScene" uid="uid://dhqfevob616ui" path="res://world/props/water/water.tscn" id="12_o1net"]
 [ext_resource type="PackedScene" uid="uid://cmiih1f6mjgh5" path="res://misc/menus/pause/pause_screen.tscn" id="14_dqqhb"]
 [ext_resource type="Script" uid="uid://c4wlca85qi4fe" path="res://world/scenario/barrier/barrier.gd" id="15_ysn08"]
@@ -23,10 +23,11 @@
 [ext_resource type="PackedScene" uid="uid://dvhuaaqve01vv" path="res://player/abilities/sacrifice/sacrifice.tscn" id="19_aysyn"]
 [ext_resource type="PackedScene" uid="uid://daus27g6kp0go" path="res://world/scenario/barrier/barrier.tscn" id="19_p2iis"]
 [ext_resource type="PackedScene" uid="uid://d3aik1ux28bp5" path="res://player/abilities/dash/dash.tscn" id="21_k8wd0"]
-[ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/art/effects/wand_charge/glow.png" id="27_2tavo"]
-[ext_resource type="AudioStream" uid="uid://cu24cwvg8tda5" path="res://assets/music/night-ambience-17064.mp3" id="27_j7vgi"]
-[ext_resource type="AudioStream" uid="uid://ctsnmtlmaeumo" path="res://assets/music/tsubaki-soothing-calm-piano-music-144414.mp3" id="27_k8wd0"]
-[ext_resource type="Texture2D" uid="uid://k5kfyowvjxdu" path="res://assets/art/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
+[ext_resource type="Texture2D" uid="uid://c5mxxx3j28re2" path="res://assets/art/effects/wand_charge/glow.png" id="27_2tavo"]
+[ext_resource type="AudioStream" uid="uid://c612l5x4p2uhg" path="res://assets/music/night-ambience-17064.mp3" id="27_j7vgi"]
+[ext_resource type="AudioStream" uid="uid://y2spco41rrt" path="res://assets/music/tsubaki-soothing-calm-piano-music-144414.mp3" id="27_k8wd0"]
+[ext_resource type="PackedScene" uid="uid://cffrsvtj3pbme" path="res://spirits/bosses/bullet/spawner.tscn" id="28_j7vgi"]
+[ext_resource type="Texture2D" uid="uid://cfl57frqw8o21" path="res://assets/art/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0cxt"]
 shader = ExtResource("1_m0cxt")
@@ -874,6 +875,9 @@ autoplay = true
 [node name="Ambience" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("27_j7vgi")
 autoplay = true
+
+[node name="Spawner" parent="." instance=ExtResource("28_j7vgi")]
+position = Vector2(482, 118)
 
 [connection signal="ability_gained" from="Player" to="PauseScreen" method="display_ability"]
 
