@@ -74,7 +74,7 @@ func _execute() -> void:
 
 #region Methods
 func start_explode_chance(time_range: float) -> void:
-	const CHANCE := 0.1
+	const CHANCE := 0.15
 	if randf() <= CHANCE:
 		var time := randf_range(0.0, time_range)
 		explode_delay.start(time)
