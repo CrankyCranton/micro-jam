@@ -12,13 +12,13 @@ class_name Bullet extends Area2D
 
 		collision_shape.shape = shape
 		hurt_box.collision_shape.shape = shape
-		visibility_notifier.rect.position = -shape.radius
+		visibility_notifier.rect.position = Vector2.ONE * -shape.radius
 		visibility_notifier.rect.size = Vector2.ONE * shape.radius * 2.0
 @export var total_damage: int:
 	set(value):
 		total_damage = value
 		damage = total_damage
-@export var wall_damage := 30
+@export var wall_slowing := 30
 #endregion
 
 var damage: float:
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 func move(delta: float) -> void:
 	position += transform.x * speed * delta
 	if get_overlapping_bodies().size() > 0:
-		damage -= wall_damage * delta
+		damage -= wall_slowing * delta
 
 
 func delete() -> void:

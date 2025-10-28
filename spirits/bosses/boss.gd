@@ -1,13 +1,23 @@
 class_name Boss extends HitBox
 
 
+#region Members
 @export var rampage_hp := 300
 
-@onready var hit_box: HitBox = $HitBox
+#region Onready
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var health_bar: ProgressBar = %HealthBar
+#endregion
+#endregion
 
 
 #region Functions
+func _ready() -> void:
+	health_bar.max_value = max_health
+	health_bar.value = health
+
+
+#region Methods
 func activate() -> void:
 	animation_tree.active = true
 
@@ -20,9 +30,9 @@ func spawn_bullet(bullet_transform: Transform2D, BULLET: PackedScene) -> void:
 
 func spawn_bullet_at_node(node: Node2D, BULLET: PackedScene) -> void:
 	spawn_bullet(node.global_transform, BULLET)
+#endregion
 
 
-func die() -> void:
-	died.emit()
-	queue_free()
+func _on_health_changed(_damage: int) -> void:
+	health_bar.value = health
 #endregion

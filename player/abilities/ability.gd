@@ -9,6 +9,11 @@ signal executed(ability_name: StringName)
 
 
 #region Functions
+func _ready() -> void:
+	if owner != null:
+		_initialize()
+
+
 func _input(event: InputEvent) -> void:
 	if action != &"" and event.is_action_pressed(action):
 		_execute()
@@ -16,5 +21,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _execute() -> void:
+	pass
+
+
+func _initialize() -> void:
 	pass
 #endregion

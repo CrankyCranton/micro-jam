@@ -138,6 +138,7 @@ func add_ability(ability_info: AbilityInfo) -> void:
 	var ability: Ability = ability_info.scene.instantiate()
 	ability_manager.add_child(ability)
 	ability.owner = self
+	ability._initialize()
 
 	# Perhaps move into the ability scripts
 	if ability is SpiritualChains:

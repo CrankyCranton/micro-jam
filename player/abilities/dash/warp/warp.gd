@@ -1,4 +1,4 @@
-class_name DimensionalDash extends Ability
+class_name Warp extends Ability
 
 
 #region Members
@@ -9,8 +9,7 @@ const MARGIN := 1.0
 
 
 #region Functions
-func _ready() -> void:
-	await owner.ready
+func _initialize() -> void:
 	projector.shape = owner.collision_shape.shape.duplicate()
 	projector.shape.radius -= MARGIN / 2.0
 	projector.shape.height -= MARGIN
@@ -25,4 +24,6 @@ func _execute() -> void:
 	var dash_length := projector.get_closest_collision_safe_fraction() \
 			* projector.target_position.length()
 	owner.position.x += dash_length * owner.last_direction
+
+
 #endregion

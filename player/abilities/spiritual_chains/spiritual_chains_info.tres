@@ -7,5 +7,5 @@
 script = ExtResource("1_iokuo")
 scene = ExtResource("1_lty1k")
 name = "Spiritual Chains"
-instructions = "Press [img]res://assets/inputs_e.png[/img] to enslave a nearby NPC, at the cost of [color=red]corruption.[/color]"
+instructions = "Press [img]res://assets/art/inputs_e.png[/img] to enslave a nearby NPC, at the cost of [color=red]corruption.[/color]"
 metadata/_custom_type_script = "uid://cnndtp0etyf4s"

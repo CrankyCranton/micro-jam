@@ -7,6 +7,6 @@
 script = ExtResource("1_o1146")
 scene = ExtResource("1_78gt5")
 name = "Warp"
-instructions = "Click [img]res://assets/hud/mouse_0003.png[/img] to warp forwards."
+instructions = "Click [img]res://assets/art/hud/mouse_0003.png[/img] to warp forwards."
 flavor_text = "With this newfound power, I will chase after you to the ends of the earth."
 metadata/_custom_type_script = "uid://cnndtp0etyf4s"

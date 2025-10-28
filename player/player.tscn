@@ -144,7 +144,7 @@ script = ExtResource("3_hg6s5")
 
 [node name="HitBox" parent="." groups=["players"] instance=ExtResource("2_rkbax")]
 visible = false
-max_health = 5
+max_health = 100
 
 [node name="CollisionShape" parent="HitBox" index="0"]
 position = Vector2(0, -8)
