@@ -1,16 +1,17 @@
-[gd_scene load_steps=19 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=20 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Shader" uid="uid://c1cwfwmljsk7s" path="res://assets/art/effects/shaders/hit.gdshader" id="1_2ieo8"]
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://cba3hmbl8n3c" path="res://player/camera_shake.gd" id="3_hg6s5"]
-[ext_resource type="Texture2D" uid="uid://c3y2y6i3k44j" path="res://assets/art/characters/natsuki.png" id="3_kb6p2"]
+[ext_resource type="Texture2D" uid="uid://clm4mfxqk7iww" path="res://assets/art/characters/natsuki.png" id="3_kb6p2"]
 [ext_resource type="Script" uid="uid://f2ik8l16afl6" path="res://player/abilities/ability_manager.gd" id="4_yw30f"]
 [ext_resource type="PackedScene" uid="uid://dhtbqtyyhj8m3" path="res://player/hud/corruption_meter.tscn" id="5_boad6"]
-[ext_resource type="Texture2D" uid="uid://bumcjhj7uyvao" path="res://assets/art/hud/health_bar_bg.png" id="6_rgyib"]
-[ext_resource type="Texture2D" uid="uid://dam4qs200qyma" path="res://assets/art/hud/health_bar_fill.png" id="7_rgyib"]
+[ext_resource type="Texture2D" uid="uid://kjhgp84dsqxn" path="res://assets/art/hud/health_bar_bg.png" id="6_rgyib"]
+[ext_resource type="PackedScene" uid="uid://bl7mgcfb0uxdx" path="res://player/abilities/wand/wand.tscn" id="7_ebec5"]
+[ext_resource type="Texture2D" uid="uid://dyjwpb5yylk7l" path="res://assets/art/hud/health_bar_fill.png" id="7_rgyib"]
 [ext_resource type="AudioStream" uid="uid://byqoi8gp3yfa2" path="res://assets/sfx/hurt_2.wav" id="11_ebec5"]
-[ext_resource type="AudioStream" uid="uid://cjdqlr8lb30u4" path="res://assets/sfx/rustling-grass-2-101283.mp3" id="13_yllr7"]
+[ext_resource type="AudioStream" uid="uid://5gwtenwkf1ld" path="res://assets/sfx/rustling-grass-2-101283.mp3" id="13_yllr7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ieo8"]
 shader = ExtResource("1_2ieo8")
@@ -165,6 +166,8 @@ shape = SubResource("RectangleShape2D_boad6")
 
 [node name="AbilityManager" type="Node2D" parent="."]
 script = ExtResource("4_yw30f")
+
+[node name="Wand" parent="AbilityManager" instance=ExtResource("7_ebec5")]
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_ebec5")

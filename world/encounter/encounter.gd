@@ -12,6 +12,8 @@ var player: Player
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 #endregion
 
+func _process(delta: float) -> void:
+	pass
 
 #region Functions
 func _ready() -> void:
@@ -49,6 +51,8 @@ func _on_body_entered(player: Player) -> void:
 	if not Global.met_shady_guy:
 		return
 	self.player = player
+	var speed_name = boss.name.to_lower() + "_speed"
+	player.actual_speed = player.get(speed_name)
 	start()
 #endregion
 #endregion

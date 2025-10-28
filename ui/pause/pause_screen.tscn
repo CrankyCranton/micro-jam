@@ -3,8 +3,8 @@
 [ext_resource type="Shader" uid="uid://dga53khja1ror" path="res://ui/blur.gdshader" id="1_87m8d"]
 [ext_resource type="Script" uid="uid://xvfqiespe6bf" path="res://ui/pause/pause_screen.gd" id="1_n85y8"]
 [ext_resource type="Theme" uid="uid://crqac2uj30rsr" path="res://assets/art/hud/theme.theme" id="3_3v3bi"]
-[ext_resource type="FontFile" uid="uid://d7apbamb60iy" path="res://assets/art/hud/fonts/Yuji_Syuku/YujiSyuku-Regular.ttf" id="4_d8yqp"]
-[ext_resource type="FontFile" uid="uid://bnlqe6h8aw6x2" path="res://assets/art/hud/fonts/Yuji_Boku/YujiBoku-Regular.ttf" id="5_d8yqp"]
+[ext_resource type="FontFile" uid="uid://kb75ps2p77tp" path="res://assets/art/hud/fonts/Yuji_Syuku/YujiSyuku-Regular.ttf" id="4_d8yqp"]
+[ext_resource type="FontFile" uid="uid://bctvqv0fwrej" path="res://assets/art/hud/fonts/Yuji_Boku/YujiBoku-Regular.ttf" id="5_d8yqp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5jsnu"]
 shader = ExtResource("1_87m8d")
@@ -341,8 +341,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("4_d8yqp")
-theme_override_fonts/bold_font = ExtResource("5_d8yqp")
 theme_override_fonts/italics_font = ExtResource("5_d8yqp")
+theme_override_fonts/bold_font = ExtResource("5_d8yqp")
 bbcode_enabled = true
 horizontal_alignment = 1
 

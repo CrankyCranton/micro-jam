@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://ic4hpa3picyu" path="res://world/props/boat/boat.tscn" id="6_gi7ib"]
 [ext_resource type="PackedScene" uid="uid://cy0kwt8yujqhd" path="res://world/props/lamp_post/lamp_post.tscn" id="7_2tavo"]
 [ext_resource type="PackedScene" uid="uid://dkapuo0hyc6ym" path="res://interactable/dialogable/npc/shady_stranger/shady_stranger.tscn" id="7_fyhu2"]
-[ext_resource type="Texture2D" uid="uid://cpsymmwxmvvjm" path="res://assets/art/enviroment/props/steps.png" id="7_llyeo"]
-[ext_resource type="Texture2D" uid="uid://vopfc8afilik" path="res://assets/art/characters/npcs/fisher.png" id="10_3ljsx"]
+[ext_resource type="Texture2D" uid="uid://cfsaibnm81crb" path="res://assets/art/enviroment/props/steps.png" id="7_llyeo"]
+[ext_resource type="Texture2D" uid="uid://c267dy68haiah" path="res://assets/art/characters/npcs/fisher.png" id="10_3ljsx"]
 [ext_resource type="PackedScene" uid="uid://b0w04lk0mmumo" path="res://world/props/gate/gate.tscn" id="10_fyhu2"]
 [ext_resource type="PackedScene" uid="uid://diw2ahd7t46gw" path="res://interactable/dialogable/npc/npc.tscn" id="10_j34ew"]
-[ext_resource type="Texture2D" uid="uid://cal5ljsxbv7hb" path="res://assets/art/characters/npcs/monk.png" id="11_gi7ib"]
+[ext_resource type="Texture2D" uid="uid://cjqfo0lvwjm0f" path="res://assets/art/characters/npcs/monk.png" id="11_gi7ib"]
 [ext_resource type="PackedScene" uid="uid://bk0bq4lwt3lrm" path="res://world/props/blockade/blockade.tscn" id="12_o1net"]
 [ext_resource type="PackedScene" uid="uid://cmiih1f6mjgh5" path="res://ui/pause/pause_screen.tscn" id="14_dqqhb"]
 [ext_resource type="PackedScene" uid="uid://ce17h080iour3" path="res://world/encounter/encounter.tscn" id="15_p2iis"]
@@ -19,9 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://36t364seh31a" path="res://spirits/bosses/forlorn/forlorn.tscn" id="16_aysyn"]
 [ext_resource type="Resource" uid="uid://b2a6g5tk7wgaf" path="res://player/abilities/dash/warp/warp_info.tres" id="16_o1net"]
 [ext_resource type="Shader" uid="uid://cqauo53sf4wil" path="res://assets/art/effects/shaders/god_rays.gdshader" id="23_0pnie"]
-[ext_resource type="AudioStream" uid="uid://clqy8cgmqpdo1" path="res://assets/music/night-ambience-17064.mp3" id="27_j7vgi"]
-[ext_resource type="AudioStream" uid="uid://cpv4enre8iv0b" path="res://assets/music/tsubaki-soothing-calm-piano-music-144414.mp3" id="27_k8wd0"]
-[ext_resource type="Texture2D" uid="uid://bvkklpxixyy85" path="res://assets/art/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
+[ext_resource type="AudioStream" uid="uid://c612l5x4p2uhg" path="res://assets/music/night-ambience-17064.mp3" id="27_j7vgi"]
+[ext_resource type="AudioStream" uid="uid://y2spco41rrt" path="res://assets/music/tsubaki-soothing-calm-piano-music-144414.mp3" id="27_k8wd0"]
+[ext_resource type="Texture2D" uid="uid://cfl57frqw8o21" path="res://assets/art/enviroment/nature/starlit_sky.png" id="28_k8wd0"]
 [ext_resource type="Shader" uid="uid://h8epr6q4hffm" path="res://assets/art/effects/shaders/glitch_effect_shader.gdshader" id="29_j7vgi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocfjn"]
@@ -42,13 +42,13 @@ size = Vector2(128, 16)
 size = Vector2(96, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ljsx"]
-size = Vector2(360, 152)
+size = Vector2(521, 140)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bwxdu"]
 shader = ExtResource("29_j7vgi")
 shader_parameter/shake_power = 0.015
 shader_parameter/shake_block_size = 16.0
-shader_parameter/shake_color_rate = 0.0050000002375
+shader_parameter/shake_color_rate = 0.005
 
 [sub_resource type="Environment" id="Environment_2tavo"]
 background_mode = 3
@@ -66,14 +66,14 @@ shader = ExtResource("23_0pnie")
 shader_parameter/ray_angle = 0.3
 shader_parameter/ray_position = -0.015
 shader_parameter/spread = 0.5
-shader_parameter/cutoff = 0.5390000731025
-shader_parameter/falloff = 0.1710000081225
-shader_parameter/edge_fade = 0.1370000065075
+shader_parameter/cutoff = 0.539
+shader_parameter/falloff = 0.171
+shader_parameter/edge_fade = 0.137
 shader_parameter/speed = 1.0
 shader_parameter/ray1_density = 8.0
 shader_parameter/ray2_density = 39.835
 shader_parameter/ray2_intensity = 0.3
-shader_parameter/color = Color(0.8645, 0.8834584, 0.91, 0.5019608)
+shader_parameter/color = Color(0.8645, 0.883458, 0.91, 0.501961)
 shader_parameter/hdr = false
 shader_parameter/seed = 5.0
 
@@ -206,7 +206,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 texture = ExtResource("10_3ljsx")
 
 [node name="Monk" parent="Interactables" instance=ExtResource("10_j34ew")]
-position = Vector2(1992, 112)
+position = Vector2(2056, 96)
 title = "monk"
 
 [node name="Label" parent="Interactables/Monk" index="0"]
@@ -219,7 +219,7 @@ texture = ExtResource("11_gi7ib")
 position = Vector2(480, 198)
 
 [node name="Player" parent="." instance=ExtResource("1_6xmxd")]
-position = Vector2(104, 182)
+position = Vector2(738, 102)
 
 [node name="ForegroundProps" type="Node2D" parent="."]
 
@@ -236,25 +236,27 @@ tile_set = ExtResource("16_0pnie")
 
 [node name="RiverEncounter" parent="Encounters" node_paths=PackedStringArray("boss") instance=ExtResource("15_p2iis")]
 position = Vector2(1080, 176)
+monitorable = true
 ability_info = ExtResource("16_o1net")
 boss = NodePath("Forlorn")
 
 [node name="CollisionShape" parent="Encounters/RiverEncounter" index="0"]
-position = Vector2(52, -36)
+position = Vector2(-33, -38)
 shape = SubResource("RectangleShape2D_3ljsx")
-metadata/_edit_lock_ = true
 
 [node name="Forlorn" parent="Encounters/RiverEncounter" instance=ExtResource("16_aysyn")]
 position = Vector2(-32, 10)
 
 [node name="Audio" type="Node" parent="."]
-process_mode = 3
+process_mode = 1
 
 [node name="Music" type="AudioStreamPlayer" parent="Audio"]
+process_mode = 1
 stream = ExtResource("27_k8wd0")
 autoplay = true
 
 [node name="Ambience" type="AudioStreamPlayer" parent="Audio"]
+process_mode = 1
 stream = ExtResource("27_j7vgi")
 autoplay = true
 

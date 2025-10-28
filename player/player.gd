@@ -16,7 +16,8 @@ const MAX_HEALTH_BAR_VALUE := 46
 #endregion
 
 #region Variables
-var speed := Vector2(64.0, 256.0)
+var forlorn_speed:Vector2 = Vector2(128.0, 256.0) #can change to 'boss speed' or whatever
+var walking_speed:Vector2 = Vector2(64.0, 256.0)
 var interactable: Interactable = null
 var spiritual_chains: SpiritualChains
 var resurrection: Resurrection
@@ -30,6 +31,7 @@ var direction := 0.0:
 #endregion
 
 #region Onready
+@onready var actual_speed:Vector2 = walking_speed
 @onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
 @onready var hit_box: HitBox = $HitBox
@@ -83,7 +85,8 @@ func set_immune(immune: bool) -> void:
 
 func movement_input(delta: float) -> void:
 	if Input.is_action_just_pressed(&"jump") and is_on_floor():
-		velocity.y = -speed.y
+		velocity.y = -actual_speed.y
+
 	var new_direction = Input.get_axis(&"left", &"right")
 	var old_direction := direction
 	direction = new_direction
@@ -92,7 +95,7 @@ func movement_input(delta: float) -> void:
 			grass_footsteps.play()
 
 	var traction := TRACTION if is_on_floor() else AIR_TRACTION
-	velocity.x = lerpf(velocity.x , direction * speed.x, traction * delta)
+	velocity.x = lerpf(velocity.x , direction * actual_speed.x, traction * delta)
 	scan_interactables()
 
 
