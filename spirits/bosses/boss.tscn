@@ -77,11 +77,15 @@ script = ExtResource("1_bhrgf")
 rampage_hp = 300
 max_health = 1000
 
+[node name="CollisionShape" parent="." index="0"]
+disabled = true
+
 [node name="ImmunityTime" parent="." index="1"]
 wait_time = 0.001
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 active = false
+deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_bhrgf")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")

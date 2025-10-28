@@ -77,6 +77,10 @@ func _input(event: InputEvent) -> void:
 
 
 #region Methods
+func set_immune(immune: bool) -> void:
+	hit_box.immune = immune
+
+
 func movement_input(delta: float) -> void:
 	if Input.is_action_just_pressed(&"jump") and is_on_floor():
 		velocity.y = -speed.y

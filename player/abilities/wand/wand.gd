@@ -37,10 +37,11 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
-	var mouse := get_global_mouse_position()
-	tip.look_at(mouse)
-	direction.look_at(mouse)
-	direction.global_position = owner.global_position + (owner.global_position.direction_to(mouse) * 20)
+	if owner.turning_enabled:
+		var mouse := get_global_mouse_position()
+		tip.look_at(mouse)
+		direction.look_at(mouse)
+		direction.global_position = owner.global_position + (owner.global_position.direction_to(mouse) * 20)
 
 
 func _execute() -> void:
@@ -54,15 +55,14 @@ func _execute() -> void:
 		owner.turning_enabled = false
 		const LASER := preload("res://player/abilities/wand/laser/laser.tscn")
 		var laser: Laser = LASER.instantiate()
-		add_child(laser)
+		tip.add_child(laser)
 		await laser.tree_exited
 		owner.turning_enabled = true
 		cooling = false
 	else:
 		const BULLET := preload("res://player/abilities/wand/witch_bolt/witch_bolt.tscn")
 		var bullet: Area2D = BULLET.instantiate()
-		bullet.global_rotation = tip.global_rotation
-		bullet.position = tip.global_position
+		bullet.transform = tip.global_transform
 		bullet.speed = speed
 		get_tree().current_scene.add_child(bullet)
 		bullet.total_damage = damage

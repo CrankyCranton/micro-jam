@@ -2,39 +2,12 @@
 
 [ext_resource type="Script" uid="uid://csoyxvoowflms" path="res://spirits/bosses/forlorn/forlorn.gd" id="1_mniau"]
 [ext_resource type="PackedScene" uid="uid://cmjo36h5vb0pg" path="res://spirits/bosses/boss.tscn" id="1_u80ym"]
-[ext_resource type="PackedScene" uid="uid://dc8bhw7cgussr" path="res://spirits/bosses/forlorn/void_ball.tscn" id="3_abhao"]
 [ext_resource type="Texture2D" uid="uid://dxg8h5ewgse46" path="res://assets/art/characters/bosses/forlorn.png" id="3_spnsm"]
-[ext_resource type="PackedScene" uid="uid://cg08dqalcbcyr" path="res://misc/hurt_box/bullet/trauma_bullet.tscn" id="4_rc3yq"]
+[ext_resource type="PackedScene" uid="uid://dc8bhw7cgussr" path="res://spirits/bosses/forlorn/void_ball.tscn" id="4_rc3yq"]
+[ext_resource type="PackedScene" uid="uid://cg08dqalcbcyr" path="res://spirits/bosses/forlorn/trauma_bullet.tscn" id="5_v4fon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rc3yq"]
 size = Vector2(40, 47)
-
-[sub_resource type="Animation" id="Animation_v4fon"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_spnsm"]
 resource_name = "activate"
@@ -54,14 +27,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:scale")
+tracks/1/path = NodePath("CollisionShape:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1)]
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_rc3yq"]
@@ -98,6 +71,7 @@ tracks/1/keys = {
 resource_name = "normal"
 length = 5.0
 loop_mode = 1
+step = 0.5
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -105,29 +79,23 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
-"args": [ExtResource("3_abhao"), 15.0],
+"args": [ExtResource("4_rc3yq"), 8, 20.0],
+"method": &"scream"
+}, {
+"args": [ExtResource("4_rc3yq"), 8, 20.0],
+"method": &"scream"
+}, {
+"args": [ExtResource("4_rc3yq"), 8, 20.0],
 "method": &"scream"
 }]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HUD:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_abhao"]
 resource_name = "rampage"
-length = 3.0
+length = 1.5
 loop_mode = 1
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -139,9 +107,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [ExtResource("4_rc3yq"), 15.0],
+"args": [ExtResource("5_v4fon"), 8, 20.0],
 "method": &"scream"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_v4fon"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -153,7 +136,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_spnsm"]
@@ -167,6 +150,7 @@ _data = {
 
 [node name="Forlorn" instance=ExtResource("1_u80ym")]
 script = ExtResource("1_mniau")
+rampage_hp = 75
 max_health = 200
 
 [node name="Sprite" type="Sprite2D" parent="." index="0"]
