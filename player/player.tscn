@@ -1,17 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://4iymnecmxam5"]
+[gd_scene load_steps=19 format=3 uid="uid://4iymnecmxam5"]
 
 [ext_resource type="Shader" uid="uid://c1cwfwmljsk7s" path="res://assets/art/effects/shaders/hit.gdshader" id="1_2ieo8"]
 [ext_resource type="Script" uid="uid://pi00xjq3n2a1" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://cba3hmbl8n3c" path="res://player/camera_shake.gd" id="3_hg6s5"]
-[ext_resource type="Texture2D" uid="uid://b5yf5mejmys5x" path="res://assets/art/characters/natsuki.png" id="3_kb6p2"]
+[ext_resource type="Texture2D" uid="uid://c3y2y6i3k44j" path="res://assets/art/characters/natsuki.png" id="3_kb6p2"]
 [ext_resource type="Script" uid="uid://f2ik8l16afl6" path="res://player/abilities/ability_manager.gd" id="4_yw30f"]
 [ext_resource type="PackedScene" uid="uid://dhtbqtyyhj8m3" path="res://player/hud/corruption_meter.tscn" id="5_boad6"]
-[ext_resource type="PackedScene" uid="uid://bl7mgcfb0uxdx" path="res://player/abilities/wand/wand.tscn" id="6_8t03j"]
-[ext_resource type="Texture2D" uid="uid://mfli6yt0clbx" path="res://assets/art/hud/health_bar_bg.png" id="6_rgyib"]
-[ext_resource type="Texture2D" uid="uid://bqmjo2rjrh4s7" path="res://assets/art/hud/health_bar_fill.png" id="7_rgyib"]
-[ext_resource type="AudioStream" uid="uid://f8o8iql380yn" path="res://misc/hurt_2.wav" id="11_2ieo8"]
-[ext_resource type="AudioStream" uid="uid://ssjwvcxcodm0" path="res://assets/sfx/rustling-grass-2-101283.mp3" id="13_yllr7"]
+[ext_resource type="Texture2D" uid="uid://bumcjhj7uyvao" path="res://assets/art/hud/health_bar_bg.png" id="6_rgyib"]
+[ext_resource type="Texture2D" uid="uid://dam4qs200qyma" path="res://assets/art/hud/health_bar_fill.png" id="7_rgyib"]
+[ext_resource type="AudioStream" uid="uid://byqoi8gp3yfa2" path="res://assets/sfx/hurt_2.wav" id="11_ebec5"]
+[ext_resource type="AudioStream" uid="uid://cjdqlr8lb30u4" path="res://assets/sfx/rustling-grass-2-101283.mp3" id="13_yllr7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ieo8"]
 shader = ExtResource("1_2ieo8")
@@ -76,46 +75,34 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Sprite:material:shader_parameter/flash_value")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.0, 0.0]
+"values": [1.0, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:material:shader_parameter/flash_value")
+tracks/1/path = NodePath("Sprite:material:shader_parameter/flash_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:material:shader_parameter/flash_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("HurtSound:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -128,7 +115,7 @@ _data = {
 &"hit": SubResource("Animation_8t03j")
 }
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_oul6g")
@@ -139,6 +126,7 @@ position = Vector2(0, -8)
 texture = ExtResource("3_kb6p2")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_oul6g")
 
@@ -155,6 +143,7 @@ editor_draw_drag_margin = true
 script = ExtResource("3_hg6s5")
 
 [node name="HitBox" parent="." groups=["players"] instance=ExtResource("2_rkbax")]
+visible = false
 max_health = 5
 
 [node name="CollisionShape" parent="HitBox" index="0"]
@@ -165,6 +154,7 @@ shape = SubResource("CapsuleShape2D_rgyib")
 wait_time = 3.0
 
 [node name="Interactor" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 128
 monitorable = false
@@ -176,14 +166,19 @@ shape = SubResource("RectangleShape2D_boad6")
 [node name="AbilityManager" type="Node2D" parent="."]
 script = ExtResource("4_yw30f")
 
-[node name="Wand" parent="AbilityManager" instance=ExtResource("6_8t03j")]
-position = Vector2(0, -6)
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_ebec5")
+
+[node name="FootstepsSounds" type="Node2D" parent="."]
+
+[node name="GrassFootsteps" type="AudioStreamPlayer2D" parent="FootstepsSounds"]
+unique_name_in_owner = true
+stream = ExtResource("13_yllr7")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="CorruptionMeter" parent="HUD" instance=ExtResource("5_boad6")]
 unique_name_in_owner = true
-visible = true
 offset_top = -48.0
 offset_right = 64.0
 offset_bottom = 16.0
@@ -209,20 +204,14 @@ fill_mode = 3
 texture_under = ExtResource("6_rgyib")
 texture_progress = ExtResource("7_rgyib")
 
-[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_2ieo8")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_2ieo8")
 }
 
-[node name="FootstepSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("13_yllr7")
-
 [connection signal="died" from="HitBox" to="." method="_on_hit_box_died"]
+[connection signal="health_changed" from="HitBox" to="." method="_on_hit_box_health_changed"]
 [connection signal="health_decreased" from="HitBox" to="." method="_on_hit_box_health_decreased"]
-[connection signal="health_increased" from="HitBox" to="." method="_on_hit_box_health_increased"]
 [connection signal="area_exited" from="Interactor" to="." method="_on_interactor_area_exited"]
 
 [editable path="HitBox"]

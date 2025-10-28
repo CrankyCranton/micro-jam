@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy0kwt8yujqhd"]
+[gd_scene load_steps=7 format=3 uid="uid://cy0kwt8yujqhd"]
 
-[ext_resource type="Texture2D" uid="uid://cmepkih08y25k" path="res://assets/art/enviroment/props/lamp_post.png" id="1_hy4hq"]
-[ext_resource type="Texture2D" uid="uid://csw3gek6ag8de" path="res://assets/art/enviroment/nature/petal.png" id="2_8crrx"]
-[ext_resource type="Texture2D" uid="uid://50rmcfmi3eq4" path="res://assets/art/effects/wand_charge/glow.png" id="3_t7ffu"]
+[ext_resource type="Texture2D" uid="uid://b4jjoxxg2r037" path="res://assets/art/enviroment/props/lamp_post.png" id="1_hy4hq"]
+[ext_resource type="Texture2D" uid="uid://cw667kmplmnx6" path="res://assets/art/effects/glow.png" id="3_t7ffu"]
 
 [sub_resource type="Curve" id="Curve_k8wd0"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -32,16 +31,17 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 32)
 
 [node name="Lantern" type="Marker2D" parent="."]
+use_parent_material = true
 position = Vector2(-5, -18)
 
 [node name="Fireflies" type="GPUParticles2D" parent="Lantern"]
+use_parent_material = true
 amount = 4
-texture = ExtResource("2_8crrx")
 visibility_rect = Rect2(-10.5037, -9.48186, 20.8664, 18.7143)
 process_material = SubResource("ParticleProcessMaterial_j7vgi")
 
 [node name="Glow" type="Sprite2D" parent="Lantern"]
-self_modulate = Color(0.490196, 0.184314, 0.529412, 0.501961)
+self_modulate = Color(0.97, 0.67996997, 0.21340004, 0.5019608)
 z_index = 1
 material = SubResource("CanvasItemMaterial_k8wd0")
 texture = ExtResource("3_t7ffu")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://dl08he4ulo8t2"]
 
-[ext_resource type="Shader" uid="uid://c0yfmfv4ubday" path="res://world/props/tree/2d_foliage_wind_effect.gdshader" id="1_5jmx1"]
-[ext_resource type="Texture2D" uid="uid://d3j3dhd3m6ddm" path="res://assets/art/enviroment/nature/tree_0001.png" id="1_ukn17"]
-[ext_resource type="Texture2D" uid="uid://csw3gek6ag8de" path="res://assets/art/enviroment/nature/petal.png" id="2_5jmx1"]
+[ext_resource type="Shader" uid="uid://c0yfmfv4ubday" path="res://assets/art/effects/shaders/2d_foliage_wind_effect.gdshader" id="1_5jmx1"]
+[ext_resource type="Texture2D" uid="uid://bvpj5jlh8swlk" path="res://assets/art/enviroment/nature/tree_0001.png" id="1_ukn17"]
+[ext_resource type="Texture2D" uid="uid://cql6ix3h75hsd" path="res://assets/art/effects/pixel.png" id="2_5jmx1"]
 [ext_resource type="Texture2D" uid="uid://c70hqgdqlmgov" path="res://world/wind_noise.tres" id="2_gi14d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lmd5p"]
@@ -54,6 +54,7 @@ texture = ExtResource("1_ukn17")
 offset = Vector2(0, -32)
 
 [node name="Petals" type="GPUParticles2D" parent="."]
+modulate = Color(0.80784315, 0.80784315, 0.80784315, 1)
 show_behind_parent = true
 position = Vector2(0.5, -31.5)
 texture = ExtResource("2_5jmx1")

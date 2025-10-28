@@ -1,6 +1,7 @@
 class_name CorruptionMeter extends TextureRect
 
 
+#region Members
 var max_value := 50
 
 @onready var value := 0:
@@ -9,3 +10,4 @@ var max_value := 50
 		@warning_ignore("integer_division")
 		for i in value / max_value * get_child_count():
 			get_child(i).play(&"light")
+#endregion

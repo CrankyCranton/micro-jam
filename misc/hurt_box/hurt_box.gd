@@ -1,12 +1,16 @@
 class_name HurtBox extends Area2D
 
 
+#region Members
 signal dealt_damage(target: HitBox, damage: int)
 
+#region Export
 @export var damage := 1
 @export var ignored_groups: Array[StringName] = []
+#endregion
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape
+#endregion
 
 
 func _on_area_entered(hit_box: HitBox) -> void:

@@ -1,14 +1,17 @@
 class_name CameraShake extends Camera2D
 
 
+#region Members
 @export var decay := 0.8 # Time it takes to reach 0% of trauma
 @export var max_offset := Vector2(100, 75) # Max hor/ver shake in pixels
 @export var max_roll := 0.1 # Maximum rotation in radians (use sparingly)
 
 var trauma := 0.0 # Current shake strength
 var trauma_power := 2 # Trauma exponent. Increase for more extreme shaking
+#endregion
 
 
+#region Functions
 func _process(delta: float) -> void:
 	if trauma: # If the camera is currently shaking
 		trauma = max(trauma - decay * delta, 0) # Decay the shake strength
@@ -28,3 +31,4 @@ func shake() -> void:
 	rotation = max_roll * amount * randf_range(-1, 1)
 	offset.x = max_offset.x * amount * randf_range(-1, 1)
 	offset.y = max_offset.y * amount * randf_range(-1, 1)
+#endregion

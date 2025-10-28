@@ -1,0 +1,10 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://d4e17edoeu6ag"]
+
+[sub_resource type="Gradient" id="Gradient_2tavo"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.7, 0.8404762, 0.9261905, 1)
+colors = PackedColorArray(0.03137255, 0.043137256, 0.15686275, 1, 0.060199995, 0.15881322, 0.43, 1, 0.2701, 0.41573507, 0.73, 1, 0.585, 0.6689999, 0.9, 1, 0.58874667, 0.3648, 0.76, 1, 0.9308715, 0.6383309, 0.914933, 1, 0.79209995, 0.87205166, 0.89, 1, 0.80784315, 0.91764706, 0.9490196, 1)
+
+[resource]
+gradient = SubResource("Gradient_2tavo")
+width = 32

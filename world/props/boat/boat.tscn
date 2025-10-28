@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ic4hpa3picyu"]
+
+[ext_resource type="Texture2D" uid="uid://colonk8tv5xfx" path="res://assets/art/enviroment/props/boat.png" id="1_mwjoc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2suy"]
+size = Vector2(44, 8)
+
+[node name="Boat" type="StaticBody2D"]
+collision_mask = 71
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_b2suy")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mwjoc")

@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://36t364seh31a"]
+
+[ext_resource type="Script" uid="uid://csoyxvoowflms" path="res://spirits/bosses/forlorn/forlorn.gd" id="1_mniau"]
+[ext_resource type="PackedScene" uid="uid://cmjo36h5vb0pg" path="res://spirits/bosses/boss.tscn" id="1_u80ym"]
+[ext_resource type="Texture2D" uid="uid://dxg8h5ewgse46" path="res://assets/art/characters/bosses/forlorn.png" id="3_spnsm"]
+
+[sub_resource type="Animation" id="Animation_spnsm"]
+resource_name = "activate"
+
+[sub_resource type="Animation" id="Animation_rc3yq"]
+resource_name = "death"
+
+[sub_resource type="Animation" id="Animation_mniau"]
+resource_name = "normal"
+
+[sub_resource type="Animation" id="Animation_abhao"]
+resource_name = "rampage"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_spnsm"]
+_data = {
+&"activate": SubResource("Animation_spnsm"),
+&"death": SubResource("Animation_rc3yq"),
+&"normal": SubResource("Animation_mniau"),
+&"rampage": SubResource("Animation_abhao")
+}
+
+[node name="Forlorn" instance=ExtResource("1_u80ym")]
+script = ExtResource("1_mniau")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_spnsm")
+}
+
+[node name="Mouth" type="Marker2D" parent="." index="4"]
+position = Vector2(0, -32)
+
+[node name="Sprite" type="Sprite2D" parent="." index="5"]
+texture = ExtResource("3_spnsm")
+offset = Vector2(0, -32)

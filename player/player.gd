@@ -1,16 +1,22 @@
 class_name Player extends CharacterBody2D
 
 
+#region Members
+#region Signals
 signal fully_corrupted
-signal ability_gained(ABILITY: PackedScene)
+signal ability_gained(ability_info: AbilityInfo)
+#endregion
 
-const JUMP_VELOCITY := 320.0
+#region Constants
 const TRACTION := 11.0
 const AIR_TRACTION := 4.0
-const DEADZONE := 0.2
-const MAX_CORRUPTION := 50
+const MAX_CORRUPTION := 5
+const MIN_HEALTH_BAR_VALUE := 13
+const MAX_HEALTH_BAR_VALUE := 46
+#endregion
 
-var speed := 64.0
+#region Variables
+var speed := Vector2(64.0, 256.0)
 var interactable: Interactable = null
 var spiritual_chains: SpiritualChains
 var resurrection: Resurrection
@@ -21,18 +27,19 @@ var direction := 0.0:
 		direction = value
 		if absf(direction) > 0.0 and turning_enabled:
 			last_direction = 1 if direction > 0 else -1
+#endregion
 
+#region Onready
 @onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
+@onready var hit_box: HitBox = $HitBox
 @onready var interactor: Area2D = $Interactor
 @onready var ability_manager: AbilityManager = $AbilityManager
 @onready var corruption_meter: CorruptionMeter = %CorruptionMeter
 @onready var health_bar: TextureProgressBar = %HealthBar
 @onready var collision_shape: CollisionShape2D = $CollisionShape
-@onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
-@onready var hit_box: HitBox = $HitBox
-@onready var animation:AnimationPlayer = $AnimationPlayer
-@onready var footsteps_sound: AudioStreamPlayer2D = $FootstepSound
+@onready var grass_footsteps: AudioStreamPlayer2D = %GrassFootsteps
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var corruption := 0:
 	set(value):
 		corruption = value
@@ -43,46 +50,53 @@ var direction := 0.0:
 	set(value):
 		last_direction = value
 		sprite.flip_h = last_direction < 0
+#endregion
+#endregion
 
 
+#region Functions
+#region Overrides
 func _ready() -> void:
 	corruption_meter.max_value = MAX_CORRUPTION
 	DialogueManager.dialogue_started.connect(_on_dialogue_manager_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_manager_dialogue_ended)
-	#await get_tree().process_frame
-	#add_ability(preload("res://player/abilities/wand/wand.tscn"))
-	#add_ability(preload("res://player/abilities/dash/warp/warp.tscn"))
 
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
 	if enabled:
-		if Input.is_action_just_pressed(&"jump") and is_on_floor():
-			velocity.y = -JUMP_VELOCITY
-		var new_direction = Input.get_axis(&"left", &"right")
-		var old_direction := direction
-		direction = new_direction if absf(new_direction) > DEADZONE else 0.0
-		if direction != 0.0 and is_on_floor():
-			if old_direction == 0.0 or not footsteps_sound.playing:
-				footsteps_sound.play()
-
-		var traction := TRACTION if is_on_floor() else AIR_TRACTION
-		velocity.x = lerpf(velocity.x , direction * speed, traction * delta)
-		scan_interactables()
-
-
+		movement_input(delta)
 	move_and_slide()
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"interact") and interactable != null:
 		interact()
+#endregion
+
+
+#region Methods
+func movement_input(delta: float) -> void:
+	if Input.is_action_just_pressed(&"jump") and is_on_floor():
+		velocity.y = -speed.y
+	var new_direction = Input.get_axis(&"left", &"right")
+	var old_direction := direction
+	direction = new_direction
+	if direction != 0.0 and is_on_floor():
+		if old_direction == 0.0 or not grass_footsteps.playing:
+			grass_footsteps.play()
+
+	var traction := TRACTION if is_on_floor() else AIR_TRACTION
+	velocity.x = lerpf(velocity.x , direction * speed.x, traction * delta)
+	scan_interactables()
+
+
+func reset_health() -> void:
+	hit_box.health = hit_box.max_health
 
 
 func interact(interactable := self.interactable) -> void:
-	set_enabled(false)
 	interactable.set_popup_visible(false)
 
 	if spiritual_chains != null and interactable is NPC:
@@ -107,7 +121,7 @@ func scan_interactables() -> void:
 
 func get_interactables() -> Array[Area2D]:
 	var interactables: Array[Area2D] = interactor.get_overlapping_areas()
-	interactables.sort_custom(InteractionManager.sort_by_distance)
+	interactables.sort_custom(sort_by_distance)
 	return interactables
 
 
@@ -120,13 +134,12 @@ func set_enabled(enabled: bool) -> void:
 		velocity.x = 0.0
 
 
-func scenario_end(ABILITY: PackedScene) -> void:
-	var ability: Ability = ABILITY.instantiate()
-	ability.executed.connect(_on_ability_executed)
-	ability.player = self
+func add_ability(ability_info: AbilityInfo) -> void:
+	var ability: Ability = ability_info.scene.instantiate()
 	ability_manager.add_child(ability)
 	ability.owner = self
 
+	# Perhaps move into the ability scripts
 	if ability is SpiritualChains:
 		spiritual_chains = ability
 		change_interactable_labels(&"npcs", "E to spiritually chain")
@@ -134,7 +147,7 @@ func scenario_end(ABILITY: PackedScene) -> void:
 		resurrection = ability
 		change_interactable_labels(&"gravestones", "E to resurrect")
 
-	ability_gained.emit(ABILITY)
+	ability_gained.emit(ability_info)
 	enabled = true
 	hit_box.health = hit_box.max_health
 
@@ -144,6 +157,13 @@ func change_interactable_labels(group: StringName, message: String) -> void:
 		interactable.label.text = message
 
 
+func sort_by_distance(a: Node2D, b: Node2D) -> bool:
+	return global_position.distance_squared_to(a.global_position) \
+			> global_position.distance_squared_to(b.global_position)
+#endregion
+
+
+#region Callbacks
 func _on_dialogue_manager_dialogue_started(_resource: DialogueResource) -> void:
 	set_enabled(false)
 
@@ -162,20 +182,12 @@ func _on_hit_box_died() -> void:
 	die()
 
 
-func _on_ability_executed(ability_name):
-	%dash_hud.find_child(ability_name)
+func _on_hit_box_health_decreased(_health: int) -> void:
+	animation_player.play(&"hit")
 
 
-func _on_hit_box_health_decreased(health: int) -> void:
-	animation.play("hit")
-	const MIN_HEALTH_BAR_VALUE := 13
-	const MAX_HEALTH_BAR_VALUE := 46
-	health_bar.value = remap(health, 0, hit_box.max_health,
+func _on_hit_box_health_changed(_damage: int) -> void:
+	health_bar.value = remap(hit_box.health, 0, hit_box.max_health,
 			MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)
-
-
-func _on_hit_box_health_increased(health: int) -> void:
-	const MIN_HEALTH_BAR_VALUE := 13
-	const MAX_HEALTH_BAR_VALUE := 46
-	health_bar.value = remap(health, 0, hit_box.max_health,
-			MIN_HEALTH_BAR_VALUE, MAX_HEALTH_BAR_VALUE)
+#endregion
+#endregion

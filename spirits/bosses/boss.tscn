@@ -1,0 +1,89 @@
+[gd_scene load_steps=18 format=3 uid="uid://cmjo36h5vb0pg"]
+
+[ext_resource type="Script" uid="uid://craxtv7us8age" path="res://spirits/bosses/boss.gd" id="1_bhrgf"]
+[ext_resource type="PackedScene" uid="uid://b8a0hl563fulo" path="res://misc/hit_box/hit_box.tscn" id="2_6ln1r"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nb7we"]
+animation = &"activate"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ln1r"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nnyji"]
+animation = &"normal"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e1004"]
+animation = &"rampage"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e1004"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_111e1"]
+break_loop_at_end = true
+switch_mode = 2
+advance_mode = 2
+advance_expression = "health <= rampage_hp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mqwdx"]
+break_loop_at_end = true
+switch_mode = 2
+advance_mode = 2
+advance_expression = "health <= 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ln1r"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nnyji"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bhrgf"]
+states/End/position = Vector2(1055, 100)
+states/activate/node = SubResource("AnimationNodeAnimation_nb7we")
+states/activate/position = Vector2(347, 100)
+states/death/node = SubResource("AnimationNodeAnimation_6ln1r")
+states/death/position = Vector2(889, 100)
+states/normal/node = SubResource("AnimationNodeAnimation_nnyji")
+states/normal/position = Vector2(516, 100)
+states/rampage/node = SubResource("AnimationNodeAnimation_e1004")
+states/rampage/position = Vector2(705, 100)
+transitions = ["death", "End", SubResource("AnimationNodeStateMachineTransition_e1004"), "normal", "rampage", SubResource("AnimationNodeStateMachineTransition_111e1"), "rampage", "death", SubResource("AnimationNodeStateMachineTransition_mqwdx"), "Start", "activate", SubResource("AnimationNodeStateMachineTransition_6ln1r"), "activate", "normal", SubResource("AnimationNodeStateMachineTransition_nnyji")]
+
+[sub_resource type="Animation" id="Animation_31dpj"]
+resource_name = "death"
+
+[sub_resource type="Animation" id="Animation_47mkl"]
+resource_name = "normal"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_qmstm"]
+resource_name = "rampage"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_111e1"]
+resource_name = "activate"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nnyji"]
+_data = {
+&"activate": SubResource("Animation_111e1"),
+&"death": SubResource("Animation_31dpj"),
+&"normal": SubResource("Animation_47mkl"),
+&"rampage": SubResource("Animation_qmstm")
+}
+
+[node name="Boss" instance=ExtResource("2_6ln1r")]
+script = ExtResource("1_bhrgf")
+rampage_hp = 300
+max_health = 1000
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+active = false
+tree_root = SubResource("AnimationNodeStateMachine_bhrgf")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_nnyji")
+}

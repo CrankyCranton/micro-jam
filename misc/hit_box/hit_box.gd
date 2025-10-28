@@ -1,20 +1,22 @@
 class_name HitBox extends Area2D
 
 
-signal damage_taken(damage: int)
+#region Members
+#region Signals
+signal health_changed(damage: int)
 signal health_decreased(health: int)
 signal health_increased(health: int)
 signal died
+#endregion
 
 @export var max_health := 1
 
+#region Onready
 @onready var health := max_health:
 	set(value):
 		if value > health:
 			health_increased.emit(health)
-			print("1")
 		elif value < health:
-			print('2')
 			health_decreased.emit(health)
 		health = value
 		if health <= 0:
@@ -25,17 +27,22 @@ signal died
 	set(value):
 		immune = value
 		collision_shape.set_deferred(&"disabled", immune)
+#endregion
+#endregion
 
 
+#region Functions
 func take_damage(damage: int) -> int:
 	assert(not immune)
 	immune = true
 	immunity_time.start()
+
 	var old_health := health
 	health -= damage
-	damage_taken.emit(damage)
+	health_changed.emit(-damage)
 	return mini(old_health, damage)
 
 
 func _on_immunity_time_timeout() -> void:
 	immune = false
+#endregion

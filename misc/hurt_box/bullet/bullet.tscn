@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://6ykaff6iwet3"]
+
+[ext_resource type="PackedScene" uid="uid://crx7kk4gj06gp" path="res://misc/hurt_box/hurt_box.tscn" id="1_lkf4r"]
+[ext_resource type="Script" uid="uid://co26upqyi25dh" path="res://misc/hurt_box/bullet/bullet.gd" id="2_g1l1v"]
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 0
+script = ExtResource("2_g1l1v")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+
+[node name="HurtBox" parent="." instance=ExtResource("1_lkf4r")]
+
+[node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="dealt_damage" from="HurtBox" to="." method="_on_hurt_box_dealt_damage"]
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]

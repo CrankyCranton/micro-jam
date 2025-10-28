@@ -1,18 +1,26 @@
 class_name Spawner extends Node2D
 
 
+#region Members
+#region Export
 @export var bullet_scene: PackedScene
-@onready var shoot_timer: Timer = $ShootTimer
 @export_group("bullet")
 @export var rotate_speed: int
 @export var shoot_timer_wait_time: float
 @export_group("spawning")
 @export var spawn_point_count: int
 @export var radius: int
+#endregion
 
+#region Onready
+@onready var shoot_timer: Timer = $ShootTimer
 @onready var bullets: Marker2D = %Bullets
+#endregion
+#endregion
 
 
+#region Functions
+#region Overrides
 func _ready() -> void:
 	var step: float = TAU / spawn_point_count
 
@@ -30,6 +38,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var new_rotation = bullets.rotation_degrees + rotate_speed * delta
 	bullets.rotation_degrees = fmod(new_rotation, 360)
+#endregion
 
 
 func _on_shoot_timer_timeout() -> void:
@@ -39,3 +48,4 @@ func _on_shoot_timer_timeout() -> void:
 		bullet.position = s.global_position
 		bullet.rotation = s.global_rotation
 	shoot_timer.start()
+#endregion

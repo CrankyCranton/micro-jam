@@ -8,7 +8,7 @@ func enslave(player: Player) -> void:
 	title = enslave_title
 	await _interact(player)
 
-	const SLAVE := preload("res://spirits/evil_spirit/slave/slave.tscn")
+	const SLAVE := preload("res://spirits/spirit/slave/slave.tscn")
 	var slave: Slave = SLAVE.instantiate()
 	slave.player = player
 	slave.global_position = global_position

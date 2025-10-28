@@ -1,14 +1,16 @@
 extends Sprite2D
 
-#see dashAbility for use
 
+#region Functions
 func _ready():
 	ghosting()
+
 
 func set_property(tx_pos, tx_scale):
 	#texture = tex, texture for adding dash to different objects
 	position = tx_pos
 	scale = Vector2(tx_scale,tx_scale)
+
 
 func ghosting():
 	var tween_fade = get_tree().create_tween()
@@ -17,3 +19,4 @@ func ghosting():
 	await tween_fade.finished
 
 	queue_free()
+#endregion

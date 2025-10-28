@@ -1,13 +1,14 @@
 class_name Ability extends Node2D
 
 
+#region Members
 signal executed(ability_name: StringName)
 
 @export var action := &""
+#endregion
 
-@onready var player: Player = get_tree().get_first_node_in_group(&"player")
 
-
+#region Functions
 func _input(event: InputEvent) -> void:
 	if action != &"" and event.is_action_pressed(action):
 		_execute()
@@ -16,3 +17,4 @@ func _input(event: InputEvent) -> void:
 
 func _execute() -> void:
 	pass
+#endregion
