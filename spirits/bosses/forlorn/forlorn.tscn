@@ -9,8 +9,36 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rc3yq"]
 size = Vector2(40, 47)
 
+[sub_resource type="Animation" id="Animation_v4fon"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_spnsm"]
 resource_name = "activate"
+length = 2.0
 step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -19,10 +47,10 @@ tracks/0/path = NodePath("HUD:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -31,10 +59,24 @@ tracks/1/path = NodePath("CollisionShape:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [{
+"args": [&"started"],
+"method": &"emit_signal"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_rc3yq"]
@@ -82,13 +124,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
-"args": [ExtResource("4_rc3yq"), 8, 20.0],
+"args": [ExtResource("4_rc3yq"), 8, 29.0],
 "method": &"scream"
 }, {
-"args": [ExtResource("4_rc3yq"), 8, 20.0],
+"args": [ExtResource("4_rc3yq"), 8, 29.0],
 "method": &"scream"
 }, {
-"args": [ExtResource("4_rc3yq"), 8, 20.0],
+"args": [ExtResource("4_rc3yq"), 8, 29.0],
 "method": &"scream"
 }]
 }
@@ -107,36 +149,9 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [ExtResource("5_v4fon"), 8, 20.0],
+"args": [ExtResource("5_v4fon"), 8, 6.0],
 "method": &"scream"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_v4fon"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HUD:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_spnsm"]

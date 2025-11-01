@@ -21,13 +21,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_111e1"]
 break_loop_at_end = true
-switch_mode = 2
 advance_mode = 2
 advance_expression = "health <= rampage_hp"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mqwdx"]
 break_loop_at_end = true
-switch_mode = 2
 advance_mode = 2
 advance_expression = "health <= 0"
 

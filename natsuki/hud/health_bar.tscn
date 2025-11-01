@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjthdxtydw2mg"]
+
+[ext_resource type="Texture2D" uid="uid://bumcjhj7uyvao" path="res://assets/art/hud/health_bar_bg.png" id="1_bu70f"]
+[ext_resource type="Script" uid="uid://doaj0rkq3u2ci" path="res://natsuki/hud/health_bar.gd" id="1_e142e"]
+[ext_resource type="Texture2D" uid="uid://dam4qs200qyma" path="res://assets/art/hud/health_bar_fill.png" id="2_6udqe"]
+[ext_resource type="Texture2D" uid="uid://b2dg6nret5iyb" path="res://assets/art/hud/health_bar_loss.png" id="2_e142e"]
+
+[node name="HealthBar" type="MarginContainer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_e142e")
+
+[node name="Under" type="TextureProgressBar" parent="."]
+layout_mode = 2
+max_value = 64.0
+value = 13.0
+fill_mode = 3
+texture_under = ExtResource("1_bu70f")
+texture_progress = ExtResource("2_e142e")
+
+[node name="Over" type="TextureProgressBar" parent="."]
+layout_mode = 2
+max_value = 64.0
+value = 13.0
+fill_mode = 3
+texture_progress = ExtResource("2_6udqe")

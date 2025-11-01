@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3h8dx83ssg0c"]
+
+[ext_resource type="Script" uid="uid://bllv4alwpuetp" path="res://natsuki/abilities/dash/warp/warp.gd" id="1_oakod"]
+
+[node name="Warp" type="Node2D"]
+script = ExtResource("1_oakod")
+action = &"dash"
+
+[node name="Projector" type="ShapeCast2D" parent="."]
+enabled = false
+target_position = Vector2(0, 0)
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

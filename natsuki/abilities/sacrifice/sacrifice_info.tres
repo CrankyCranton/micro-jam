@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbilityInfo" load_steps=3 format=3 uid="uid://bii4ssn5o6ah0"]
+
+[ext_resource type="Script" uid="uid://cnndtp0etyf4s" path="res://natsuki/abilities/ability_info.gd" id="1_6fcij"]
+[ext_resource type="PackedScene" uid="uid://dvhuaaqve01vv" path="res://natsuki/abilities/sacrifice/sacrifice.tscn" id="1_snyah"]
+
+[resource]
+script = ExtResource("1_6fcij")
+scene = ExtResource("1_snyah")
+name = "Sacrifice"
+instructions = "Press [img]res://assets/art/inputs_c.png[/img] to sacrifice corruption for health."
+metadata/_custom_type_script = "uid://cnndtp0etyf4s"

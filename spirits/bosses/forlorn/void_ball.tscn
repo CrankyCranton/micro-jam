@@ -7,8 +7,10 @@
 radius = 8.0
 
 [node name="VoidBall" instance=ExtResource("1_533kt")]
+speed = 64.0
 shape = SubResource("CircleShape2D_533kt")
 total_damage = 20
+wall_slowing = 20
 
 [node name="HurtBox" parent="." index="1"]
 ignored_groups = Array[StringName]([&"spirits"])

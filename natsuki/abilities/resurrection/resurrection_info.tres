@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbilityInfo" load_steps=3 format=3 uid="uid://ceibje2m2ig4a"]
+
+[ext_resource type="PackedScene" uid="uid://wcoepf7xa88v" path="res://natsuki/abilities/resurrection/resurrection.tscn" id="1_iek1t"]
+[ext_resource type="Script" uid="uid://cnndtp0etyf4s" path="res://natsuki/abilities/ability_info.gd" id="1_n52nv"]
+
+[resource]
+script = ExtResource("1_n52nv")
+scene = ExtResource("1_iek1t")
+name = "Resurrection"
+instructions = "Press [img]res://assets/art/inputs_e.png[/img] to resurrect from the grave."
+metadata/_custom_type_script = "uid://cnndtp0etyf4s"

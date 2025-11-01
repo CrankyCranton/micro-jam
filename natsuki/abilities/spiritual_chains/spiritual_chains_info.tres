@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbilityInfo" load_steps=3 format=3 uid="uid://cpmjfythvloks"]
+
+[ext_resource type="Script" uid="uid://cnndtp0etyf4s" path="res://natsuki/abilities/ability_info.gd" id="1_iokuo"]
+[ext_resource type="PackedScene" uid="uid://7b8ylmct0egs" path="res://natsuki/abilities/spiritual_chains/spiritual_chains.tscn" id="1_lty1k"]
+
+[resource]
+script = ExtResource("1_iokuo")
+scene = ExtResource("1_lty1k")
+name = "Spiritual Chains"
+instructions = "Press [img]res://assets/art/inputs_e.png[/img] to enslave a nearby NPC, at the cost of [color=red]corruption.[/color]"
+metadata/_custom_type_script = "uid://cnndtp0etyf4s"

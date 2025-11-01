@@ -7,8 +7,10 @@
 radius = 16.0
 
 [node name="TraumaBullet" instance=ExtResource("1_a3nts")]
+speed = 64.0
 shape = SubResource("CircleShape2D_bu1np")
 total_damage = 40
+wall_slowing = 20
 
 [node name="HurtBox" parent="." index="1"]
 ignored_groups = Array[StringName]([&"spirits"])

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityInfo" load_steps=3 format=3 uid="uid://cjqr80c1w3jyv"]
+
+[ext_resource type="Script" uid="uid://cnndtp0etyf4s" path="res://natsuki/abilities/ability_info.gd" id="1_jkqf0"]
+[ext_resource type="PackedScene" uid="uid://bl7mgcfb0uxdx" path="res://natsuki/abilities/wand/wand.tscn" id="1_u7gu3"]
+
+[resource]
+script = ExtResource("1_jkqf0")
+scene = ExtResource("1_u7gu3")
+name = "Wand"
+instructions = "Click [img]res://assets/art/hud/mouse_0001.png[/img] to zap.
+Hold down to charge.
+Beware: Overcharging can make it explode!"
+metadata/_custom_type_script = "uid://cnndtp0etyf4s"

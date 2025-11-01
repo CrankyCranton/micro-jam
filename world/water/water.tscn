@@ -1,49 +1,57 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhqfevob616ui"]
+[gd_scene load_steps=9 format=3 uid="uid://dhqfevob616ui"]
 
 [ext_resource type="Script" uid="uid://c8itgg6x7qkvu" path="res://world/water/water.gd" id="1_nl8eq"]
-[ext_resource type="Shader" uid="uid://krkibu8qrggw" path="res://assets/art/effects/shaders/water.gdshader" id="2_s33lq"]
+[ext_resource type="Shader" uid="uid://dinxdbbjlepal" path="res://assets/art/effects/shaders/water_2d_reflection.gdshader" id="2_s33lq"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_s33lq"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_delex"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_delex"]
-noise = SubResource("FastNoiseLite_s33lq")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_llyeo"]
+noise = SubResource("FastNoiseLite_delex")
+seamless = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ho7eo"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vy5aa"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0pnie"]
 noise = SubResource("FastNoiseLite_ho7eo")
+seamless = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_delex"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vy5aa"]
 shader = ExtResource("2_s33lq")
-shader_parameter/noise1 = SubResource("NoiseTexture2D_delex")
-shader_parameter/noise2 = SubResource("NoiseTexture2D_vy5aa")
-shader_parameter/scroll1 = Vector2(0.05, 0.05)
-shader_parameter/scroll2 = Vector2(-0.05, -0.05)
-shader_parameter/distortion_strength = 1.0
-shader_parameter/tone_color = Color(3.94672e-06, 0.499938, 0.772984, 1)
-shader_parameter/top_color = Color(1, 1, 1, 1)
-shader_parameter/light_start = 0.275
-shader_parameter/light_end = 0.4
+shader_parameter/offSet = 0.0
+shader_parameter/YDistortion = 1.0
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_0pnie")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_llyeo")
+shader_parameter/waterColor = Color(0.050980393, 0.18431373, 0.42745098, 1)
+shader_parameter/colorCorection = 0.35
+shader_parameter/distortionForce = 0.02000000095
+shader_parameter/WDBrightness = 0.30000000447036
+shader_parameter/WDFreq = 0.20000000298023
+shader_parameter/WDSize = 0.9
+shader_parameter/WDSpeed = 4.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.015, 0.04)
+shader_parameter/backGroundDirX = 0.02000000420987999
+shader_parameter/backGroundDirY = 0.01
 
-[sub_resource type="Gradient" id="Gradient_nl8eq"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.592157, 0.713726, 0.756863, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_s33lq"]
-gradient = SubResource("Gradient_nl8eq")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s33lq"]
+resource_local_to_scene = true
+size = Vector2(64, 56)
 
 [node name="Water" type="Area2D"]
-collision_layer = 2
-collision_mask = 0
+collision_mask = 2
+monitorable = false
+linear_damp = 68.767
 script = ExtResource("1_nl8eq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_delex")
-position = Vector2(0, 32)
-texture = SubResource("GradientTexture2D_s33lq")
+[node name="Visuals" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vy5aa")
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 64.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 32)
+position = Vector2(0, 36)
+shape = SubResource("RectangleShape2D_s33lq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

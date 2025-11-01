@@ -2,6 +2,9 @@ class_name Boss extends HitBox
 
 
 #region Members
+@warning_ignore("unused_signal")
+signal started
+
 @export var rampage_hp := 300
 
 #region Onready

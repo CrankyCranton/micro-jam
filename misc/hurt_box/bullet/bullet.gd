@@ -18,7 +18,7 @@ class_name Bullet extends Area2D
 	set(value):
 		total_damage = value
 		damage = total_damage
-@export var wall_slowing := 30
+@export var wall_slowing := 40
 #endregion
 
 var damage: float:
